@@ -1,0 +1,212 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_edit_height"
+            android:background="@drawable/border"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/iv_pick_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/appointment_icon_clock" />
+
+            <TextView
+                android:id="@+id/tv_pick_time"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/default_edit_height"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_pick_time"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:text="包车时长:"
+                android:textColorHint="@color/grey" />
+
+            <EditText
+                android:id="@+id/et_duration"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_edit_height"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@+id/tv_pick_time"
+                android:background="@null"
+                android:editable="false"
+                android:gravity="center_vertical|right"
+                android:hint="请选择"
+                android:textColorHint="@color/grey"
+                android:textSize="@dimen/small_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_edit_height"
+            android:background="@drawable/border">
+
+            <ImageView
+                android:id="@+id/iv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/appointment_icon_clock" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/default_edit_height"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_time"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:text="上车时间:"
+                android:textColorHint="@color/grey" />
+
+            <EditText
+                android:id="@+id/et_time"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_edit_height"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@+id/tv_time"
+                android:background="@null"
+                android:editable="false"
+                android:gravity="center_vertical|right"
+                android:hint="请选择"
+                android:textColorHint="@color/grey"
+                android:textSize="@dimen/small_text_size" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_edit_height"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@drawable/border">
+
+            <ImageView
+                android:id="@+id/iv_now_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/icon_spoint" />
+
+            <EditText
+                android:id="@+id/et_start_address"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_edit_height"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_now_address"
+                android:background="@null"
+                android:hint="市民大厅"
+                android:textColorHint="@color/grey"
+                android:textSize="@dimen/small_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_edit_height"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/border">
+
+            <ImageView
+                android:id="@+id/iv_end_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/icon_epoint" />
+
+            <EditText
+                android:id="@+id/et_end_address"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_edit_height"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_end_address"
+                android:background="@null"
+                android:editable="false"
+                android:hint="请选择下车地点"
+                android:textColorHint="@color/grey"
+                android:textSize="@dimen/small_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_edit_height"
+            android:background="@drawable/border">
+
+            <ImageView
+                android:id="@+id/iv_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/appointment_icon_user" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/default_edit_height"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_user"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:text="乘客电话:"
+                android:textColorHint="@color/grey"
+                android:textSize="@dimen/small_text_size" />
+
+            <EditText
+                android:id="@+id/et_user"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_edit_height"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@+id/tv_phone"
+                android:background="@null"
+                android:gravity="center_vertical|right"
+                android:hint="请输入"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textColorHint="@color/grey"
+                android:textSize="@dimen/small_text_size" />
+
+
+        </RelativeLayout>
+
+        <include layout="@layout/c_layout_car_select"></include>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_btn_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/tv_gologin"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/app_main"
+        android:text="确认用车"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+</RelativeLayout>

@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">雷风专车</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="car_use_title">我要用车</string>
+    <string name="destination_button">呼叫专车</string>
+    <string name="cancel_button">取消</string>
+    <string name="destination_title">请输入目的地</string>
+    <string name="phone_title">请输入手机号</string>
+    <string name="pwd_title">请输入密码</string>
+
+    <string name="car_one">新能源</string>
+    <string name="car_two">舒适型</string>
+    <string name="car_three">豪华型</string>
+    <string name="car_four">七座商务</string>
+    <string name="pay_memo">*预估费用仅供参考，实际费用可能因交通情况，天气等因素而不同</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_customer_register">CustomerRegisterActivity</string>
+    <string name="title_activity_call_car_sucess">CallCarSucessActivity</string>
+</resources>

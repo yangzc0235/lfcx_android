@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 24
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    buildTypes{
+        debug{
+            buildConfigField "boolean","LOG_DEBUG","true"
+        }
+
+        release{
+            buildConfigField "boolean","LOG_DEBUG","false"
+        }
+    }
+}
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    //Retrofit2所需要的包
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    //ConverterFactory的Gson依赖包
+    compile 'com.squareup.retrofit2:converter-scalars:2.3.0'
+    //ConverterFactory的String依赖包
+    compile 'com.android.support:appcompat-v7:24.1.1'
+    //高德地图
+    compile 'com.amap.api:navi-3dmap:latest.integration'
+    compile 'com.amap.api:search:latest.integration'
+//    compile 'com.amap.api:location:latest.integration'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    compile 'com.android.support:design:24.1.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+    compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
+    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
+    compile 'com.yanzhenjie:permission:1.1.0'
+    compile  'com.zaaach:citypicker:1.2'
+//    compile 'com.github.Todd-Davies:ProgressWheel:1.2'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.prolificinteractive:material-calendarview:1.4.0'
+    compile 'com.contrarywind:Android-PickerView:3.2.6'
+    compile 'com.yanzhenjie:album:2.0.1'
+
+}

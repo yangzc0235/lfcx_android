@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lfcx.customer.activity.CallWaitActivity"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <include
+        android:id="@+id/action_bar"
+        layout="@layout/layout_common_title"></include>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="正在等待司机加单...."
+        android:textColor="@color/c_text_black"/>
+
+</LinearLayout>

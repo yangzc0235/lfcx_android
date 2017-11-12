@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="statusview-1.0.3">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/common/build/intermediates/exploded-aar/com.yanzhenjie/statusview/1.0.3/res" />
+      <root url="jar://$PROJECT_DIR$/common/build/intermediates/exploded-aar/com.yanzhenjie/statusview/1.0.3/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.yanzhenjie/statusview/1.0.3/985b9cc686908ebe487474e3fbfa7cec42b5b82c/statusview-1.0.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

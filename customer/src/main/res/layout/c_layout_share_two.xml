@@ -1,0 +1,249 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightgrey"
+    android:paddingLeft="@dimen/horizontal_margin"
+    android:paddingRight="@dimen/horizontal_margin"
+    android:paddingTop="@dimen/vertical_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="带小件"
+            android:textSize="@dimen/title_size"
+            android:background="@drawable/title_white_shape_bg"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:gravity="center"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_edit_height"
+            android:background="@drawable/border">
+
+            <TextView
+                android:id="@+id/iv_now_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/icon_spoint"
+                android:text="出发地址:"
+                />
+
+            <EditText
+                android:id="@+id/et_start_address"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_edit_height"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_now_address"
+                android:background="@null"
+                android:editable="false"
+                android:textColorHint="@color/c_text_black"
+                android:textSize="@dimen/small_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_edit_height"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/border">
+
+            <TextView
+                android:id="@+id/iv_to_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/icon_epoint"
+                android:text="带货到哪去:"
+                 />
+
+            <EditText
+                android:id="@+id/et_end_address"
+                android:editable="false"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_edit_height"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_to_address"
+                android:background="@null"
+                android:textColorHint="@color/c_text_black"
+                android:textSize="@dimen/small_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_edit_height"
+            android:background="@drawable/border">
+
+            <TextView
+                android:id="@+id/iv_goods_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:drawablePadding="5dp"
+                android:text="重量(kg):"
+                android:drawableLeft="@drawable/time_fill"/>
+
+            <EditText
+                android:id="@+id/et_goods_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_goods_weight"
+                android:background="@null"
+                android:paddingLeft="10dp"
+                android:textColorHint="@color/c_text_black"
+                android:textColor="@color/c_text_black"
+                android:textSize="@dimen/small_text_size"
+                android:inputType="number"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_edit_height"
+            android:background="@drawable/border"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/iv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:drawablePadding="5dp"
+                android:text="出发时间:"
+                android:drawableLeft="@drawable/time_fill" />
+
+            <EditText
+                android:id="@+id/et_start_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_time"
+                android:background="@null"
+                android:paddingLeft="10dp"
+                android:editable="false"
+                android:textColorHint="@color/c_text_black"
+                android:textColor="@color/c_text_black"
+                android:textSize="@dimen/small_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_edit_height"
+            android:background="@drawable/border">
+
+            <TextView
+                android:id="@+id/iv_group_fill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:drawablePadding="5dp"
+                android:text="收货人姓名:"
+                android:drawableLeft="@drawable/group_fill"
+                 />
+
+            <EditText
+                android:id="@+id/et_uname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_group_fill"
+                android:background="@null"
+                android:paddingLeft="10dp"
+                android:textColor="@color/c_text_black"
+                android:textSize="@dimen/small_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_edit_height"
+            android:background="@drawable/border">
+
+            <TextView
+                android:id="@+id/iv_contact_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/group_fill"
+                android:text="收货人电话:"/>
+
+            <EditText
+                android:id="@+id/et_contact_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_contact_user"
+                android:background="@null"
+                android:paddingLeft="10dp"
+                android:textColor="@color/c_text_black"
+                android:textSize="@dimen/small_text_size"
+                android:inputType="number"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8.9"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="元起" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_edit_height"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/tv_gologin"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="30dp"
+            android:textSize="@dimen/title_size"
+            android:background="@drawable/btn_yellow_bg"
+            android:text="确认发布" />
+    </LinearLayout>
+</RelativeLayout>

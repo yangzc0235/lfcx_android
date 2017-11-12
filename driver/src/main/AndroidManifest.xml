@@ -1,0 +1,42 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.lfcx.driver">
+
+   <application>
+
+        <activity android:name=".activity.DriverLoginActivity">
+            <intent-filter>
+                <action android:name="lfcx.action.main.driver" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".receiver.DriverJPushReceiver">
+            <intent-filter>
+                <action android:name="Driver.BROADCAST" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.zaaach.citypicker.CityPickerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CityPicker.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".activity.DriverRegisterActivity" />
+        <activity android:name=".activity.DriverUserActivity" />
+        <activity android:name=".activity.DriverNewsActivity" />
+        <activity android:name=".activity.DriverUploadActivity" />
+        <activity android:name=".activity.DriverMainActivity" />
+        <activity android:name=".activity.DriverModeActivity" />
+        <activity android:name=".activity.DriverOrderActivity" />
+        <activity
+            android:name=".activity.DriverRegistAfterActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <service
+            android:name=".service.LocationService"
+            android:exported="false" />
+
+        <activity android:name=".activity.CarTypeSelectActivity"></activity>
+    </application>
+
+</manifest>

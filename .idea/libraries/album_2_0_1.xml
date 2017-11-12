@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="album-2.0.1">
+    <ANNOTATIONS>
+      <root url="jar://$PROJECT_DIR$/common/build/intermediates/exploded-aar/com.yanzhenjie/album/2.0.1/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/common/build/intermediates/exploded-aar/com.yanzhenjie/album/2.0.1/res" />
+      <root url="jar://$PROJECT_DIR$/common/build/intermediates/exploded-aar/com.yanzhenjie/album/2.0.1/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.yanzhenjie/album/2.0.1/25cff814c907f5fb0e13aa6b45eee99e1a8b29f1/album-2.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

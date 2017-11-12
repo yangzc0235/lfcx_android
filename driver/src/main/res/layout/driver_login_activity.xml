@@ -1,0 +1,144 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.lfcx.driver.activity.DriverModeActivity">
+
+    <include
+        android:id="@+id/action_bar"
+        layout="@layout/driver_common_title"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@mipmap/icon_lfzc" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_title_bar_height"
+            android:background="@drawable/border">
+
+            <ImageView
+                android:id="@+id/iv_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_phone" />
+
+            <EditText
+                android:id="@+id/et_phone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_title_bar_height"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_user"
+                android:background="@null"
+                android:hint="@string/phone_title"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_title_bar_height"
+            android:background="@drawable/border">
+
+            <ImageView
+                android:id="@+id/iv_pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_password" />
+
+            <EditText
+                android:id="@+id/et_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_title_bar_height"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_pwd"
+                android:background="@null"
+                android:hint="@string/pwd_title"
+                android:inputType="textPassword"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="同意"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/grey"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="雷风专车协议"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:textColor="@color/app_main"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_edit_height"
+            android:layout_marginTop="25dp"
+            android:background="@color/middgrey"
+            android:text="登录"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_login"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="注册雷风用户"
+                android:textStyle="bold"
+                android:textColor="@color/app_main"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_findPwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="忘记密码？"
+                android:textStyle="bold"
+                android:textColor="@color/app_main"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
+
+
+
