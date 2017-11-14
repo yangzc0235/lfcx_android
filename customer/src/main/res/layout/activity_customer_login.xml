@@ -73,35 +73,14 @@
                 android:textSize="14sp" />
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
-            android:gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="同意"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:textColor="@color/grey"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="雷风专车协议"
-                android:textStyle="bold"
-                android:textSize="13sp"
-                android:textColor="@color/app_main"/>
-        </LinearLayout>
 
         <Button
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/default_edit_height"
+            android:layout_height="44dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="25dp"
-            android:background="@color/middgrey"
+            android:background="@drawable/btn_yellow_bg"
             android:text="登录"
             android:textColor="@color/white"
             android:textSize="16sp" />
@@ -137,6 +116,27 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="同意"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/grey"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="《雷风专车协议》"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:textColor="@color/app_main"/>
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>

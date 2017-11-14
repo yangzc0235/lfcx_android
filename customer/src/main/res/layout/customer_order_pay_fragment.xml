@@ -63,72 +63,73 @@
         />
 
     <LinearLayout
+        android:id="@+id/ll_one"
+        android:layout_below="@+id/tv_order_no_activity_pay_order"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/common_one_hundred_three_six"
+        android:layout_marginTop="@dimen/common"
+        android:background="@color/white"
         android:orientation="vertical">
-
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/vertical_margin"
-            android:layout_marginBottom="@dimen/vertical_margin">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/zhifubao_pay"
-                android:layout_marginLeft="@dimen/horizontal_margin"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/horizontal_margin"
-                android:text="支付宝支付"/>
-        </LinearLayout>
-        <View style="@style/divider_line"></View>
-
-        <LinearLayout
+            android:layout_height="@dimen/common_four_four"
+            android:text="支付方式"
+            android:paddingLeft="@dimen/common_one_five"
+            android:textColor="@color/lyt_color"
+            android:gravity="center_vertical"
+            android:background="@color/white"
+            android:textSize="15sp"/>
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/vertical_margin"
-            android:layout_marginBottom="@dimen/vertical_margin">
+            android:layout_height="@dimen/common_small"
+            android:background="@color/me_line"/>
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/weixin_pay"
-                android:layout_marginLeft="@dimen/horizontal_margin"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/horizontal_margin"
-                android:text="微信支付"/>
-        </LinearLayout>
-        <View style="@style/divider_line"></View>
-
-        <LinearLayout
+        <RadioGroup
+            android:id="@+id/rp_activity_pay_order"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/vertical_margin"
-            android:layout_marginBottom="@dimen/vertical_margin">
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/ll_wx_pay_activity_pay_order"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_four_four"
+                android:text="微信支付"
+                android:background="@color/white"
+                android:button="@null"
+                android:paddingLeft="@dimen/common_one_five"
+                android:drawablePadding="@dimen/common_one_five"
+                android:textColor="@color/lyt_color"
+                android:checked="true"
+                android:drawableLeft="@mipmap/weixin_pay"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/radiobutton_bg"
+                android:paddingRight="@dimen/common_one_five"
+                android:textSize="15sp"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_small"
+                android:layout_marginLeft="@dimen/common_one_five"
+                android:background="@color/me_line"/>
+            <RadioButton
+                android:id="@+id/ll_zfb_pay_activity_pay_order"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_four_four"
+                android:text="支付宝支付"
+                android:button="@null"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/common_one_five"
+                android:drawablePadding="@dimen/common_one_five"
+                android:textColor="@color/lyt_color"
+                android:drawableLeft="@mipmap/zhufubao_pay"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/radiobutton_bg"
+                android:paddingRight="@dimen/common_one_five"
+                android:textSize="15sp"/>
+        </RadioGroup>
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/card_pay"
-                android:layout_marginLeft="@dimen/horizontal_margin"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/horizontal_margin"
-                android:text="银行卡支付"/>
-        </LinearLayout>
-        <View style="@style/divider_line"></View>
     </LinearLayout>
 
-    <Button
+    <TextView
         android:id="@+id/c_btn_confirm"
         android:layout_width="match_parent"
         android:layout_height="@dimen/default_btn_height"

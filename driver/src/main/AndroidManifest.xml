@@ -3,11 +3,7 @@
    <application>
 
         <activity android:name=".activity.DriverLoginActivity">
-            <intent-filter>
-                <action android:name="lfcx.action.main.driver" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
 
         <receiver android:name=".receiver.DriverJPushReceiver">
@@ -25,7 +21,13 @@
         <activity android:name=".activity.DriverUserActivity" />
         <activity android:name=".activity.DriverNewsActivity" />
         <activity android:name=".activity.DriverUploadActivity" />
-        <activity android:name=".activity.DriverMainActivity" />
+        <activity android:name=".activity.DriverMainActivity" android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="lfcx.action.main.driver" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            </activity>
         <activity android:name=".activity.DriverModeActivity" />
         <activity android:name=".activity.DriverOrderActivity" />
         <activity
@@ -35,7 +37,6 @@
         <service
             android:name=".service.LocationService"
             android:exported="false" />
-
         <activity android:name=".activity.CarTypeSelectActivity"></activity>
     </application>
 

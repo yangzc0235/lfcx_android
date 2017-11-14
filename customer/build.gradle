@@ -5,7 +5,7 @@ apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion "25.0.3"
 
     defaultConfig {
         minSdkVersion 17
@@ -25,14 +25,16 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:24.1.1'
     compile project(':common')
     //    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3'
-//    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+    //    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
+    //    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
     compile 'com.android.support:support-v4:24.1.1'
     compile 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.jakewharton:butterknife:8.6.0'
     apt 'com.jakewharton:butterknife-compiler:8.6.0'
+    compile files('libs/alipaySdk-20161009.jar')
+    compile files('libs/weixin_sdk_v3.1.1.jar')
 }

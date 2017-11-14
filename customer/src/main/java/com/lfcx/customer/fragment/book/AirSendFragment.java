@@ -9,21 +9,27 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.lfcx.common.net.APIFactory;
 import com.lfcx.common.utils.LogUtils;
 import com.lfcx.common.utils.SPUtils;
+import com.lfcx.common.utils.ToastUtils;
 import com.lfcx.common.widget.LoadingDialog;
 import com.lfcx.customer.R;
 import com.lfcx.customer.R2;
+import com.lfcx.customer.activity.CallCarSucessActivity;
 import com.lfcx.customer.activity.DestinationActivity;
 import com.lfcx.customer.consts.SPConstants;
 import com.lfcx.customer.maphelper.PositionEntity;
 import com.lfcx.customer.maphelper.RouteTask;
 import com.lfcx.customer.net.api.CarAPI;
+import com.lfcx.customer.net.result.CallCarResult;
 import com.lfcx.customer.util.LocationUtils;
 import com.lfcx.customer.util.TimeSelectUtils;
 
@@ -57,7 +63,8 @@ public class AirSendFragment extends Fragment implements  RouteTask.OnRouteCalcu
     @BindView(R2.id.c_guss_cost)
     TextView tvGussCost;
     //***
-
+    @BindView(R2.id.btn_register)
+    Button mButton;
     @BindView(R2.id.et_time)
     EditText etTime;
     @BindView(R2.id.et_start_address)
@@ -161,6 +168,12 @@ public class AirSendFragment extends Fragment implements  RouteTask.OnRouteCalcu
         shouldGetCost();
     }
 
+    @OnClick(R2.id.btn_register)
+    public void onClickConfirm(View view) {
+        //确认用车
+        bookCar();
+    }
+
     @Override
     public void onRouteCalculate(float cost, float distance, int duration) {
         if(clickType == 2){
@@ -185,6 +198,7 @@ public class AirSendFragment extends Fragment implements  RouteTask.OnRouteCalcu
                 ){
             getCost();
         }
+
     }
 
     private void getCost(){
@@ -218,6 +232,65 @@ public class AirSendFragment extends Fragment implements  RouteTask.OnRouteCalcu
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 hideLoading();
+            }
+        });
+    }
+
+    /**
+     * 确认用车
+     */
+    public void bookCar(){
+
+//        pk_user:(用户主键 必填);fromlatitude:(纬度 必填); fromlongitude:(经度 必填);title:订单标题 (必填);
+//        content:订单内容(必填) ;fromaddress: 开始位置(必填) ; toaddress: 目的地 (必填);tolatitude:(纬度 必填);
+//        tolongitude:(经度 必填);ordertype : 订单类型 (必填)(0 顺风车 1 专车 ，2 专车-〉预约 3 专车-〉包车 4 专车-〉接机 5 专车-〉送机);
+//        status:订单状态(*)（0：待付款；1订单完成2 ：订单取消）, cancelreason(取消原因),personcount 乘车人数，
+//        begintime（包车下单开始时间）, privatetype(0:4小时套餐 ；1 ：8小时套餐);aircode（航班号）;
+//        ispacket :( 是否带小件 0:是;1:否);packetmoney;小件金额；consignee 收货人; consigneetel 收货人电话;
+//        ishelpother(是否替人叫车 0:是;1:否);Name :(乘车人姓名);ridertel(乘车人电话);
+//        carstyletype:车辆类型(0:舒适型，1:豪华型，2:7座商务) ;isprivatecar:是否专车(0:是专车;1:顺风车)
+        Map<String,Object> param = new HashMap<>();
+        param.put("pk_user", SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_PK_USER,""));
+        param.put("fromaddress",LocationUtils.getLocation().address);
+        param.put("toaddress",RouteTask
+                .getInstance( getActivity().getApplicationContext()).getEndPoint().address);
+        param.put("fromlongitude",LocationUtils.getLocation().longitude);
+        param.put("fromlatitude",LocationUtils.getLocation().latitue);
+        param.put("tolongitude",RouteTask
+                .getInstance(  getActivity().getApplicationContext()).getEndPoint().longitude);
+        param.put("tolatitude",RouteTask
+                .getInstance(  getActivity().getApplicationContext()).getEndPoint().latitue);
+        param.put("title","用户123预约您");
+        param.put("content","用户123预约您");
+        param.put("reservatedate","2017-10-22 20:00:00");
+        param.put("ridertel", SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE,""));
+        param.put("fromaddress","银川金凤区六盘水中学");
+        param.put("toaddress","银川市绿地21城");
+        param.put("carstyletype",styletype);//ordertype 0 顺风车 1 专车 2 专车（预约），3专车（包车）4 专车（接机）5 专车（送机）
+        param.put("ordertype",5);//ordertype 0 顺风车 1 专车 2 专车（预约），3专车（包车）4 专车（接机）5 专车（送机）
+        param.put("status",0);// 0 待付款 1 订单完成 2 订单取消
+        carAPI.generateOrder(param).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                try{
+                    CallCarResult result = new Gson().fromJson(response.body(),CallCarResult.class);
+
+                    Toast.makeText(getActivity().getApplicationContext(), response.body(), Toast.LENGTH_SHORT).show();
+                    //下单成功
+                    if("0".equals(result.getCode())){
+                        Intent intent = new Intent(getActivity(), CallCarSucessActivity.class);
+                        startActivity(intent);
+                    }else {
+                        ToastUtils.shortToast(getActivity(),result.getMsg());
+                    }
+                }catch (Exception e){
+                    LogUtils.e(TAG,e.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
             }
         });
     }

@@ -1,5 +1,6 @@
 package com.lfcx.customer.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
@@ -7,12 +8,11 @@ import android.widget.Toast;
 
 import com.lfcx.common.net.result.BaseResultBean;
 import com.lfcx.common.widget.LoadingDialog;
-import com.lfcx.customer.net.result.LoginResult;
 
 import retrofit2.Response;
 
 public class CustomerBaseActivity extends FragmentActivity {
-
+    public static final String BUNDLE_KEY = "datas";
     private LoadingDialog mLoadDialog;
 
     @Override
@@ -46,6 +46,20 @@ public class CustomerBaseActivity extends FragmentActivity {
            return;
         }
         mLoadDialog.hide();
+    }
+
+    //---------------------组件通信
+    public void goToActivity(Class aClass, Bundle bundle) {
+        Intent intent = new Intent(this, aClass);
+        if (bundle != null) {
+            intent.putExtra(BUNDLE_KEY, bundle);
+        }
+        this.startActivity(intent);
+    }
+
+
+    public void goToActivity(Class aClass) {
+        goToActivity(aClass, null);
     }
 
 }

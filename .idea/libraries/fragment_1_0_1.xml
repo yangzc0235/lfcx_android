@@ -1,11 +1,8 @@
 <component name="libraryTable">
   <library name="fragment-1.0.1">
-    <ANNOTATIONS>
-      <root url="jar://$PROJECT_DIR$/common/build/intermediates/exploded-aar/com.yanzhenjie/fragment/1.0.1/annotations.zip!/" />
-    </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/common/build/intermediates/exploded-aar/com.yanzhenjie/fragment/1.0.1/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/common/build/intermediates/exploded-aar/com.yanzhenjie/fragment/1.0.1/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/4189b30787759cd3c298c8aff1291795b5434a49/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/4189b30787759cd3c298c8aff1291795b5434a49/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

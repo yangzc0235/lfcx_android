@@ -9,20 +9,28 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.lfcx.common.net.APIFactory;
 import com.lfcx.common.utils.LogUtils;
+import com.lfcx.common.utils.SPUtils;
+import com.lfcx.common.utils.ToastUtils;
 import com.lfcx.common.widget.LoadingDialog;
 import com.lfcx.customer.R;
 import com.lfcx.customer.R2;
+import com.lfcx.customer.activity.CallCarSucessActivity;
 import com.lfcx.customer.activity.DestinationActivity;
+import com.lfcx.customer.consts.SPConstants;
 import com.lfcx.customer.maphelper.PositionEntity;
 import com.lfcx.customer.maphelper.RouteTask;
 import com.lfcx.customer.net.api.CarAPI;
+import com.lfcx.customer.net.result.CallCarResult;
 import com.lfcx.customer.util.LocationUtils;
 import com.lfcx.customer.util.TimeSelectUtils;
 
@@ -63,13 +71,18 @@ public class CharterCarFragment extends Fragment implements  RouteTask.OnRouteCa
     @BindView(R2.id.et_end_address)
     EditText etEndAddress;
 
+    @BindView(R2.id.c_time_range)
+    RadioGroup timeRange;
+
+    @BindView(R2.id.btn_register)
+    Button bt;
 
     private Unbinder unbinder;
 
     /**
      * //1 4小时  2 8小时
      */
-    private int combotype = 1;
+    private int combotype = 4;
     /**
      * 1 为点击开始位置  2为点击结束位置
      */
@@ -108,9 +121,18 @@ public class CharterCarFragment extends Fragment implements  RouteTask.OnRouteCa
         RouteTask.getInstance( getActivity().getApplicationContext())
                 .addRouteCalculateListener(this);
         carAPI = APIFactory.create(CarAPI.class);
-        EditText et_duration = (EditText) getActivity().findViewById(R.id.et_duration);
-
+        timeRange.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                if(checkedId == R2.id.c_range_one){
+                    combotype = 4;
+                }else if(checkedId == R2.id.c_range_two){
+                    combotype = 8;
+                }
+            }
+        });
     }
+
 
     @OnClick(R2.id.et_time)
     public void onClickSelectTime(View v) {
@@ -161,6 +183,12 @@ public class CharterCarFragment extends Fragment implements  RouteTask.OnRouteCa
         llThree.setBackgroundColor(getActivity().getResources().getColor(R.color.white));
         shouldGetCost();
     }
+
+    @OnClick(R2.id.btn_register)
+    public void onClickConfirm(View view) {
+        //确认用车
+        bookCar();
+    }
     //**
     /**
      * 是否需要去刷新估算价格接口
@@ -173,10 +201,18 @@ public class CharterCarFragment extends Fragment implements  RouteTask.OnRouteCa
                 ){
             getCost();
         }
+
     }
 
+
+    /**
+     * 计算价格
+     */
     private void getCost(){
         showLoading();
+
+        //参数 (都是必填项):datetime （预约时间） ，fromaddress，toaddress，fromlongitude，fromlatitude，tolongitude， Tolatitude，styletype（舒适型 0，豪华型 1，七座商务 2），
+        // privatetype（0：4小时套餐；1：8小时套餐）;distance:(导航距离)
         Map<String,Object> param = new HashMap<>();
         param.put("fromaddress",LocationUtils.getLocation().address);
         param.put("toaddress",RouteTask
@@ -188,9 +224,9 @@ public class CharterCarFragment extends Fragment implements  RouteTask.OnRouteCa
         param.put("tolatitude",RouteTask
                 .getInstance(  getActivity().getApplicationContext()).getEndPoint().latitue);
         param.put("styletype",styletype);
-        param.put("begintime",etTime.getText().toString());
-        param.put("comboType",combotype);
-        param.put("hours",4);
+        param.put("datetime",etTime.getText().toString());
+        param.put("privatetype",combotype);
+        param.put("distance",4);
 
 
         carAPI.getPrivateCost(param).enqueue(new Callback<String>() {
@@ -198,6 +234,7 @@ public class CharterCarFragment extends Fragment implements  RouteTask.OnRouteCa
             public void onResponse(Call<String> call, Response<String> response) {
                 try{
                     String cost = response.body();
+                    Toast.makeText(getContext().getApplicationContext(), response.body(), Toast.LENGTH_SHORT).show();
                     tvGussCost.setText(String.format("%.2f元", Float.valueOf(cost)));
                 }catch (Exception e){
                     LogUtils.e(TAG,e.getMessage());
@@ -209,6 +246,66 @@ public class CharterCarFragment extends Fragment implements  RouteTask.OnRouteCa
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 hideLoading();
+            }
+        });
+    }
+
+
+    /**
+     * 确认用车
+     */
+    public void bookCar(){
+
+//        pk_user:(用户主键 必填);fromlatitude:(纬度 必填); fromlongitude:(经度 必填);title:订单标题 (必填);
+//        content:订单内容(必填) ;fromaddress: 开始位置(必填) ; toaddress: 目的地 (必填);tolatitude:(纬度 必填);
+//        tolongitude:(经度 必填);ordertype : 订单类型 (必填)(0 顺风车 1 专车 ，2 专车-〉预约 3 专车-〉包车 4 专车-〉接机 5 专车-〉送机);
+//        status:订单状态(*)（0：待付款；1订单完成2 ：订单取消）, cancelreason(取消原因),personcount 乘车人数，
+//        begintime（包车下单开始时间）, privatetype(0:4小时套餐 ；1 ：8小时套餐);aircode（航班号）;
+//        ispacket :( 是否带小件 0:是;1:否);packetmoney;小件金额；consignee 收货人; consigneetel 收货人电话;
+//        ishelpother(是否替人叫车 0:是;1:否);Name :(乘车人姓名);ridertel(乘车人电话);
+//        carstyletype:车辆类型(0:舒适型，1:豪华型，2:7座商务) ;isprivatecar:是否专车(0:是专车;1:顺风车)
+        Map<String,Object> param = new HashMap<>();
+        param.put("pk_user", SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_PK_USER,""));
+        param.put("fromaddress",LocationUtils.getLocation().address);
+        param.put("toaddress",RouteTask
+                .getInstance( getActivity().getApplicationContext()).getEndPoint().address);
+        param.put("fromlongitude",LocationUtils.getLocation().longitude);
+        param.put("fromlatitude",LocationUtils.getLocation().latitue);
+        param.put("tolongitude",RouteTask
+                .getInstance(  getActivity().getApplicationContext()).getEndPoint().longitude);
+        param.put("tolatitude",RouteTask
+                .getInstance(  getActivity().getApplicationContext()).getEndPoint().latitue);
+        param.put("title","用户123预约您");
+        param.put("content","用户123预约您");
+        param.put("reservatedate","2017-10-22 20:00:00");
+        param.put("ridertel", SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE,""));
+        param.put("fromaddress","银川金凤区六盘水中学");
+        param.put("toaddress","银川市绿地21城");
+        param.put("carstyletype",styletype);//ordertype 0 顺风车 1 专车 2 专车（预约），3专车（包车）4 专车（接机）5 专车（送机）
+        param.put("ordertype",3);//ordertype 0 顺风车 1 专车 2 专车（预约），3专车（包车）4 专车（接机）5 专车（送机）
+        param.put("status",0);// 0 待付款 1 订单完成 2 订单取消
+        carAPI.generateOrder(param).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                try{
+                    CallCarResult result = new Gson().fromJson(response.body(),CallCarResult.class);
+
+                    Toast.makeText(getActivity().getApplicationContext(), response.body(), Toast.LENGTH_SHORT).show();
+                    //下单成功
+                    if("0".equals(result.getCode())){
+                        Intent intent = new Intent(getActivity(), CallCarSucessActivity.class);
+                        startActivity(intent);
+                    }else {
+                        ToastUtils.shortToast(getActivity(),result.getMsg());
+                    }
+                }catch (Exception e){
+                    LogUtils.e(TAG,e.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
             }
         });
     }

@@ -20,6 +20,13 @@ public interface NetConfig {
      * 司机实时上传位置到服务器
      */
     String INSERT_LOCATION = "dvlct/insertlocation";
+
+
+
+    /**
+     * 用户登录
+     */
+    String CUSTOMER_LOGIN=  "user/verifyLogin";
     /**
      * 司机注册上传照片
      * cardfrontphoto  身份证正面照
@@ -69,6 +76,8 @@ public interface NetConfig {
      */
 
     String DRIVER_SHIMING = "http://op.juhe.cn/idcard/query";
+
+
 
     /**
      * 驾驶证核查

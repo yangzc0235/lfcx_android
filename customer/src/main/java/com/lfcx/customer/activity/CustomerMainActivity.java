@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -14,7 +13,7 @@ import com.lfcx.customer.R2;
 import com.lfcx.customer.adapter.CustomerMainFragmentPagerAdapter;
 import com.lfcx.customer.fragment.CustomerIndexFragment;
 import com.lfcx.customer.fragment.SharingCarFragment;
-import com.lfcx.customer.net.NetConfig;
+import com.lfcx.customer.util.UserUtil;
 import com.lfcx.customer.widget.view.NoScrollViewPager;
 
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ import cn.jpush.android.api.JPushInterface;
  * date  : 2017/7/28
  * des   : 乘客首页
  */
-public class CustomerMainActivity extends CustomerBaseActivity{
+public class CustomerMainActivity extends CustomerBaseActivity {
 
     @BindView(R2.id.viewPager)
     NoScrollViewPager vp;
@@ -49,8 +48,10 @@ public class CustomerMainActivity extends CustomerBaseActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.c_activity_main);
+        checkFirstInApp();
         unbinder = ButterKnife.bind(this);
         ivUser.setVisibility(View.VISIBLE);
         tableLayout.post(new Runnable() {
@@ -68,6 +69,15 @@ public class CustomerMainActivity extends CustomerBaseActivity{
         JPushInterface.resumePush(getApplicationContext());
     }
 
+    /**
+     * 判断是否首次进入应用
+     */
+    private void checkFirstInApp() {
+        if(!UserUtil.isLogin(this)){
+            goToActivity(CustomerLoginActivity.class);
+        }
+    }
+
     public void setiBackListener(IBackListener iBackListener) {
         this.iBackListener = iBackListener;
     }
@@ -83,8 +93,8 @@ public class CustomerMainActivity extends CustomerBaseActivity{
 
     @OnClick(R2.id.iv_user)
     public void onClickUser(View v){
-        Intent intent = new Intent(this,CustomerWebviewActivity.class);
-        intent.putExtra(CustomerWebviewActivity.WEB_URL, NetConfig.USER_CENTER);
+//
+        Intent intent = new Intent(this,CustomerPersonCenterActivity.class);
         startActivity(intent);
     }
     @Override

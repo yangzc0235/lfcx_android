@@ -19,4 +19,39 @@
     <color name="c_text_black">#000000</color>
     <color name="c_gray_bg">#F1F1F1</color>
     <color name="orange">#f2963a</color>
+
+    <color name="me_line">#dcdcdc</color>
+    <color name="bk_line">#bbbbbb</color>
+    <color name="me_back">#f3f3f3</color>
+
+
+
+    <color name="red">#FF3300</color>
+    <color name="green">#66FF33</color>
+    <color name="gray">#C0C0C0</color>
+    <color name="border_txt_color_default">#3399FF</color>
+    <color name="me_back_sort">#242424</color>
+    <color name="name_pwd">#8b8b8b</color>
+    <color name="reg">#4dafea</color>
+    <color name="check_color">#999999</color>
+    <color name="login_name">#242424</color>
+    <color name="finish_color">#d0010b</color>
+    <color name="phone_color">#333333</color>
+    <color name="lyt_color">#666666</color>
+    <color name="move_color">#d7000f</color>
+    <color name="money_color">#7ac700</color>
+    <color name="home_color">#14c413</color>
+    <color name="hh_color">#0d0167</color>
+    <color name="new_money_color">#b80015</color>
+    <color name="exchange_color">#fefefe</color>
+    <color name="update_color">#85CD31</color>
+    <color name="phone_bg_color">#f6f6f6</color>
+    <color name="msg_color">#999999</color>
+    <color name="msg_detail_color">#787878</color>
+    <color name="two_line_color">#333333</color>
+    <color name="account_color">#C32121</color>
+    <color name="white_tm">#00000000</color>
+    <color name="home">#c17892</color>
+    <color name="home_life">#a38868</color>
+    <color name="home_travel">#5e8d69</color>
 </resources>

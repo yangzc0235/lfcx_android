@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lfcx.common.net.APIFactory;
@@ -105,7 +106,7 @@ public class CustomerBookCarFragment extends Fragment implements  RouteTask.OnRo
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View  cv = inflater.inflate(R.layout.c_fragment_customer_book_car, container, false);
+        View cv = inflater.inflate(R.layout.c_fragment_customer_book_car, container, false);
         mUnBinder = ButterKnife.bind(this,cv);
         RouteTask.getInstance( getActivity().getApplicationContext())
                 .addRouteCalculateListener(this);
@@ -117,7 +118,7 @@ public class CustomerBookCarFragment extends Fragment implements  RouteTask.OnRo
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         carAPI = APIFactory.create(CarAPI.class);
-        String mobile = (String)SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE,"");
+        String mobile = (String) SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE,"");
         if(!TextUtils.isEmpty(mobile)){
             etUser.setText(mobile);
         }
@@ -160,17 +161,21 @@ public class CustomerBookCarFragment extends Fragment implements  RouteTask.OnRo
 
     @OnClick(R2.id.btn_confirm)
     public void onClickConfirm(View view) {
+        //确认用车
         bookCar();
     }
 
     @OnClick(R2.id.et_end_address)
     public void onClickEndAdress(View v){
+        //选择结束位置
         clickType = 2;
         Intent destinationIntent = new Intent(getActivity(), DestinationActivity.class);
         startActivity(destinationIntent);
     }
     @OnClick(R2.id.et_start_address)
     public void onClickStartAdress(View v){
+
+        //选择开始位置
         clickType = 1;
         Intent destinationIntent = new Intent(getActivity(), DestinationActivity.class);
         startActivity(destinationIntent);
@@ -178,6 +183,8 @@ public class CustomerBookCarFragment extends Fragment implements  RouteTask.OnRo
 
     @OnClick(R2.id.et_time)
     public void onClickSelectTime(View v){
+
+        //选择时间
         TimeSelectUtils timeSelectUtils = new TimeSelectUtils(getActivity(), null, null, null, new TimeSelectUtils.GetSubmitTime() {
             @Override
             public void selectTime(String startDate, String entDate) {
@@ -196,6 +203,7 @@ public class CustomerBookCarFragment extends Fragment implements  RouteTask.OnRo
                 .getInstance( getActivity().getApplicationContext()).getEndPoint().address);
         param.put("fromlongitude",LocationUtils.getLocation().longitude);
         param.put("fromlatitude",LocationUtils.getLocation().latitue);
+
         param.put("tolongitude",RouteTask
                 .getInstance(  getActivity().getApplicationContext()).getEndPoint().longitude);
         param.put("tolatitude",RouteTask
@@ -208,6 +216,7 @@ public class CustomerBookCarFragment extends Fragment implements  RouteTask.OnRo
             public void onResponse(Call<String> call, Response<String> response) {
                 try{
                     String cost = response.body();
+                    Toast.makeText(getActivity().getApplicationContext(), cost, Toast.LENGTH_SHORT).show();
                     tvGussCost.setText(String.format("%.2f元", Float.valueOf(cost)));
                 }catch (Exception e){
                     LogUtils.e(TAG,e.getMessage());
@@ -223,33 +232,43 @@ public class CustomerBookCarFragment extends Fragment implements  RouteTask.OnRo
         });
     }
     public void bookCar(){
+
+//        pk_user:(用户主键 必填);fromlatitude:(纬度 必填); fromlongitude:(经度 必填);title:订单标题 (必填);
+//        content:订单内容(必填) ;fromaddress: 开始位置(必填) ; toaddress: 目的地 (必填);tolatitude:(纬度 必填);
+//        tolongitude:(经度 必填);ordertype : 订单类型 (必填)(0 顺风车 1 专车 ，2 专车-〉预约 3 专车-〉包车 4 专车-〉接机 5 专车-〉送机);
+//        status:订单状态(*)（0：待付款；1订单完成2 ：订单取消）, cancelreason(取消原因),personcount 乘车人数，
+//        begintime（包车下单开始时间）, privatetype(0:4小时套餐 ；1 ：8小时套餐);aircode（航班号）;
+//        ispacket :( 是否带小件 0:是;1:否);packetmoney;小件金额；consignee 收货人; consigneetel 收货人电话;
+//        ishelpother(是否替人叫车 0:是;1:否);Name :(乘车人姓名);ridertel(乘车人电话);
+//        carstyletype:车辆类型(0:舒适型，1:豪华型，2:7座商务) ;isprivatecar:是否专车(0:是专车;1:顺风车)
         Map<String,Object> param = new HashMap<>();
         param.put("pk_user", SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_PK_USER,""));
-        param.put("latitude","38.46667");
-        param.put("longitude","106.26667");
+        param.put("fromaddress",LocationUtils.getLocation().address);
+        param.put("toaddress",RouteTask
+                .getInstance( getActivity().getApplicationContext()).getEndPoint().address);
+        param.put("fromlongitude",LocationUtils.getLocation().longitude);
+        param.put("fromlatitude",LocationUtils.getLocation().latitue);
+
+        param.put("tolongitude",RouteTask
+                .getInstance(  getActivity().getApplicationContext()).getEndPoint().longitude);
+        param.put("tolatitude",RouteTask
+                .getInstance(  getActivity().getApplicationContext()).getEndPoint().latitue);
         param.put("title","用户123预约您");
         param.put("content","用户123预约您");
         param.put("reservatedate","2017-10-22 20:00:00");
-        param.put("ridertel",SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE,""));
+        param.put("ridertel", SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE,""));
         param.put("fromaddress","银川金凤区六盘水中学");
         param.put("toaddress","银川市绿地21城");
+        param.put("carstyletype",styletype);//ordertype 0 顺风车 1 专车 2 专车（预约），3专车（包车）4 专车（接机）5 专车（送机）
         param.put("ordertype",2);//ordertype 0 顺风车 1 专车 2 专车（预约），3专车（包车）4 专车（接机）5 专车（送机）
         param.put("status",0);// 0 待付款 1 订单完成 2 订单取消
-        param.put("cartype",0);// 0 舒适型 1 豪华型 7做商务2 其他9
-//        param.put("cancelreason","");
-//        param.put("personcount","");
-//        param.put("begintime","");//包车下单时间
-//        param.put("privatetype",0);//0 4小时  1 8小时
-//        param.put("aircode","");//航班号
-//        param.put("ispacket",0);//是否小件
-//        param.put("packetmoney",0);//小件金额
-//        param.put("consignee","");//收货人
-//        param.put("consigneetel","");
         carAPI.generateOrder(param).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 try{
                     CallCarResult result = new Gson().fromJson(response.body(),CallCarResult.class);
+
+                    Toast.makeText(getActivity().getApplicationContext(), response.body(), Toast.LENGTH_SHORT).show();
                     //下单成功
                     if("0".equals(result.getCode())){
                         Intent intent = new Intent(getActivity(), CallCarSucessActivity.class);
@@ -291,6 +310,7 @@ public class CustomerBookCarFragment extends Fragment implements  RouteTask.OnRo
                 !TextUtils.isEmpty(etEndAddress.getText().toString())){
             getCost();
         }
+
     }
 
     public void showLoading(){

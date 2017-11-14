@@ -11,7 +11,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+
 import com.lfcx.customer.R;
+import com.lfcx.customer.net.NetConfig;
 
 public class CustomerWebviewActivity extends CustomerBaseActivity {
 
@@ -36,7 +38,30 @@ public class CustomerWebviewActivity extends CustomerBaseActivity {
         loading = (TextView) findViewById(R.id.text_Loading);
         mtitle = (TextView) findViewById(R.id.title);
         mWebSettings = mWebview.getSettings();
-        mWebview.loadUrl(url);
+        final WebSettings webSettings = mWebview.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setDomStorageEnabled(false);
+        // 打开屏幕时自适应
+        webSettings.setUseWideViewPort(true);
+        //设置此属性，可任意比例缩放
+        webSettings.setLoadWithOverviewMode(true);
+        // 支持页面缩放
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setSupportZoom(true);
+        webSettings.setDomStorageEnabled(true);
+        webSettings.setAppCacheEnabled(true);
+        webSettings.setDatabaseEnabled(true);
+        webSettings.setDefaultTextEncodingName("utf-8");
+        // 设置可以支持缩放
+        mWebview.getSettings().setSupportZoom(true);
+        // 设置出现缩放工具
+        mWebview.getSettings().setBuiltInZoomControls(true);
+        //扩大比例的缩放
+        mWebview.getSettings().setUseWideViewPort(true);
+        //自适应屏幕
+        mWebview.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        mWebview.getSettings().setLoadWithOverviewMode(true);
+        mWebview.loadUrl(NetConfig.USER_SETTER);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mWebSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);

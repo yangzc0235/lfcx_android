@@ -1,12 +1,14 @@
 package com.lfcx.driver.net.result;
 
+import java.io.Serializable;
+
 /**
  * author: drawthink
  * date  : 2017/10/21
  * des   :
  */
 
-public class SendMessageResult {
+public class SendMessageResult implements Serializable{
 //    /****成功示例**/
 //    {
 //        "reason": "短信发送成功",

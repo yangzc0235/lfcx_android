@@ -1,6 +1,8 @@
 package com.lfcx.driver.net.api;
 
 import com.lfcx.driver.net.NetConfig;
+import com.lfcx.driver.net.result.IdCardResult;
+import com.lfcx.driver.net.result.LoginResult;
 import com.lfcx.driver.net.result.SendMessageResult;
 
 import java.util.Map;
@@ -45,4 +47,18 @@ public interface DUserAPI {
      */
     @GET
     Call<SendMessageResult> customerSendMessage(@Url String url, @QueryMap Map<String,Object> param);
+
+
+    /**
+     * 调用聚合接口身份认证
+     * @param param
+     * @return
+     */
+    @GET
+    Call<IdCardResult> customerCheckIdCard(@Url String url, @QueryMap Map<String,Object> param);
+
+
+    @FormUrlEncoded
+    @POST(NetConfig.CUSTOMER_LOGIN)
+    Call<LoginResult> customerLogin(@FieldMap Map<String,String> param);
 }

@@ -2,7 +2,6 @@ package com.lfcx.driver.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,6 +9,7 @@ import android.widget.TextView;
 import com.lfcx.driver.R;
 import com.lfcx.driver.R2;
 import com.lfcx.driver.service.LocationService;
+import com.lfcx.driver.util.UserUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +30,7 @@ public class DriverMainActivity extends DriverBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.d_activity_main);
+        checkFirstInApp();
         unbinder = ButterKnife.bind(this);
         LocationService.startService(this);
         init();
@@ -70,9 +71,34 @@ public class DriverMainActivity extends DriverBaseActivity {
         DriverMainActivity.this.startActivity(intent);
     }
 
+    /**
+     * 判断是否首次进入应用
+     */
+    private void checkFirstInApp() {
+        if(!UserUtil.isLogin(this)){
+            goToActivity(DriverLoginActivity.class);
+        }
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
+    }
+
+    @Override
+    public void onBackPressed() {
+        exit();
+    }
+    private long exitTime = 0;
+
+    public void exit() {
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            showToast("再按一次退出程序");
+            exitTime = System.currentTimeMillis();
+        } else {
+            finish();
+            System.exit(0);
+        }
     }
 }

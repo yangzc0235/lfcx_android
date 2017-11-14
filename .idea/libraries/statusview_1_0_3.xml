@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="statusview-1.0.3">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/common/build/intermediates/exploded-aar/com.yanzhenjie/statusview/1.0.3/res" />
-      <root url="jar://$PROJECT_DIR$/common/build/intermediates/exploded-aar/com.yanzhenjie/statusview/1.0.3/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/758dda1c5c9b2b1d454bb5e8b8b04c75a0d832e3/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/758dda1c5c9b2b1d454bb5e8b8b04c75a0d832e3/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

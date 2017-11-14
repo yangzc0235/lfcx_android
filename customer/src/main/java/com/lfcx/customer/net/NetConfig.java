@@ -13,7 +13,7 @@ public interface NetConfig {
      */
     String CUSTOMER_SEND_MESSAGE = "http://v.juhe.cn/sms/send";
 
-    String USER_CENTER = "http://101.200.58.37:8899/LFCar/mycenter/build/pages/my-center/index.html";
+    String USER_SETTER = "http://101.200.58.37:8899/LFCar/mycenter/build/pages/my-center/index.html";
 
     /**
      * 用户注册

@@ -1,42 +1,61 @@
 package com.lfcx.driver.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lfcx.common.net.APIFactory;
 import com.lfcx.common.utils.StringUtils;
 import com.lfcx.driver.R;
-import com.lfcx.driver.R2;
 import com.lfcx.driver.consts.Constants;
 import com.lfcx.driver.net.NetConfig;
 import com.lfcx.driver.net.api.DUserAPI;
 import com.lfcx.driver.net.result.SendMessageResult;
+import com.lfcx.driver.util.EdtUtil;
 
 import java.util.HashMap;
 import java.util.Map;
-import butterknife.BindView;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DriverRegisterActivity extends DriverBaseActivity {
-
-
+public class DriverRegisterActivity extends DriverBaseActivity implements View.OnClickListener {
     private String checkCode;
     private DUserAPI userAPI;
+    private ImageView mIvBack;
+    private ImageView mIvUser;
+    private TextView mTitleBar;
+    private ImageView mDIvMessage;
+    private EditText mEtPhone;
+    private EditText mEtCode;
+    private Button mBtnGetcode;
+    private EditText mEtPwd;
+    private EditText mEtConfirmPwd;
+    private EditText mEtIntroducePhone;
+    private Button mBtnRegister;
 
-    EditText et_phone;
-    EditText et_code;
-    Button btn_getcode;
-    EditText et_pwd;
-    EditText et_confirm_pwd;
-    EditText et_introduce_phone;
-    Button btn_register;
-    TextView title_bar;
+    private int count = 60;
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            mBtnGetcode.setText((--count)+"s");
+            if(count >= 0 ){
+                mHandler.sendEmptyMessageDelayed(0,1000);
+            }else {
+                mBtnGetcode.setText("获取验证码");
+                mBtnGetcode.setEnabled(true);
+            }
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,22 +66,39 @@ public class DriverRegisterActivity extends DriverBaseActivity {
     }
 
     private void init() {
-        et_phone = (EditText) findViewById(R.id.et_phone);
-        et_code = (EditText) findViewById(R.id.et_code);
-        btn_getcode = (Button) findViewById(R.id.btn_getcode);
-        et_pwd = (EditText) findViewById(R.id.et_pwd);
-        et_confirm_pwd = (EditText) findViewById(R.id.et_confirm_pwd);
-        et_introduce_phone = (EditText) findViewById(R.id.et_introduce_phone);
-        btn_register = (Button) findViewById(R.id.btn_register);
-        title_bar = (TextView) findViewById(R.id.title_bar);
-        title_bar.setText("注册用户");
-        btn_register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DriverRegisterActivity.this, DriverRegistAfterActivity.class);
-                DriverRegisterActivity.this.startActivity(intent);
+        mIvBack = (ImageView) findViewById(R.id.iv_back);
+        mIvUser = (ImageView) findViewById(R.id.iv_user);
+        mTitleBar = (TextView) findViewById(R.id.title_bar);
+        mDIvMessage = (ImageView) findViewById(R.id.d_iv_message);
+        mEtPhone = (EditText) findViewById(R.id.et_phone);
+        mEtCode = (EditText) findViewById(R.id.et_code);
+        mBtnGetcode = (Button) findViewById(R.id.btn_getcode);
+        mEtPwd = (EditText) findViewById(R.id.et_pwd);
+        mEtConfirmPwd = (EditText) findViewById(R.id.et_confirm_pwd);
+        mEtIntroducePhone = (EditText) findViewById(R.id.et_introduce_phone);
+        mBtnRegister = (Button) findViewById(R.id.btn_register);
+        mTitleBar.setText("注册用户");
+        mBtnRegister.setOnClickListener(this);
+    }
+
+    public void onClick(View v) {
+        int i = v.getId();
+        if (i == R.id.btn_getcode) {
+            String mobile= EdtUtil.getEdtText(mEtPhone);
+            if (mBtnGetcode.isEnabled()) {
+                String phone = EdtUtil.getEdtText(mEtPhone);
+                if (TextUtils.isEmpty(phone) && phone.length() < 11) {
+                    showToast("请输入完整的手机号");
+                    return;
+                }
+                sendCheckCode(phone);
+                mHandler.sendEmptyMessage(0);
+                mBtnGetcode.setEnabled(false);
             }
-        });
+            sendCheckCode(mobile);
+        } else if (i == R.id.btn_register) {
+            checkRegister();
+        }
     }
 
     //获取验证码
@@ -88,8 +124,57 @@ public class DriverRegisterActivity extends DriverBaseActivity {
     }
 
 
+    /**
+     * 检查手机号和密码
+     */
+    private void checkRegister() {
+        String moible =EdtUtil.getEdtText(mEtPhone);
+        String pwd = EdtUtil.getEdtText(mEtPwd);
+        String againPwd = EdtUtil.getEdtText(mEtConfirmPwd);
+        String code = EdtUtil.getEdtText(mEtCode);
+        String recommandMobile=EdtUtil.getEdtText(mEtIntroducePhone);
+        if (TextUtils.isEmpty(moible)) {
+            showToast("请输入手机号");
+            return;
+        }
+        if (TextUtils.isEmpty(pwd)) {
+            showToast("请输入密码");
+            return;
+        }
+        if(!pwd.equals(againPwd)){
+            showToast("两次输入密码不一致");
+            return;
+        }
+        if (TextUtils.isEmpty(code)) {
+            showToast("请输入验证码");
+            return;
+        }
+
+        Bundle bundle=new Bundle();
+        bundle.putString("mobile",moible);
+        bundle.putString("pwd",pwd);
+        bundle.putString("recommandMobile",recommandMobile);
+        goToActivity(DriverRegistAfterActivity.class,bundle);
+
+//        if(StringEmptyUtil.isEmpty(checkCode)){
+//            Toast.makeText(this, "请先获取验证码", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        Log.v("checkCode---------->",checkCode);
+//        if (!checkCode.equals(code)) {
+//            showToast("验证码输入错误");
+//            return;
+//        }
+//
+
+    }
+
     @Override
     public void onDestroy(){
+        mHandler.removeMessages(0);
+        mHandler = null;
         super.onDestroy();
     }
+
+
 }

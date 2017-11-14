@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdate;
 import com.amap.api.maps.CameraUpdateFactory;
@@ -25,11 +26,8 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.Polyline;
 import com.amap.api.maps.model.PolylineOptions;
 import com.amap.api.services.core.LatLonPoint;
-import com.amap.api.services.geocoder.GeocodeResult;
 import com.amap.api.services.geocoder.GeocodeSearch;
-import com.amap.api.services.geocoder.RegeocodeAddress;
 import com.amap.api.services.geocoder.RegeocodeQuery;
-import com.amap.api.services.geocoder.RegeocodeResult;
 import com.amap.api.services.route.DriveStep;
 import com.lfcx.common.utils.MapMarkerUtils;
 import com.lfcx.customer.R;
@@ -305,7 +303,6 @@ public class CustomerOrderActivity extends CustomerBaseActivity  implements AMap
         ((OrderBuildFragment)fragmentMap.get(BUILD)).setDepartureAddress(entity.address);
         RouteTask.getInstance( getApplicationContext()).setStartPoint(entity);
 //        RouteTask.getInstance(getApplicationContext()).search();
-
         mStartPosition = new LatLng(entity.latitue, entity.longitude);
         CameraUpdate cameraUpate = CameraUpdateFactory.newLatLngZoom(
                 mStartPosition, mAmap.getCameraPosition().zoom);
