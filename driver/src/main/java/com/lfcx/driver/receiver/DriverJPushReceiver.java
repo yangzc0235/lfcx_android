@@ -4,16 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-
-import com.lfcx.common.utils.LogUtils;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.Iterator;
-
-import cn.jpush.android.api.JPushInterface;
+import android.util.Log;
 
 /**
  * author: drawthink
@@ -28,6 +19,8 @@ public class DriverJPushReceiver extends BroadcastReceiver {
         try {
             Bundle bundle = intent.getExtras();
             String codeStyle = (String)bundle.get("code");
+
+            Log.v("system-------->",codeStyle);
             switch (codeStyle){
                 case "0-1"://增加
                     break;

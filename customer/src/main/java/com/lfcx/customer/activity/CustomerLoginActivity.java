@@ -103,6 +103,7 @@ public class CustomerLoginActivity extends CustomerBaseActivity {
                         SPUtils.setParam(CustomerLoginActivity.this, SPConstants.KEY_CUSTOMER_PK_USER, result.getPk_user());
                         SPUtils.setParam(CustomerLoginActivity.this, SPConstants.KEY_CUSTOMER_MOBILE, moible);
                         SPUtils.setParam(CustomerLoginActivity.this, SPConstants.KEY_CUSTOMER_PWD, pwd);
+                        showToast(result.getMsg());
                         finish();
                     } else {
                         showToast(result.getMsg());

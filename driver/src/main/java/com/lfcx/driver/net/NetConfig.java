@@ -22,31 +22,35 @@ public interface NetConfig {
     String INSERT_LOCATION = "dvlct/insertlocation";
 
 
+    /**
+     * 司机接单类型设置
+     */
+    String ORDER_TYPE_SETTING = "Driver/insertDriverSet";
+
 
     /**
      * 用户登录
      */
-    String CUSTOMER_LOGIN=  "user/verifyLogin";
+    String CUSTOMER_LOGIN = "user/verifyLogin";
     /**
      * 司机注册上传照片
      * cardfrontphoto  身份证正面照
-     ,cardbackphoto, 身份证反面照
-     cardwithhandphoto,手持身份证照片
-     vehiregitcertphoto1 行驶证
-     vehiregitcertphoto2,行驶证副页
-     drivelicephoto, 驾驶证
-     driverandcarphoto,人车合影
-     car45photo车辆45度
-     ,carfacephoto,车正面照
-     Safedocphoto保险单
+     * ,cardbackphoto, 身份证反面照
+     * cardwithhandphoto,手持身份证照片
+     * vehiregitcertphoto1 行驶证
+     * vehiregitcertphoto2,行驶证副页
+     * drivelicephoto, 驾驶证
+     * driverandcarphoto,人车合影
+     * car45photo车辆45度
+     * ,carfacephoto,车正面照
+     * Safedocphoto保险单
      */
 
-    String UPLOAD_PHOTO ="upload/uploadPhoto";
+    String UPLOAD_PHOTO = "upload/uploadPhoto";
 
     /**
      * 获取个人信息
      * 参数：mobile
-     *
      */
     String DRIVER_GET_USERINFO = "user/getUserInfoByUserMobile";
 
@@ -76,7 +80,6 @@ public interface NetConfig {
      */
 
     String DRIVER_SHIMING = "http://op.juhe.cn/idcard/query";
-
 
 
     /**

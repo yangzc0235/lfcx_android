@@ -3,6 +3,7 @@ package com.lfcx.driver.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -112,7 +113,7 @@ public class DriverLoginActivity extends DriverBaseActivity {
         Map<String, String> param = new HashMap<>();
         param.put("user", moible);
         param.put("pwd", pwd);
-        param.put("isdriver", "0");
+        param.put("isdriver", "1");
         //showLoading();
         userAPI.customerLogin(param).enqueue(new Callback<LoginResult>() {
             @Override
@@ -121,7 +122,7 @@ public class DriverLoginActivity extends DriverBaseActivity {
                 LoginResult result = null;
                 try {
                     result = response.body();
-                    LogUtils.e(DriverLoginActivity.this.getClass().getSimpleName(), response.body().toString());
+                    Log.v("system------->", response.body().toString());
                     if ("0".equals(result.getCode())) {
                         SPUtils.setParam(DriverLoginActivity.this, SPConstants.KEY_DRIVER_PK_USER, result.getPk_user());
                         SPUtils.setParam(DriverLoginActivity.this, SPConstants.DRIVER_MOBILE, moible);
@@ -145,7 +146,6 @@ public class DriverLoginActivity extends DriverBaseActivity {
             }
         });
     }
-
 
 
 }

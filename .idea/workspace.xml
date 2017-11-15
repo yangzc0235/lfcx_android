@@ -6,172 +6,49 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="system--" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab98f1aa-d29b-4503-a09f-d9a12e089e6e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/libs/alipaySdk-20161009.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/libs/weixin_sdk_v3.1.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/appeal.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/d_icon_lfzc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/guanggao.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/ic_launcher.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/ic_nav_user.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/ic_user.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/idcard_back.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/message.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/recommend.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/right_arrow.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/setup.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/tab_icon_home_time.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/trip.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/user_car.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/wallet.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/mipmap-xhdpi/ic_nav_back.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/mipmap-xhdpi/select_pay.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/mipmap-xhdpi/unselect_pay.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/mipmap-xhdpi/weixin_pay.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/mipmap-xhdpi/zhufubao_pay.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/PickTime_v1_0_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/alipaySdk_20161009.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/android_android_24.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/weixin_sdk_v3_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerMeWalletActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerPersonCenterActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/event/EventUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/pay/alipay/Alipay.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/pay/alipay/AlipayResult.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/pay/weixin/WXPay.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/pay/weixin/WXPayCallbackActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/util/EdtUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/util/Md5Util.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/util/StringEmptyUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/util/UserUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/radiobutton_background_select_in.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/radiobutton_background_select_out.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/time_select_gray_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/time_select_grey_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/time_select_orange_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/time_select_orange_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable-xxhdpi/radiobutton_bg.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/layout/activity_customer_person_center.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/layout/activity_me_wallet.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/customer/src/main/res/layout/c_activity_customer_order.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/dialog/BaseBottomDialog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/dialog/BottomDialog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/result/IdCardResult.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/result/LoginResult.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/util/DriveTimeSelectUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/util/EdtUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/util/StringEmptyUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/util/TimeUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/util/UserUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/widget/view/DriverCustomNumberPicker.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/widget/view/NoScrollViewPager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/anim/photo_dialog_in_anim.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/anim/photo_dialog_out_anim.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/anim/slide_in_from_bottom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/anim/slide_out_to_bottom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/color/radiobutton_text_select.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/drawable-xxhdpi/bt_check_dialog_corner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/drawable-xxhdpi/radiobutton_background_select_in.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/drawable-xxhdpi/radiobutton_background_select_out.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/drawable-xxhdpi/time_select_gray_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/drawable-xxhdpi/time_select_grey_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/drawable-xxhdpi/time_select_orange_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/drawable-xxhdpi/time_select_orange_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/layout/d_activity_login.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/layout/item_driver_time_select.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/layout/item_duration_select.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/layout/select_car_type_pop.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/generated/mockable-android-24.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Android_PickerView_3_2_6.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Android_PickerView_3_2_6.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/album_2_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/album_2_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/alertdialog_1_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/alertdialog_1_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/butterknife_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/butterknife_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/butterknife_8_6_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/butterknife_8_6_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/cardview_v7_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/cardview_v7_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/citypicker_1_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/citypicker_1_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/constraint_layout_1_0_0_alpha7.xml" afterPath="$PROJECT_DIR$/.idea/libraries/constraint_layout_1_0_0_alpha7.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/constraint_layout_solver_1_0_0_alpha7.xml" afterPath="$PROJECT_DIR$/.idea/libraries/constraint_layout_solver_1_0_0_alpha7.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/design_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/design_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/fragment_1_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/fragment_1_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/loading_1_0_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/loading_1_0_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/material_calendarview_1_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/material_calendarview_1_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/mediascanner_1_0_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/mediascanner_1_0_3.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/multidex_1_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/multidex_1_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/multidex_instrumentation_1_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/multidex_instrumentation_1_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/permission_1_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/permission_1_1_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/statusview_1_0_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/statusview_1_0_3.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_compat_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_compat_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_ui_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_ui_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_utils_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_utils_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_fragment_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_fragment_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_media_compat_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_media_compat_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/transition_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/transition_25_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DestinationActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/maphelper/InputTipTask.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/maphelper/PoiSearchTask.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/maphelper/RecomandAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/maphelper/RouteTask.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/util/DriverLocationUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/layout/customer_order_select_fragment.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/driver/src/main/res/layout/view_recommond.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/build.gradle" afterPath="$PROJECT_DIR$/common/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/common.iml" afterPath="$PROJECT_DIR$/common/common.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/build.gradle" afterPath="$PROJECT_DIR$/customer/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/customer.iml" afterPath="$PROJECT_DIR$/customer/customer.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/customer/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerBaseActivity.java" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerBaseActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerLoginActivity.java" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerLoginActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerMainActivity.java" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerMainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerOrderActivity.java" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerOrderActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerRegisterActivity.java" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerRegisterActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerWebviewActivity.java" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerWebviewActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/DestinationActivity.java" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/DestinationActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/CustomerIndexFragment.java" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/CustomerIndexFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/SharingCarFragment.java" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/SharingCarFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/book/AirFetchFragment.java" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/book/AirFetchFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/book/AirSendFragment.java" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/book/AirSendFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/book/CharterCarFragment.java" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/book/CharterCarFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/book/CustomerBookCarFragment.java" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/book/CustomerBookCarFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/order/OrderBuildFragment.java" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/order/OrderBuildFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/order/OrderPayFragment.java" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/order/OrderPayFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/net/NetConfig.java" afterPath="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/net/NetConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/res/drawable/btn_blue_bg.xml" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable/btn_blue_bg.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/res/drawable/btn_yellow_bg.xml" afterPath="$PROJECT_DIR$/customer/src/main/res/drawable/btn_yellow_bg.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/res/layout/activity_customer_login.xml" afterPath="$PROJECT_DIR$/customer/src/main/res/layout/activity_customer_login.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/res/layout/activity_customer_register.xml" afterPath="$PROJECT_DIR$/customer/src/main/res/layout/activity_customer_register.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/res/layout/c_fragment_air_fetch.xml" afterPath="$PROJECT_DIR$/customer/src/main/res/layout/c_fragment_air_fetch.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/res/layout/c_fragment_air_send.xml" afterPath="$PROJECT_DIR$/customer/src/main/res/layout/c_fragment_air_send.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/res/layout/c_fragment_customer_book_car.xml" afterPath="$PROJECT_DIR$/customer/src/main/res/layout/c_fragment_customer_book_car.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/res/layout/customer_order_pay_fragment.xml" afterPath="$PROJECT_DIR$/customer/src/main/res/layout/customer_order_pay_fragment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/res/layout/fragment_charter_car.xml" afterPath="$PROJECT_DIR$/customer/src/main/res/layout/fragment_charter_car.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/res/values/colos.xml" afterPath="$PROJECT_DIR$/customer/src/main/res/values/colos.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer/src/main/res/values/dimens.xml" afterPath="$PROJECT_DIR$/customer/src/main/res/values/dimens.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/build.gradle" afterPath="$PROJECT_DIR$/driver/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/driver.iml" afterPath="$PROJECT_DIR$/driver/driver.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/driver/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverBaseActivity.java" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverBaseActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverLoginActivity.java" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverLoginActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverMainActivity.java" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverMainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverModeActivity.java" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverModeActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverOrderActivity.java" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverOrderActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverRegistAfterActivity.java" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverRegistAfterActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverRegisterActivity.java" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverRegisterActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverUploadActivity.java" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverUploadActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/consts/Constants.java" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/consts/Constants.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/NetConfig.java" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/NetConfig.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/api/DUserAPI.java" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/api/DUserAPI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/result/SendMessageResult.java" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/result/SendMessageResult.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/res/layout/d_activity_main.xml" afterPath="$PROJECT_DIR$/driver/src/main/res/layout/d_activity_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/api/DriverCarAPI.java" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/api/DriverCarAPI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/receiver/DriverJPushReceiver.java" afterPath="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/receiver/DriverJPushReceiver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/res/layout/activity_driver_mode.xml" afterPath="$PROJECT_DIR$/driver/src/main/res/layout/activity_driver_mode.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/res/layout/d_activity_regist_after.xml" afterPath="$PROJECT_DIR$/driver/src/main/res/layout/d_activity_regist_after.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/res/layout/driver_register_activity.xml" afterPath="$PROJECT_DIR$/driver/src/main/res/layout/driver_register_activity.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/driver/src/main/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/res/values/dimens.xml" afterPath="$PROJECT_DIR$/driver/src/main/res/values/dimens.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/driver/src/main/res/values/styles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lfcx_android.iml" afterPath="$PROJECT_DIR$/lfcx_android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/res/layout/driver_order_activity.xml" afterPath="$PROJECT_DIR$/driver/src/main/res/layout/driver_order_activity.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/driver/src/main/res/layout/select_car_type_pop.xml" afterPath="$PROJECT_DIR$/driver/src/main/res/layout/select_car_type_pop.xml" />
     </list>
     <ignored path="lfcx_android.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -203,11 +80,149 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DriverRegisterActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverRegisterActivity.java">
+      <file leaf-file-name="DriverMainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverMainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1418">
-              <caret line="62" column="52" selection-start-line="62" selection-start-column="52" selection-end-line="62" selection-end-column="52" />
+            <state relative-caret-position="839">
+              <caret line="73" column="5" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomerMainFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/CustomerMainFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-5072">
+              <caret line="132" column="71" selection-start-line="132" selection-start-column="71" selection-end-line="132" selection-end-column="71" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomerOrderActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerOrderActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="570">
+              <caret line="206" column="5" selection-start-line="206" selection-start-column="5" selection-end-line="206" selection-end-column="5" />
+              <folding>
+                <element signature="e#6065#6493#0" expanded="true" />
+                <element signature="e#6492#6493#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SharingCarFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/SharingCarFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="456" column="0" selection-start-line="456" selection-start-column="0" selection-end-line="456" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4964#5258#0" expanded="true" />
+                <element signature="e#5257#5258#0" expanded="true" />
+                <element signature="e#5302#5596#0" expanded="true" />
+                <element signature="e#5595#5596#0" expanded="true" />
+                <element signature="e#5639#5790#0" expanded="true" />
+                <element signature="e#5789#5790#0" expanded="true" />
+                <element signature="e#5831#6375#0" expanded="true" />
+                <element signature="e#6027#6266#0" expanded="true" />
+                <element signature="e#6265#6266#0" expanded="true" />
+                <element signature="e#6374#6375#0" expanded="true" />
+                <element signature="e#7114#7268#0" expanded="true" />
+                <element signature="e#7267#7268#0" expanded="true" />
+                <element signature="e#7310#7857#0" expanded="true" />
+                <element signature="e#7856#7857#0" expanded="true" />
+                <element signature="e#7907#8201#0" expanded="true" />
+                <element signature="e#8200#8201#0" expanded="true" />
+                <element signature="e#8249#8543#0" expanded="true" />
+                <element signature="e#8542#8543#0" expanded="true" />
+                <element signature="e#9320#9474#0" expanded="true" />
+                <element signature="e#9473#9474#0" expanded="true" />
+                <element signature="e#9516#10063#0" expanded="true" />
+                <element signature="e#10062#10063#0" expanded="true" />
+                <element signature="e#10113#10407#0" expanded="true" />
+                <element signature="e#10406#10407#0" expanded="true" />
+                <element signature="e#10455#10749#0" expanded="true" />
+                <element signature="e#10748#10749#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomerIndexFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/CustomerIndexFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="419">
+              <caret line="161" column="40" selection-start-line="161" selection-start-column="40" selection-end-line="161" selection-end-column="40" />
+              <folding>
+                <element signature="e#5886#5887#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="c_layout_share_three.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/customer/src/main/res/layout/c_layout_share_three.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="478">
+              <caret line="42" column="49" selection-start-line="42" selection-start-column="33" selection-end-line="42" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="c_fragment_air_fetch.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/customer/src/main/res/layout/c_fragment_air_fetch.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="128" column="28" selection-start-line="128" selection-start-column="28" selection-end-line="128" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DriverModeActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverModeActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-11">
+              <caret line="126" column="48" selection-start-line="126" selection-start-column="48" selection-end-line="126" selection-end-column="48" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#5747#5990#0" expanded="true" />
+                <element signature="e#5989#5990#0" expanded="true" />
+                <element signature="e#6262#6578#0" expanded="true" />
+                <element signature="e#6577#6578#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomerBookCarFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/book/CustomerBookCarFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="888">
+              <caret line="204" column="25" selection-start-line="202" selection-start-column="8" selection-end-line="211" selection-end-column="93" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider editor-type-id="android-manifest">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-210">
+              <caret line="2" column="26" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -4330,7 +4345,7 @@
     <option name="modificationStamps">
       <map>
         <entry key="$PROJECT_DIR$" value="9055174690000" />
-        <entry key="C:\Users\yzc\Desktop\lfcx_android" value="9063496235253" />
+        <entry key="C:\Users\yzc\Desktop\lfcx_android" value="9064009336326" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -4996,57 +5011,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverBaseActivity.java" />
-        <option value="$PROJECT_DIR$/driver/src/main/res/values/dimens.xml" />
-        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/result/LoginResult.java" />
-        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerLoginActivity.java" />
-        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/util/Md5Util.java" />
-        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerOrderActivity.java" />
-        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/SharingCarFragment.java" />
-        <option value="$PROJECT_DIR$/customer/src/main/res/layout/customer_order_pay_fragment.xml" />
-        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/pay/alipay/Alipay.java" />
-        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/order/OrderPayFragment.java" />
-        <option value="$PROJECT_DIR$/customer/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/book/CharterCarFragment.java" />
-        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/book/CustomerBookCarFragment.java" />
-        <option value="$PROJECT_DIR$/customer/src/main/res/layout/fragment_charter_car.xml" />
-        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/book/AirSendFragment.java" />
-        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/book/AirFetchFragment.java" />
-        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/util/UserUtil.java" />
-        <option value="$PROJECT_DIR$/driver/src/main/res/layout/d_activity_main.xml" />
-        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/order/OrderBuildFragment.java" />
-        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerRegisterActivity.java" />
-        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/util/StringEmptyUtil.java" />
-        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/util/TimeUtils.java" />
-        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/widget/pop/CustomerCarPop.java" />
-        <option value="$PROJECT_DIR$/driver/src/main/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/driver/src/main/res/layout/item_time_select.xml" />
-        <option value="$PROJECT_DIR$/driver/src/main/res/layout/item_duration_select.xml" />
         <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/util/TimeSelectUtils.java" />
         <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/widget/view/DriverCustomNumberPicker.java" />
         <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/util/DriveTimeSelectUtils.java" />
-        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/NetConfig.java" />
         <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/result/SendMessageResult.java" />
         <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/result/IdCardResult.java" />
-        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/api/DUserAPI.java" />
         <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/dialog/BottomDialog.java" />
         <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/dialog/BaseBottomDialog.java" />
         <option value="$PROJECT_DIR$/driver/src/main/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/driver/src/main/res/layout/select_car_type_pop.xml" />
-        <option value="$PROJECT_DIR$/driver/src/main/res/layout/d_activity_regist_after.xml" />
-        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverRegisterActivity.java" />
-        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverRegistAfterActivity.java" />
-        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverMainActivity.java" />
-        <option value="$PROJECT_DIR$/driver/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverLoginActivity.java" />
         <option value="$PROJECT_DIR$/customer/src/main/res/drawable/btn_blue_bg.xml" />
         <option value="$PROJECT_DIR$/customer/src/main/res/drawable/btn_yellow_bg.xml" />
         <option value="$PROJECT_DIR$/driver/src/main/res/layout/driver_register_activity.xml" />
-        <option value="$PROJECT_DIR$/common/build.gradle" />
-        <option value="$PROJECT_DIR$/driver/build.gradle" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/customer/src/main/res/layout/activity_customer_login.xml" />
         <option value="$PROJECT_DIR$/customer/src/main/res/layout/activity_customer_register.xml" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/consts/Constants.java" />
+        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerLoginActivity.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverUploadActivity.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverLoginActivity.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/res/layout/driver_order_activity.xml" />
+        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/net/NetConfig.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/receiver/DriverJPushReceiver.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverMainActivity.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverRegisterActivity.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/res/layout/select_car_type_pop.xml" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverRegistAfterActivity.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/res/layout/d_activity_regist_after.xml" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/NetConfig.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/api/DUserAPI.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/api/DriverCarAPI.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/maphelper/RecomandAdapter.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/maphelper/RouteTask.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/res/layout/customer_order_select_fragment.xml" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/maphelper/PoiSearchTask.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/maphelper/InputTipTask.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverDestinationActivity.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/util/DriverLocationUtils.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/maphelper/PoiSearchTask.java" />
+        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/DestinationActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/driver/build.gradle" />
+        <option value="$PROJECT_DIR$/customer/build.gradle" />
+        <option value="$PROJECT_DIR$/common/build.gradle" />
+        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/CustomerIndexFragment.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverOrderActivity.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DestinationActivity.java" />
+        <option value="$PROJECT_DIR$/driver/src/main/res/layout/activity_driver_mode.xml" />
+        <option value="$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverModeActivity.java" />
+        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/book/CustomerBookCarFragment.java" />
+        <option value="$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/SharingCarFragment.java" />
       </list>
     </option>
   </component>
@@ -5091,106 +5106,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="Gradle Scripts" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lfcx_android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="driver" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lfcx_android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="driver" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="driver" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lfcx_android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="driver" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="driver" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="activity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lfcx_android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="customer" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lfcx_android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="customer" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="customer" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lfcx_android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="customer" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="customer" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="activity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -5278,15 +5193,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.lfcx.driver.util" />
       <recent name="com.lfcx.driver.activity" />
+      <recent name="com.lfcx.driver.util" />
+      <recent name="com.lfcx.driver.maphelper" />
       <recent name="com.lfcx.customer.fragment" />
       <recent name="com.lfcx.customer.util" />
-      <recent name="com.lfcx.driver.net.result" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\yzc\Desktop\lfcx_android\driver\src\main\res\drawable-xxhdpi" />
       <recent name="C:\Users\yzc\Desktop\lfcx_android\driver\src\main\res\layout" />
+      <recent name="C:\Users\yzc\Desktop\lfcx_android\driver\src\main\res\drawable-xxhdpi" />
       <recent name="C:\Users\yzc\Desktop\lfcx_android\driver\src\main\res\anim" />
       <recent name="C:\Users\yzc\Desktop\lfcx_android\driver\src\main\java\com\lfcx\driver\dialog" />
       <recent name="C:\Users\yzc\Desktop\lfcx_android\driver\src\main\res" />
@@ -5613,7 +5528,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-12" y="-12" width="3864" height="2114" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24878049" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -5621,15 +5536,15 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29539296" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14471544" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996812" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295393" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1598916" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3615176" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -5665,349 +5580,19 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/customer/src/main/res/anim/photo_dialog_in_anim.xml">
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverBaseActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="578">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/customer/src/main/res/anim/photo_dialog_out_anim.xml">
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverDestinationActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="406">
+          <caret line="77" column="71" selection-start-line="77" selection-start-column="58" selection-end-line="77" selection-end-column="71" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/customer/src/main/res/drawable-xxhdpi/radiobutton_background_select_in.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/radiobutton_background_select_in.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/customer/src/main/res/drawable-xhdpi/radiobutton_background_select_out.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/customer/src/main/res/drawable-xxhdpi/radiobutton_background_select_out.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/util/TimeUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5678">
-          <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/util/TimeSelectUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="54" column="21" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/book/AirFetchFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="138" column="46" selection-start-line="138" selection-start-column="46" selection-end-line="138" selection-end-column="46" />
-          <folding>
-            <element signature="e#4267#4464#0" expanded="false" />
-            <element signature="e#4463#4464#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/widget/view/DriverCustomNumberPicker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-234">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/util/DriveTimeSelectUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="130" column="75" selection-start-line="130" selection-start-column="75" selection-end-line="130" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3706#3738#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/res/layout/item_duration_select.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1631">
-          <caret line="125" column="48" selection-start-line="125" selection-start-column="48" selection-end-line="125" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/res/layout/item_driver_time_select.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2850">
-          <caret line="95" column="24" selection-start-line="95" selection-start-column="24" selection-end-line="95" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-24/android/text/TextUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3211">
-          <caret line="450" column="26" selection-start-line="450" selection-start-column="26" selection-end-line="450" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-24/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="601">
-          <caret line="112" column="19" selection-start-line="112" selection-start-column="19" selection-end-line="112" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/consts/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="9" column="67" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/NetConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="77" column="25" selection-start-line="77" selection-start-column="11" selection-end-line="77" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/api/DriverCarAPI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverUploadActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1680">
-          <caret line="220" column="29" selection-start-line="220" selection-start-column="29" selection-end-line="220" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/result/IdCardResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-          <folding>
-            <element signature="e#410#411#0" expanded="false" />
-            <element signature="e#439#440#0" expanded="false" />
-            <element signature="e#483#484#0" expanded="false" />
-            <element signature="e#519#520#0" expanded="false" />
-            <element signature="e#556#557#0" expanded="false" />
-            <element signature="e#585#586#0" expanded="false" />
-            <element signature="e#633#634#0" expanded="false" />
-            <element signature="e#669#670#0" expanded="false" />
-            <element signature="e#703#704#0" expanded="false" />
-            <element signature="e#736#737#0" expanded="false" />
-            <element signature="e#785#786#0" expanded="false" />
-            <element signature="e#829#830#0" expanded="false" />
-            <element signature="e#1104#1105#0" expanded="false" />
-            <element signature="e#1143#1144#0" expanded="false" />
-            <element signature="e#1195#1196#0" expanded="false" />
-            <element signature="e#1243#1244#0" expanded="false" />
-            <element signature="e#1280#1281#0" expanded="false" />
-            <element signature="e#1317#1318#0" expanded="false" />
-            <element signature="e#1365#1366#0" expanded="false" />
-            <element signature="e#1409#1410#0" expanded="false" />
-            <element signature="e#1440#1441#0" expanded="false" />
-            <element signature="e#1474#1475#0" expanded="false" />
-            <element signature="e#1513#1514#0" expanded="false" />
-            <element signature="e#1551#1552#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/result/SendMessageResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/api/DUserAPI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="709">
-          <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/generated/source/r/debug/com/zaaach/citypicker/R.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="665" column="32" selection-start-line="665" selection-start-column="32" selection-end-line="665" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.zaaach/citypicker/1.2/2993fe40b3fa9d5acfbc8030e7b5c9ee0055e6c1/citypicker-1.2-sources.jar!/com/zaaach/citypicker/CityPickerActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-480">
-          <caret line="59" column="50" selection-start-line="59" selection-start-column="50" selection-end-line="59" selection-end-column="50" />
-          <folding>
-            <element signature="e#2722#3459#0" expanded="false" />
-            <element signature="e#3458#3459#0" expanded="false" />
-            <element signature="e#6404#6658#0" expanded="false" />
-            <element signature="e#6657#6658#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/customer/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/dialog/BottomDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1661">
-          <caret line="31" column="39" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/res/anim/slide_in_from_bottom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1201">
-          <caret line="66" column="76" selection-start-line="66" selection-start-column="56" selection-end-line="66" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/dialog/BaseBottomDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/res/drawable-xxhdpi/bt_check_dialog_corner.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/res/layout/select_car_type_pop.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="31" column="59" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
-          <folding>
-            <element signature="e#408#423#0" expanded="true" />
-            <element signature="e#459#474#0" expanded="true" />
-            <element signature="e#797#816#0" expanded="true" />
-            <element signature="e#952#973#0" expanded="true" />
-            <element signature="e#1012#1035#0" expanded="true" />
-            <element signature="e#1075#1098#0" expanded="true" />
-            <element signature="e#1136#1155#0" expanded="true" />
-            <element signature="e#1349#1374#0" expanded="true" />
-            <element signature="e#1676#1697#0" expanded="true" />
-            <element signature="e#1736#1759#0" expanded="true" />
-            <element signature="e#1799#1822#0" expanded="true" />
-            <element signature="e#2016#2041#0" expanded="true" />
-            <element signature="e#2331#2352#0" expanded="true" />
-            <element signature="e#2391#2414#0" expanded="true" />
-            <element signature="e#2454#2477#0" expanded="true" />
-            <element signature="e#2674#2699#0" expanded="true" />
-            <element signature="e#2990#3011#0" expanded="true" />
-            <element signature="e#3050#3073#0" expanded="true" />
-            <element signature="e#3113#3136#0" expanded="true" />
-            <element signature="e#3333#3358#0" expanded="true" />
-            <element signature="e#3648#3669#0" expanded="true" />
-            <element signature="e#3708#3731#0" expanded="true" />
-            <element signature="e#3771#3794#0" expanded="true" />
-            <element signature="e#4002#4027#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/res/layout/d_activity_regist_after.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
-          <caret line="323" column="58" selection-start-line="323" selection-start-column="58" selection-end-line="323" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverMainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1443">
-          <caret line="102" column="5" selection-start-line="88" selection-start-column="4" selection-end-line="102" selection-end-column="5" />
-          <folding>
-            <element signature="e#2550#2551#0" expanded="false" />
-            <element signature="e#2572#2573#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -6016,60 +5601,82 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        <state relative-caret-position="650">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/customer/src/main/res/drawable/btn_blue_bg.xml">
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/consts/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="18" column="45" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
+        <state relative-caret-position="210">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/customer/src/main/res/drawable/btn_yellow_bg.xml">
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/consts/SPConstants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="12" column="44" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+        <state relative-caret-position="240">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerMainActivity.java">
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/maphelper/RecomandAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="911">
-          <caret line="74" column="32" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/res/layout/driver_register_activity.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+        <state relative-caret-position="-600">
+          <caret line="34" column="29" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="29" />
           <folding>
-            <element signature="e#1691#1713#0" expanded="true" />
+            <element signature="e#1866#1867#0" expanded="false" />
+            <element signature="e#1888#1889#0" expanded="false" />
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverLoginActivity.java">
+    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/maphelper/PositionEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="61" column="43" selection-start-line="61" selection-start-column="43" selection-end-line="61" selection-end-column="43" />
+        <state relative-caret-position="450">
+          <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/res/layout/d_activity_login.xml">
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/maphelper/PoiSearchTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1710">
+        <state relative-caret-position="293">
+          <caret line="46" column="21" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/maphelper/PositionEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amap.api/search/5.5.0/b7fc2c582458f3eddc00b4594510793e8f70935e/search-5.5.0.jar!/com/amap/api/services/poisearch/PoiSearch.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1313">
+          <caret line="110" column="21" selection-start-line="110" selection-start-column="21" selection-end-line="110" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/maphelper/PoiSearchTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="33" column="45" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver/src/main/res/layout/view_recommond.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -6078,37 +5685,18 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverRegistAfterActivity.java">
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/maphelper/RegeocodeTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="716">
-          <caret line="221" column="77" selection-start-line="221" selection-start-column="77" selection-end-line="221" selection-end-column="77" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#5628#5858#0" expanded="false" />
-            <element signature="e#5857#5858#0" expanded="false" />
-            <element signature="e#8048#9025#0" expanded="false" />
-            <element signature="e#9024#9025#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+        <state relative-caret-position="1462">
+          <caret line="75" column="41" selection-start-line="75" selection-start-column="41" selection-end-line="75" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/driver/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/common/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -6116,65 +5704,371 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/customer/build/intermediates/bundles/default/res/layout/activity_customer_login.xml">
+    <entry file="file://$PROJECT_DIR$/customer/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1972">
-          <caret line="131" column="21" selection-start-line="131" selection-start-column="21" selection-end-line="131" selection-end-column="21" />
+        <state relative-caret-position="630">
+          <caret line="21" column="65" selection-start-line="21" selection-start-column="65" selection-end-line="21" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/maphelper/RouteTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="61" column="28" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/maphelper/RouteTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3014">
+          <caret line="155" column="29" selection-start-line="155" selection-start-column="29" selection-end-line="155" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerMainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="912">
+          <caret line="85" column="43" selection-start-line="85" selection-start-column="43" selection-end-line="85" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerBookActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="66" column="39" selection-start-line="66" selection-start-column="39" selection-end-line="66" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/util/LocationUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
-          <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+          <folding>
+            <element signature="e#258#259#0" expanded="false" />
+            <element signature="e#289#290#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/service/LocationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="46" column="50" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="50" />
+          <folding>
+            <element signature="e#1288#1469#0" expanded="false" />
+            <element signature="e#1468#1469#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/util/DriverLocationUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/customer/src/main/res/layout/activity_customer_register.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="1421">
-          <caret line="108" column="39" selection-start-line="108" selection-start-column="39" selection-end-line="108" selection-end-column="39" />
+    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/util/LocationUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+          <folding>
+            <element signature="e#269#270#0" expanded="false" />
+            <element signature="e#300#301#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/maphelper/LocationTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1920">
+          <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
           <folding />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2">
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/DestinationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="719">
+          <caret line="88" column="20" selection-start-line="88" selection-start-column="20" selection-end-line="88" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverOrderActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="126" column="5" selection-start-line="121" selection-start-column="4" selection-end-line="126" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3975#4254#0" expanded="true" />
+            <element signature="e#4253#4254#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver/src/main/res/layout/customer_order_select_fragment.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1320">
+          <caret line="44" column="19" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerRegisterActivity.java">
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DestinationActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="81" column="44" selection-start-line="81" selection-start-column="44" selection-end-line="81" selection-end-column="44" />
+        <state relative-caret-position="982">
+          <caret line="97" column="48" selection-start-line="97" selection-start-column="48" selection-end-line="97" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/book/AirFetchFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1170">
+          <caret line="145" column="39" selection-start-line="138" selection-start-column="8" selection-end-line="145" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/customer/src/main/res/layout/activity_customer_login.xml">
-      <provider editor-type-id="text-editor">
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/util/DriveTimeSelectUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="216" column="21" selection-start-line="216" selection-start-column="21" selection-end-line="216" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver/src/main/res/layout/activity_driver_mode.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="130" column="26" selection-start-line="130" selection-start-column="26" selection-end-line="130" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/NetConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/result/LoginResult.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
-          <caret line="82" column="56" selection-start-line="82" selection-start-column="56" selection-end-line="82" selection-end-column="56" />
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2">
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/result/SendMessageResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/result/IdCardResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/api/DUserAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/net/api/DriverCarAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="983">
+          <caret line="44" column="20" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-210">
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverMainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="839">
+          <caret line="73" column="5" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer/src/main/res/layout/c_fragment_air_fetch.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="128" column="28" selection-start-line="128" selection-start-column="28" selection-end-line="128" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerLoginActivity.java">
+    <entry file="file://$PROJECT_DIR$/customer/src/main/res/layout/c_layout_share_three.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-128">
-          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+        <state relative-caret-position="478">
+          <caret line="42" column="49" selection-start-line="42" selection-start-column="33" selection-end-line="42" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverModeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11">
+          <caret line="126" column="48" selection-start-line="126" selection-start-column="48" selection-end-line="126" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5747#5990#0" expanded="true" />
+            <element signature="e#5989#5990#0" expanded="true" />
+            <element signature="e#6262#6578#0" expanded="true" />
+            <element signature="e#6577#6578#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/book/CustomerBookCarFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="888">
+          <caret line="204" column="25" selection-start-line="202" selection-start-column="8" selection-end-line="211" selection-end-column="93" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/driver/src/main/java/com/lfcx/driver/activity/DriverRegisterActivity.java">
+    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/CustomerMainFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1418">
-          <caret line="62" column="52" selection-start-line="62" selection-start-column="52" selection-end-line="62" selection-end-column="52" />
+        <state relative-caret-position="-5072">
+          <caret line="132" column="71" selection-start-line="132" selection-start-column="71" selection-end-line="132" selection-end-column="71" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/activity/CustomerOrderActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="206" column="5" selection-start-line="206" selection-start-column="5" selection-end-line="206" selection-end-column="5" />
+          <folding>
+            <element signature="e#6065#6493#0" expanded="true" />
+            <element signature="e#6492#6493#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/SharingCarFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="456" column="0" selection-start-line="456" selection-start-column="0" selection-end-line="456" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4964#5258#0" expanded="true" />
+            <element signature="e#5257#5258#0" expanded="true" />
+            <element signature="e#5302#5596#0" expanded="true" />
+            <element signature="e#5595#5596#0" expanded="true" />
+            <element signature="e#5639#5790#0" expanded="true" />
+            <element signature="e#5789#5790#0" expanded="true" />
+            <element signature="e#5831#6375#0" expanded="true" />
+            <element signature="e#6027#6266#0" expanded="true" />
+            <element signature="e#6265#6266#0" expanded="true" />
+            <element signature="e#6374#6375#0" expanded="true" />
+            <element signature="e#7114#7268#0" expanded="true" />
+            <element signature="e#7267#7268#0" expanded="true" />
+            <element signature="e#7310#7857#0" expanded="true" />
+            <element signature="e#7856#7857#0" expanded="true" />
+            <element signature="e#7907#8201#0" expanded="true" />
+            <element signature="e#8200#8201#0" expanded="true" />
+            <element signature="e#8249#8543#0" expanded="true" />
+            <element signature="e#8542#8543#0" expanded="true" />
+            <element signature="e#9320#9474#0" expanded="true" />
+            <element signature="e#9473#9474#0" expanded="true" />
+            <element signature="e#9516#10063#0" expanded="true" />
+            <element signature="e#10062#10063#0" expanded="true" />
+            <element signature="e#10113#10407#0" expanded="true" />
+            <element signature="e#10406#10407#0" expanded="true" />
+            <element signature="e#10455#10749#0" expanded="true" />
+            <element signature="e#10748#10749#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer/src/main/java/com/lfcx/customer/fragment/CustomerIndexFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="161" column="40" selection-start-line="161" selection-start-column="40" selection-end-line="161" selection-end-column="40" />
+          <folding>
+            <element signature="e#5886#5887#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

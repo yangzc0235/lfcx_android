@@ -22,11 +22,8 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.services.core.LatLonPoint;
-import com.amap.api.services.geocoder.GeocodeResult;
 import com.amap.api.services.geocoder.GeocodeSearch;
-import com.amap.api.services.geocoder.RegeocodeAddress;
 import com.amap.api.services.geocoder.RegeocodeQuery;
-import com.amap.api.services.geocoder.RegeocodeResult;
 import com.lfcx.common.utils.MapMarkerUtils;
 import com.lfcx.common.utils.ToastUtils;
 import com.lfcx.customer.R;
@@ -255,12 +252,16 @@ public class CustomerIndexFragment extends Fragment implements AMap.OnCameraChan
             startActivity(destinationIntent);
         }
         else if (v.getId() == R.id.btn_now) {
+
+            //马上用车
             Intent callIntent = new Intent(getActivity(),
                     CustomerOrderActivity.class);
             callIntent.putExtra("styletype",styletype);
             startActivity(callIntent);
         }
         else if (v.getId() == R.id.btn_after) {
+
+            //预约
             Intent allIntent = new Intent(getActivity(),
                     CustomerBookActivity.class);
             startActivity(allIntent);

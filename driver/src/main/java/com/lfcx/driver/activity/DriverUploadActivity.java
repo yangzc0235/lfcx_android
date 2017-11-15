@@ -2,11 +2,10 @@ package com.lfcx.driver.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,7 +22,6 @@ import com.yanzhenjie.album.AlbumFile;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.sql.BatchUpdateException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -102,6 +100,7 @@ public class DriverUploadActivity extends DriverBaseActivity {
     private Map<String,File> param = new HashMap<>();
     private DriverCarAPI driverCarAPI;
     private ImageView iv_back;
+    private String mMobile="15901126195";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,6 +206,7 @@ public class DriverUploadActivity extends DriverBaseActivity {
     }
 
     private void uploadPhoto(){
+        goToActivity(DriverMainActivity.class);
         if(param.size()<10){
             showToast("请确认全部照片已选择");
             return;
@@ -223,6 +223,9 @@ public class DriverUploadActivity extends DriverBaseActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 hideLoading();
                 String str = response.body();
+                Log.v("system---认证信息------>",str);
+                goToActivity(DriverMainActivity.class);
+                finish();
             }
 
             @Override
@@ -252,43 +255,43 @@ public class DriverUploadActivity extends DriverBaseActivity {
                         switch (requestCode){
                             case 1://身份证正面
                                 ivCardFron.setImageBitmap(bitmap);
-                                param.put("cardfrontphoto",imageFile);
+                                param.put(mMobile+"_cardfrontphoto",imageFile);
                                 break;
                             case 2://身份证反面
                                 ivCardAfter.setImageBitmap(bitmap);
-                                param.put("cardbackphoto",imageFile);
+                                param.put(mMobile+"_cardbackphoto",imageFile);
                                 break;
                             case 3://手持身份证照片
                                 ivCardHand.setImageBitmap(bitmap);
-                                param.put("cardwithhandphoto",imageFile);
+                                param.put(mMobile+"_cardwithhandphoto",imageFile);
                                 break;
                             case 4://行驶证
                                 ivXingshi.setImageBitmap(bitmap);
-                                param.put("vehiregitcertphoto1",imageFile);
+                                param.put(mMobile+"_vehiregitcertphoto1",imageFile);
                                 break;
                             case 5://行驶证sub
                                 ivXingshiSub.setImageBitmap(bitmap);
-                                param.put("vehiregitcertphoto2",imageFile);
+                                param.put(mMobile+"_vehiregitcertphoto2",imageFile);
                                 break;
                             case 6://驾驶证
                                 ivDrive.setImageBitmap(bitmap);
-                                param.put("drivelicephoto",imageFile);
+                                param.put(mMobile+"_drivelicephoto",imageFile);
                                 break;
                             case 7://人车合影
                                 ivPeoCar.setImageBitmap(bitmap);
-                                param.put("driverandcarphoto",imageFile);
+                                param.put(mMobile+"_driverandcarphoto",imageFile);
                                 break;
                             case 8://45
                                 ivCarTan.setImageBitmap(bitmap);
-                                param.put("car45photo",imageFile);
+                                param.put(mMobile+"_car45photo",imageFile);
                                 break;
                             case 9://车正面
                                 ivCarFront.setImageBitmap(bitmap);
-                                param.put("carfacephoto",imageFile);
+                                param.put(mMobile+"_carfacephoto",imageFile);
                                 break;
                             case 10://保险
                                 ivBaoxian.setImageBitmap(bitmap);
-                                param.put("Safedocphoto",imageFile);
+                                param.put(mMobile+"_Safedocphoto",imageFile);
                                 break;
                         }
                     }

@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lfcx.common.net.APIFactory;
 import com.lfcx.common.utils.StringUtils;
@@ -18,6 +20,7 @@ import com.lfcx.driver.net.NetConfig;
 import com.lfcx.driver.net.api.DUserAPI;
 import com.lfcx.driver.net.result.SendMessageResult;
 import com.lfcx.driver.util.EdtUtil;
+import com.lfcx.driver.util.StringEmptyUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -79,6 +82,8 @@ public class DriverRegisterActivity extends DriverBaseActivity implements View.O
         mBtnRegister = (Button) findViewById(R.id.btn_register);
         mTitleBar.setText("注册用户");
         mBtnRegister.setOnClickListener(this);
+        mBtnGetcode.setOnClickListener(this);
+        mBtnGetcode.setEnabled(true);
     }
 
     public void onClick(View v) {
@@ -95,7 +100,7 @@ public class DriverRegisterActivity extends DriverBaseActivity implements View.O
                 mHandler.sendEmptyMessage(0);
                 mBtnGetcode.setEnabled(false);
             }
-            sendCheckCode(mobile);
+
         } else if (i == R.id.btn_register) {
             checkRegister();
         }
@@ -128,6 +133,7 @@ public class DriverRegisterActivity extends DriverBaseActivity implements View.O
      * 检查手机号和密码
      */
     private void checkRegister() {
+        goToActivity(DriverRegistAfterActivity.class);
         String moible =EdtUtil.getEdtText(mEtPhone);
         String pwd = EdtUtil.getEdtText(mEtPwd);
         String againPwd = EdtUtil.getEdtText(mEtConfirmPwd);
@@ -149,23 +155,22 @@ public class DriverRegisterActivity extends DriverBaseActivity implements View.O
             showToast("请输入验证码");
             return;
         }
-
         Bundle bundle=new Bundle();
         bundle.putString("mobile",moible);
         bundle.putString("pwd",pwd);
         bundle.putString("recommandMobile",recommandMobile);
         goToActivity(DriverRegistAfterActivity.class,bundle);
 
-//        if(StringEmptyUtil.isEmpty(checkCode)){
-//            Toast.makeText(this, "请先获取验证码", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        Log.v("checkCode---------->",checkCode);
-//        if (!checkCode.equals(code)) {
-//            showToast("验证码输入错误");
-//            return;
-//        }
-//
+        if(StringEmptyUtil.isEmpty(checkCode)){
+            Toast.makeText(this, "请先获取验证码", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Log.v("checkCode---------->",checkCode);
+        if (!checkCode.equals(code)) {
+            showToast("验证码输入错误");
+            return;
+        }
+
 
     }
 

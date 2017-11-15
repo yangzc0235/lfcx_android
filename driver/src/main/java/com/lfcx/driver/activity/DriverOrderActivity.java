@@ -2,9 +2,13 @@ package com.lfcx.driver.activity;
 
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.amap.api.maps.AMap;
@@ -16,6 +20,9 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.services.core.LatLonPoint;
+import com.google.gson.Gson;
+import com.lfcx.common.net.APIFactory;
+import com.lfcx.common.net.result.BaseResultBean;
 import com.lfcx.common.utils.MapMarkerUtils;
 import com.lfcx.driver.R;
 import com.lfcx.driver.consts.Constants;
@@ -24,6 +31,16 @@ import com.lfcx.driver.fragment.OrderTitleFragment;
 import com.lfcx.driver.maphelper.LocationTask;
 import com.lfcx.driver.maphelper.OnLocationGetListener;
 import com.lfcx.driver.maphelper.PositionEntity;
+import com.lfcx.driver.maphelper.RouteTask;
+import com.lfcx.driver.net.api.DriverCarAPI;
+import com.lfcx.driver.util.DriverLocationUtils;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  *
@@ -38,6 +55,18 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
     LocationTask mLocation;
     Marker mPositionMark;
     FragmentManager fragmentManager;
+    private DriverCarAPI mDriverCarAPI;
+    private Handler mHandler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if(msg.what==1){
+                requestUploadPosition(mLatitue,mLongitude);
+            }
+        }
+    };
+    private double mLatitue;
+    private double mLongitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +74,7 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
         setContentView(R.layout.driver_order_activity);
         initMap(savedInstanceState);
         initView();
+        mDriverCarAPI = APIFactory.create(DriverCarAPI.class);
         initLocation();
     }
 
@@ -87,6 +117,8 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
 
     }
 
+
+
     @Override
     public void onMapLoaded() {
         //初始化地图完成后开始定位
@@ -109,10 +141,54 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
         if(mPositionMark != null && !mPositionMark.isRemoved()){
             mPositionMark.remove();
         }
-        setMarker(entity.getLatitue(), entity.getLongitude());
+
+        mLatitue=entity.getLatitue();
+        mLongitude=entity.getLongitude();
+        setMarker(mLatitue, mLongitude);
+        DriverLocationUtils.setLocation(entity);
+        RouteTask.getInstance(getApplicationContext()).setStartPoint(entity);
+        Log.v("system----latitude--->",entity.getLatitue()+"");
+        Log.v("system----longitude--->",entity.getLongitude()+"");
+        if(mLatitue!=0.0&&mLongitude!=0.0){
+            requestUploadPosition(mLatitue,mLongitude);
+        }
         CameraUpdate cameraUpate = CameraUpdateFactory.newLatLngZoom(
                 new LatLng(entity.getLatitue(), entity.getLongitude()), mAmap.getCameraPosition().zoom);
         mAmap.animateCamera(cameraUpate);
+    }
+
+
+    /**
+     * 实施上传位置
+     * @param latitue
+     * @param longitude
+     */
+    private void requestUploadPosition(double latitue, double longitude) {
+        Map<String, Object> param = new HashMap<>();
+        param.put("latitude", latitue);
+        param.put("longitude ", longitude );
+        param.put("pk_user ", "752b85a9-6ca0-4467-93e8-5fbf9d1c2f90");
+        mDriverCarAPI.insertLocation(param).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (null != response && !TextUtils.isEmpty(response.body())) {
+                    BaseResultBean res = new Gson().fromJson(response.body(), BaseResultBean.class);
+                    if ("0".equals(res.getCode())) {
+                        showToast(res.getMsg());
+                        Log.v("system-------->",res.getMsg());
+                        mHandler.sendEmptyMessageDelayed(1,30000);
+                    } else {
+                        showToast(res.getMsg());
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                showToast("注册失败！！");
+            }
+        });
     }
 
     @Override
@@ -136,6 +212,9 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
             mPositionMark.setPositionByPixels(mapView.getWidth() / 2,
                     mapView.getHeight() / 2);
         }
+
+
+
     }
 
 
@@ -162,6 +241,9 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
     protected void onDestroy() {
         super.onDestroy();
         mapView.onDestroy();
+        if(null!=mHandler){
+            mHandler.removeMessages(1);
+        }
     }
 
 }

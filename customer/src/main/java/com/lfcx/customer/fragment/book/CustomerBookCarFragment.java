@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -128,6 +129,7 @@ public class CustomerBookCarFragment extends Fragment implements  RouteTask.OnRo
     public void onResume() {
         super.onResume();
         PositionEntity location = LocationUtils.getLocation();
+        Toast.makeText(getActivity().getApplicationContext(), "location:" + location, Toast.LENGTH_SHORT).show();
         if(null != location && !isSelectStartAdress){
             etStartAddress.setText(location.getAddress());
         }
@@ -290,6 +292,11 @@ public class CustomerBookCarFragment extends Fragment implements  RouteTask.OnRo
 
     @Override
     public void onRouteCalculate(float cost, float distance, int duration) {
+
+        Log.v("system----address---->",RouteTask
+                .getInstance(getActivity().getApplicationContext()).getEndPoint().address);
+
+        Log.v("system---distance---->",distance+"");
         if(clickType == 2){
             etEndAddress.setText(RouteTask
                 .getInstance(getActivity().getApplicationContext()).getEndPoint().address);

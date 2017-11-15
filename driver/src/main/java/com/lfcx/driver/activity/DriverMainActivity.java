@@ -26,23 +26,24 @@ public class DriverMainActivity extends DriverBaseActivity {
     ImageView iv_message;
 
     private Unbinder unbinder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.d_activity_main);
-        checkFirstInApp();
         unbinder = ButterKnife.bind(this);
         LocationService.startService(this);
         init();
     }
 
     private void init() {
+        checkFirstInApp();
         iv_user = (ImageView) findViewById(R.id.iv_user);
         iv_user.setVisibility(View.VISIBLE);
         iv_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DriverMainActivity.this,DriverUserActivity.class);
+                Intent intent = new Intent(DriverMainActivity.this, DriverUserActivity.class);
                 startActivity(intent);
             }
         });
@@ -55,27 +56,34 @@ public class DriverMainActivity extends DriverBaseActivity {
 
 
     @OnClick(R2.id.d_iv_message)
-    public void onClickMessage(View view){
-        Intent intent = new Intent(this,DriverNewsActivity.class);
+    public void onClickMessage(View view) {
+        Intent intent = new Intent(this, DriverNewsActivity.class);
         startActivity(intent);
     }
+
     @OnClick(R2.id.d_mode_select)
-    public void onClickMode(View view){
-        Intent intent = new Intent(this,DriverModeActivity.class);
+    public void onClickMode(View view) {
+        Intent intent = new Intent(this, DriverModeActivity.class);
         startActivity(intent);
     }
+
     @OnClick(R2.id.btn_start_work)
-    public void onClickStart(View view){
+    public void onClickStart(View view) {
         showToast("开始接单");
-        Intent intent = new Intent(DriverMainActivity.this, DriverOrderActivity.class);
-        DriverMainActivity.this.startActivity(intent);
+        goToActivity(DriverOrderActivity.class);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        checkFirstInApp();
     }
 
     /**
      * 判断是否首次进入应用
      */
     private void checkFirstInApp() {
-        if(!UserUtil.isLogin(this)){
+        if (!UserUtil.isLogin(this)) {
             goToActivity(DriverLoginActivity.class);
         }
     }
@@ -90,6 +98,7 @@ public class DriverMainActivity extends DriverBaseActivity {
     public void onBackPressed() {
         exit();
     }
+
     private long exitTime = 0;
 
     public void exit() {

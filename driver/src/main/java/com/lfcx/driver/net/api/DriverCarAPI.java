@@ -6,7 +6,6 @@ import com.squareup.okhttp.RequestBody;
 import java.util.Map;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
@@ -41,4 +40,8 @@ public interface DriverCarAPI {
     @FormUrlEncoded
     @POST(NetConfig.DRIVER_GET_ORDER_INFO)
     Call<String> getOrderInfo(@FieldMap Map<String, Object> param);
+
+    @FormUrlEncoded
+    @POST(NetConfig.ORDER_TYPE_SETTING)
+    Call<String> setOrderType(@FieldMap Map<String, Object> param);
 }

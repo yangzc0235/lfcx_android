@@ -38,6 +38,7 @@
             android:name=".service.LocationService"
             android:exported="false" />
         <activity android:name=".activity.CarTypeSelectActivity"></activity>
-    </application>
+        <activity android:name=".activity.DestinationActivity"></activity>
+   </application>
 
 </manifest>

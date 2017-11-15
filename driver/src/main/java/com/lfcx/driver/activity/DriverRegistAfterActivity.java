@@ -12,6 +12,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.codbking.widget.DatePickDialog;
+import com.codbking.widget.OnSureLisener;
+import com.codbking.widget.bean.DateType;
 import com.google.gson.Gson;
 import com.lfcx.common.net.APIFactory;
 import com.lfcx.common.net.result.BaseResultBean;
@@ -21,11 +24,11 @@ import com.lfcx.driver.dialog.BottomDialog;
 import com.lfcx.driver.net.NetConfig;
 import com.lfcx.driver.net.api.DUserAPI;
 import com.lfcx.driver.net.result.IdCardResult;
-import com.lfcx.driver.util.DriveTimeSelectUtils;
 import com.lfcx.driver.util.EdtUtil;
 import com.lfcx.driver.util.StringEmptyUtil;
 import com.zaaach.citypicker.CityPickerActivity;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -127,11 +130,12 @@ public class DriverRegistAfterActivity extends DriverBaseActivity implements Vie
             if (mRecommandMobile == null) {
                 mRecommandMobile = "";
             }
+            Log.v("system----mMobile---->", mMobile);
+            Log.v("system------mPwd----->", mPwd);
+            Log.v("system---推荐人--->", mRecommandMobile);
         }
 
-        Log.v("system----mMobile---->", mMobile);
-        Log.v("system------mPwd----->", mPwd);
-        Log.v("system---推荐人--->", mRecommandMobile);
+
     }
 
 
@@ -141,22 +145,49 @@ public class DriverRegistAfterActivity extends DriverBaseActivity implements Vie
 
         //初次领取驾照的日期
         if (i == R.id.tv_primary_date) {
-            DriveTimeSelectUtils timeSelectUtils = new DriveTimeSelectUtils(this, null, null, null, new DriveTimeSelectUtils.GetSubmitTime() {
+            final DatePickDialog dialog = new DatePickDialog(this);
+            //设置上下年分限制
+            dialog.setYearLimt(100);
+            //设置标题
+            dialog.setTitle("选择时间");
+            //设置类型
+            dialog.setType(DateType.TYPE_YMD);
+            //设置消息体的显示格式，日期格式
+            dialog.setMessageFormat("yyyy-MM-dd");
+            dialog.show();
+            //设置点击确定按钮回调
+            dialog.setOnSureLisener(new OnSureLisener() {
                 @Override
-                public void selectTime(String startDate, String entDate) {
-                    mTvPrimaryDate.setText(startDate);
+                public void onSure(Date date) {
+                    java.text.SimpleDateFormat simpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                    String rq = simpleDateFormat.format(date);
+                    mTvPrimaryDate.setText(rq);
+                    dialog.dismiss();
                 }
             });
-            timeSelectUtils.dateTimePicKDialog();
+
 
         } else if (i == R.id.tv_register_date) {
-            DriveTimeSelectUtils timeSelectUtils = new DriveTimeSelectUtils(this, null, null, null, new DriveTimeSelectUtils.GetSubmitTime() {
+            final DatePickDialog dialog = new DatePickDialog(this);
+            //设置上下年分限制
+            dialog.setYearLimt(100);
+            //设置标题
+            dialog.setTitle("选择时间");
+            //设置类型
+            dialog.setType(DateType.TYPE_YMD);
+            //设置消息体的显示格式，日期格式
+            dialog.setMessageFormat("yyyy-MM-dd");
+            dialog.show();
+            //设置点击确定按钮回调
+            dialog.setOnSureLisener(new OnSureLisener() {
                 @Override
-                public void selectTime(String startDate, String entDate) {
-                    mTvRegisterDate.setText(startDate);
+                public void onSure(Date date) {
+                    java.text.SimpleDateFormat simpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                    String rq = simpleDateFormat.format(date);
+                    mTvRegisterDate.setText(rq);
+                    dialog.dismiss();
                 }
             });
-            timeSelectUtils.dateTimePicKDialog();
         } else if (i == R.id.iv_back) {
             finish();
             //保存
@@ -207,7 +238,7 @@ public class DriverRegistAfterActivity extends DriverBaseActivity implements Vie
      * 选择联名卡账号或简易积分账户
      */
     private void showButtomSelectDialog() {
-        mDialogSelect = BottomDialog.create(getSupportFragmentManager());
+        mDialogSelect = BottomDialog.create(getSupportFragmentManager()).setCancelOutside(false);
         mDialogSelect.setViewListener(new BottomDialog.ViewListener() {
             @Override
             public void bindView(View v) {
@@ -282,11 +313,8 @@ public class DriverRegistAfterActivity extends DriverBaseActivity implements Vie
             return;
         }
 
+        checkCardIdandReallyName(EdtUtil.getEdtText(mDEtDriverId), EdtUtil.getEdtText(mDEtDriverName), Constants.D_CHECK_ID_CARD_KEY);
 
-        checkCardIdandReallyName(EdtUtil.getEdtText(mDEtDriverId), EdtUtil.getEdtText(mDEtDriverName), Constants.D_SEND_CHECKCODE_KEY);
-
-        Intent intent = new Intent(this, DriverUploadActivity.class);
-        startActivity(intent);
     }
 
 
@@ -309,10 +337,11 @@ public class DriverRegistAfterActivity extends DriverBaseActivity implements Vie
                     String idCard = response.body().getResult().getIdcard();
                     String realName = response.body().getResult().getRealname();
                     requestRegistDatas(idCard, realName);
+                    Log.v("system-----reson----->",response.body().getReason());
                 } else {
                     Toast.makeText(DriverRegistAfterActivity.this, response.body().getReason(), Toast.LENGTH_SHORT).show();
+                    Log.v("system-----reson----->",response.body().getReason());
                 }
-
             }
 
             @Override
@@ -351,7 +380,8 @@ public class DriverRegistAfterActivity extends DriverBaseActivity implements Vie
                 if (null != response && !TextUtils.isEmpty(response.body())) {
                     BaseResultBean res = new Gson().fromJson(response.body(), BaseResultBean.class);
                     if ("0".equals(res.getCode())) {
-                        startActivity(new Intent(DriverRegistAfterActivity.this, DriverUploadActivity.class));
+                        showToast(res.getMsg());
+                        goToActivity(DriverUploadActivity.class);
                     } else {
                         showToast(res.getMsg());
                     }

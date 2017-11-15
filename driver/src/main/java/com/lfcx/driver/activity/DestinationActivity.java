@@ -1,4 +1,4 @@
-package com.lfcx.customer.activity;
+package com.lfcx.driver.activity;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,21 +11,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.lfcx.customer.R;
-import com.lfcx.customer.R2;
-import com.lfcx.customer.maphelper.InputTipTask;
-import com.lfcx.customer.maphelper.PoiSearchTask;
-import com.lfcx.customer.maphelper.PositionEntity;
-import com.lfcx.customer.maphelper.RecomandAdapter;
-import com.lfcx.customer.maphelper.RouteTask;
-import com.lfcx.customer.util.EdtUtil;
+import com.lfcx.driver.R;
+import com.lfcx.driver.maphelper.PoiSearchTask;
+import com.lfcx.driver.maphelper.PositionEntity;
+import com.lfcx.driver.maphelper.RecomandAdapter;
+import com.lfcx.driver.maphelper.RouteTask;
+import com.lfcx.driver.util.EdtUtil;
+
 
 /**
  * author: drawthink
  * date  : 2017/7/28
  * des   :  输入目标地
  */
-public class DestinationActivity extends CustomerBaseActivity implements View.OnClickListener,TextWatcher,AdapterView.OnItemClickListener {
+public class DestinationActivity extends DriverBaseActivity implements View.OnClickListener,TextWatcher,AdapterView.OnItemClickListener {
 
     private ListView mRecommendList;
 
@@ -75,30 +74,28 @@ public class DestinationActivity extends CustomerBaseActivity implements View.On
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if(RouteTask.getInstance(getApplicationContext()).getStartPoint()==null){
-            Toast.makeText(getApplicationContext(), "检查网络，Key等问题", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        InputTipTask.getInstance(mRecomandAdapter).searchTips(getApplicationContext(),s.toString(),
-                RouteTask.getInstance(getApplicationContext()).getStartPoint().city);
+//        if(RouteTask.getInstance(getApplicationContext()).getStartPoint()==null){
+//            Toast.makeText(getApplicationContext(), "检查网络，Key等问题", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        InputTipTask.getInstance(mRecomandAdapter).searchTips(getApplicationContext(),s.toString(),
+//                RouteTask.getInstance(getApplicationContext()).getStartPoint().city);
     }
 
     @Override
     public void onClick(View v) {
 
-        switch(v.getId()){
-            case R2.id.destination_back:
-                finish();
-                break;
-            case R2.id.destination_search:
-                if(EdtUtil.isEdtEmpty(mDestinaionText)){
-                    Toast.makeText(this, "请输入目的地", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                PoiSearchTask poiSearchTask=new PoiSearchTask(getApplicationContext(), mRecomandAdapter);
-                poiSearchTask.search(mDestinaionText.getText().toString(), RouteTask.getInstance(getApplicationContext()).getStartPoint().city);
+        int i = v.getId();
+        if (i == R.id.destination_back) {
+            finish();
 
-                break;
+        } else if (i == R.id.destination_search) {
+            if (EdtUtil.isEdtEmpty(mDestinaionText)) {
+                Toast.makeText(this, "请输入目的地", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            PoiSearchTask poiSearchTask = new PoiSearchTask(getApplicationContext(), mRecomandAdapter);
+            poiSearchTask.search(mDestinaionText.getText().toString(), RouteTask.getInstance(getApplicationContext()).getStartPoint().city);
         }
 
     }
