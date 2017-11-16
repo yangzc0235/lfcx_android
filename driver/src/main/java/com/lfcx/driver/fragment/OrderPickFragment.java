@@ -64,10 +64,15 @@ public class OrderPickFragment extends Fragment {
                     return;
                 }
                 if(mBtnNow.getText().toString().trim().equals("开始行程")){
-                    EventBus.getDefault().post(new EventUtil("arrive_point"));
+//                    EventBus.getDefault().post(new EventUtil("arrive_point"));
                     mBtnNow.setText("结束行程");
 
                 }
+                if(mBtnNow.getText().toString().trim().equals("结束行程")){
+                    EventBus.getDefault().post(new EventUtil("arrive_point"));
+                    mBtnNow.setText("订单完成");
+                }
+
 
             }
         });

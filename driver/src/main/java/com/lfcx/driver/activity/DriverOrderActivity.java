@@ -34,6 +34,8 @@ import com.lfcx.driver.R;
 import com.lfcx.driver.consts.Constants;
 import com.lfcx.driver.consts.SPConstants;
 import com.lfcx.driver.event.EventUtil;
+import com.lfcx.driver.fragment.ConfirmBillFragment;
+import com.lfcx.driver.fragment.OrderFinishFragment;
 import com.lfcx.driver.fragment.OrderPickFragment;
 import com.lfcx.driver.fragment.OrderTitleFragment;
 import com.lfcx.driver.fragment.ReceiptFragment;
@@ -304,6 +306,20 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
 //            Toast.makeText(this, "接到乘客开始行程啦", Toast.LENGTH_SHORT).show();
 //            mTitleBar.setText("乘客已经上车");
             Toast.makeText(this, "结束行程", Toast.LENGTH_SHORT).show();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            ConfirmBillFragment confirmBillFragment=new ConfirmBillFragment();
+            transaction.replace(R.id.main_container, confirmBillFragment);
+            transaction.commit();
+            mTitleBar.setText("确认账单");
+        }else if(event.getMsg().equals("order_finish")){
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            OrderFinishFragment orderFinishFragment=new OrderFinishFragment();
+            transaction.replace(R.id.main_container, orderFinishFragment);
+            transaction.commit();
+            Toast.makeText(this, "收款成功", Toast.LENGTH_SHORT).show();
+            mTitleBar.setText("行程结束");
+        }else if(event.getMsg().equals("collect_car")){
+            finish();
         }
     }
 
@@ -344,7 +360,7 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                showToast("注册失败！！");
+                showToast("接单失败！！");
             }
         });
     }
