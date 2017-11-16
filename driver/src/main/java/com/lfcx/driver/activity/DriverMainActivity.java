@@ -1,6 +1,5 @@
 package com.lfcx.driver.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -43,8 +42,12 @@ public class DriverMainActivity extends DriverBaseActivity {
         iv_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DriverMainActivity.this, DriverUserActivity.class);
-                startActivity(intent);
+                if (!UserUtil.isLogin(DriverMainActivity.this)) {
+                    goToActivity(DriverLoginActivity.class);
+
+                }else {
+                    goToActivity( DriverUserActivity.class);
+                }
             }
         });
         titleBar = (TextView) findViewById(R.id.title_bar);
@@ -57,20 +60,35 @@ public class DriverMainActivity extends DriverBaseActivity {
 
     @OnClick(R2.id.d_iv_message)
     public void onClickMessage(View view) {
-        Intent intent = new Intent(this, DriverNewsActivity.class);
-        startActivity(intent);
+        if (!UserUtil.isLogin(this)) {
+            goToActivity(DriverLoginActivity.class);
+
+        }else {
+            goToActivity(DriverNewsActivity.class);
+        }
+
     }
 
     @OnClick(R2.id.d_mode_select)
     public void onClickMode(View view) {
-        Intent intent = new Intent(this, DriverModeActivity.class);
-        startActivity(intent);
+        if (!UserUtil.isLogin(this)) {
+            goToActivity(DriverLoginActivity.class);
+
+        }else {
+            goToActivity(DriverModeActivity.class);
+        }
+
     }
 
     @OnClick(R2.id.btn_start_work)
     public void onClickStart(View view) {
-        showToast("开始接单");
-        goToActivity(DriverOrderActivity.class);
+        if (!UserUtil.isLogin(this)) {
+            goToActivity(DriverLoginActivity.class);
+
+        }else {
+            goToActivity(DriverOrderActivity.class);
+        }
+
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.lfcx.customer.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -93,9 +92,12 @@ public class CustomerMainActivity extends CustomerBaseActivity {
 
     @OnClick(R2.id.iv_user)
     public void onClickUser(View v){
-//
-        Intent intent = new Intent(this,CustomerPersonCenterActivity.class);
-        startActivity(intent);
+        if(!UserUtil.isLogin(this)){
+            goToActivity(CustomerLoginActivity.class);
+        }else {
+            goToActivity(CustomerPersonCenterActivity.class);
+        }
+
     }
     @Override
     public void onDestroy(){

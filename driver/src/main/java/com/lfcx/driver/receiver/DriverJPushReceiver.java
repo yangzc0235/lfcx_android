@@ -20,7 +20,7 @@ public class DriverJPushReceiver extends BroadcastReceiver {
             Bundle bundle = intent.getExtras();
             String codeStyle = (String)bundle.get("code");
 
-            Log.v("system-------->",codeStyle);
+            Log.v("system---codeStyle-->",codeStyle);
             switch (codeStyle){
                 case "0-1"://增加
                     break;

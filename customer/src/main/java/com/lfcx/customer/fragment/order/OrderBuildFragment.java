@@ -243,10 +243,12 @@ public class OrderBuildFragment extends Fragment implements View.OnClickListener
 //                        SPUtils.setParam(getActivity(),SPConstants.KEY_CUSTOMER_MOBILE,result.getPk_userOder());
 //                        Intent intent = new Intent(getActivity(), CallCarSucessActivity.class);
 //                        startActivity(intent);
+                        ToastUtils.shortToast(getActivity(),result.getMsg());
+                        ((CustomerOrderActivity)getActivity()).switchFragment(CustomerOrderActivity.WAIT);
 
                     }else {
                         ToastUtils.shortToast(getActivity(),result.getMsg());
-                        ((CustomerOrderActivity)getActivity()).switchFragment(CustomerOrderActivity.WAIT);
+                        //((CustomerOrderActivity)getActivity()).switchFragment(CustomerOrderActivity.WAIT);
                     }
 
                 }catch (Exception e){

@@ -44,4 +44,14 @@ public interface DriverCarAPI {
     @FormUrlEncoded
     @POST(NetConfig.ORDER_TYPE_SETTING)
     Call<String> setOrderType(@FieldMap Map<String, Object> param);
+
+
+    @FormUrlEncoded
+    @POST(NetConfig.START_DRIVER)
+    Call<String> startTravel(@FieldMap Map<String, Object> param);
+
+
+    @FormUrlEncoded
+    @POST(NetConfig.FINISH_DRIVER)
+    Call<String> finishTravel(@FieldMap Map<String, Object> param);
 }

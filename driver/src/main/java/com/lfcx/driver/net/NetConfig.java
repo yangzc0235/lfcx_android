@@ -86,4 +86,16 @@ public interface NetConfig {
      * 驾驶证核查
      */
     String DRIVER_JIASHI = "http://v.juhe.cn/jszhc/query.php";
+
+
+    /**
+     * 用户上车,开始行程
+     */
+    String START_DRIVER = "travelrecord/starttravel";
+
+
+    /**
+     * 结束行程
+     */
+    String FINISH_DRIVER = "travelrecord/finishtravel";
 }
