@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * author: drawthink
@@ -18,6 +19,8 @@ public class DriverJPushReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         try {
             Bundle bundle = intent.getExtras();
+            String action = intent.getAction();
+            Toast.makeText(context, action, Toast.LENGTH_SHORT).show();
             String codeStyle = (String)bundle.get("code");
 
             Log.v("system---codeStyle-->",codeStyle);

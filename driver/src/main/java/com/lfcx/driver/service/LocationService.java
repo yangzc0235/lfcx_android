@@ -1,15 +1,20 @@
 package com.lfcx.driver.service;
 
 import android.app.IntentService;
-import android.content.Intent;
 import android.content.Context;
+import android.content.Intent;
 import android.os.SystemClock;
+import android.text.TextUtils;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.google.gson.Gson;
 import com.lfcx.common.net.APIFactory;
+import com.lfcx.common.net.result.BaseResultBean;
 import com.lfcx.common.utils.LogUtils;
 import com.lfcx.common.utils.SPUtils;
 import com.lfcx.driver.consts.SPConstants;
@@ -90,29 +95,46 @@ public class LocationService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         while (!isCancel){
             try{
-            SystemClock.sleep(1000*180);//每3分钟上传一次位置
+                requestUploadPosition();
+                SystemClock.sleep(1000*180);//每3分钟上传一次位置
             //上传车辆位置信息
-                insertLocation();
             }catch (Exception e){
                 LogUtils.e(TAG,e.getMessage());
             }
         }
     }
 
-    private void insertLocation(){
-        Map<String,Object> param = new HashMap<>();
-        param.put("pk_user ", SPUtils.getParam(ctx, SPConstants.KEY_DRIVER_PK_USER,""));
-        param.put("latitude ",LocationUtils.getLocation().getLatitude());
-        param.put("longitude  ",LocationUtils.getLocation().getLongitude());
+
+
+    /**
+     * 实施上传位置
+     */
+    private void requestUploadPosition() {
+        Map<String, Object> param = new HashMap<>();
+        param.put("latitude", LocationUtils.getLocation().getLatitude());
+        param.put("longitude", LocationUtils.getLocation().getLongitude());
+        param.put("pk_user", SPUtils.getParam(this,SPConstants.KEY_DRIVER_PK_USER,""));
+        Log.v("system----latitue---->",LocationUtils.getLocation().getLatitude()+"");
+        Log.v("system----longitude-->",LocationUtils.getLocation().getLongitude()+"");
+        Log.v("system----pk_user-->",SPUtils.getParam(this,SPConstants.KEY_DRIVER_PK_USER,"")+"");
         driverCarAPI.insertLocation(param).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                if (null != response && !TextUtils.isEmpty(response.body())) {
+                    BaseResultBean res = new Gson().fromJson(response.body(), BaseResultBean.class);
+                    if ("0".equals(res.getCode())) {
+                        Toast.makeText(LocationService.this, res.getMsg(), Toast.LENGTH_SHORT).show();
+                        Log.v("system-------->", res.getMsg());
+                    } else {
+                        Toast.makeText(LocationService.this, res.getMsg(), Toast.LENGTH_SHORT).show();
+                    }
+                }
 
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-
+                Toast.makeText(LocationService.this, "上传失败!!!", Toast.LENGTH_SHORT).show();
             }
         });
     }

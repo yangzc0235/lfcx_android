@@ -182,15 +182,19 @@ public class CustomerIndexFragment extends Fragment implements AMap.OnCameraChan
         //挪动地图，不改变指针位置
 //        mStartPosition = cameraPosition.target;
 //        mInitPosition = cameraPosition.target;
-        mRegeocodeTask.setOnLocationGetListener(this);
-        mRegeocodeTask.search(mStartPosition.latitude, mStartPosition.longitude);
-        if (mIsFirst) {
-            Utils.addEmulateData(mAmap, mStartPosition);
-            if (mPositionMark != null) {
-                mPositionMark.setToTop();
-            }
-            mIsFirst = false;
-        }
+       try {
+           mRegeocodeTask.setOnLocationGetListener(this);
+           mRegeocodeTask.search(mStartPosition.latitude, mStartPosition.longitude);
+           if (mIsFirst) {
+               Utils.addEmulateData(mAmap, mStartPosition);
+               if (mPositionMark != null) {
+                   mPositionMark.setToTop();
+               }
+               mIsFirst = false;
+           }
+       }catch (Exception e){
+
+       }
     }
 
     /**

@@ -259,8 +259,6 @@ public class CustomerBookCarFragment extends Fragment implements  RouteTask.OnRo
         param.put("content","用户123预约您");
         param.put("reservatedate","2017-10-22 20:00:00");
         param.put("ridertel", SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE,""));
-        param.put("fromaddress","银川金凤区六盘水中学");
-        param.put("toaddress","银川市绿地21城");
         param.put("carstyletype",styletype);//ordertype 0 顺风车 1 专车 2 专车（预约），3专车（包车）4 专车（接机）5 专车（送机）
         param.put("ordertype",2);//ordertype 0 顺风车 1 专车 2 专车（预约），3专车（包车）4 专车（接机）5 专车（送机）
         param.put("status",0);// 0 待付款 1 订单完成 2 订单取消

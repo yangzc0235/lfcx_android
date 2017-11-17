@@ -84,7 +84,6 @@ public class OrderBuildFragment extends Fragment implements View.OnClickListener
         mConfirm.setOnClickListener(this);
         mDesitinationText.setOnClickListener(this);
         mLocationImage.setOnClickListener(this);
-
         carAPI = APIFactory.create(CarAPI.class);
         if(getActivity().getIntent() != null) {
             getActivity().getIntent().getIntExtra("styletype",0);
@@ -111,18 +110,22 @@ public class OrderBuildFragment extends Fragment implements View.OnClickListener
         }
         else if(v.getId() == R.id.c_btn_confirm) {
             //发送订单
-            String from_address = LocationUtils.getLocation().address;
-            String to_address = RouteTask
-                    .getInstance(getActivity()).getEndPoint().address;
-            if(StringEmptyUtil.isEmpty(from_address)){
-                Toast.makeText(getActivity(), "正在获取您当前位置", Toast.LENGTH_SHORT).show();
-                return;
+            try {
+                String from_address = LocationUtils.getLocation().address;
+                String to_address = RouteTask
+                        .getInstance(getActivity()).getEndPoint().address;
+                if(StringEmptyUtil.isEmpty(from_address)){
+                    Toast.makeText(getActivity(), "正在获取您当前位置", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(StringEmptyUtil.isEmpty(to_address)){
+                    Toast.makeText(getActivity(), "请输入终点位置", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                bookCar(from_address,to_address);
+            }catch (Exception e){
+                Toast.makeText(getContext(), "正在获取您的位置信息,请稍等", Toast.LENGTH_SHORT).show();
             }
-            if(StringEmptyUtil.isEmpty(to_address)){
-                Toast.makeText(getActivity(), "请输入终点位置", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            bookCar(from_address,to_address);
         }
     }
 
@@ -171,34 +174,7 @@ public class OrderBuildFragment extends Fragment implements View.OnClickListener
     }
 
     public void bookCar(String from_address,String to_address){
-
-//        pk_user:(用户主键 必填);fromlatitude:(纬度 必填); fromlongitude:(经度 必填);title:订单标题 (必填);
-//        content:订单内容(必填) ;fromaddress: 开始位置(必填) ; toaddress: 目的地 (必填);
-//        tolatitude:(纬度 必填); tolongitude:(经度 必填);ordertype : 订单类型 (必填)(0 顺风车 1 专车 ，2 专车-〉预约 3 专车-〉包车 4 专车-〉接机 5 专车-〉送机);
-//        status:订单状态(*)（0：待付款；1订单完成2 ：订单取消）, cancelreason(取消原因),personcount 乘车人数，begintime（包车下单开始时间）,
-//        privatetype(0:4小时套餐 ；1 ：8小时套餐);aircode（航班号）; ispacket :( 是否带小件 0:是;1:否);packetmoney;小件金额；consignee 收货人;
-//        consigneetel 收货人电话;ishelpother(是否替人叫车 0:是;1:否);
-//        Name :(乘车人姓名);ridertel(乘车人电话);carstyletype:车辆类型(0:舒适型，1:豪华型，2:7座商务) ;
-//        isprivatecar:是否专车(0:是专车;1:顺风车)
-
         Map<String,Object> param = new HashMap<>();
-//        param.put("pk_user", SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_PK_USER,""));
-//        param.put("fromlatitude",LocationUtils.getLocation().latitue);
-//        param.put("fromlongitude",LocationUtils.getLocation().longitude);
-//        param.put("tolatitude",RouteTask
-//                .getInstance(getActivity()).getEndPoint().latitue);
-//        param.put("tolongitude",RouteTask
-//                .getInstance(getActivity()).getEndPoint().longitude);
-//        param.put("title","用户"+SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE,"")+"预约您");
-//        param.put("content","用户123预约您");
-//        param.put("ridertel",SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE,""));
-//        param.put("fromaddress",from_address);
-//        param.put("toaddress",to_address);
-//        param.put("ordertype","2");//ordertype 0 顺风车 1 专车 2 专车（预约），3专车（包车）4 专车（接机）5 专车（送机）
-//        param.put("status","0");// 0 待付款 1 订单完成 2 订单取消
-//        param.put("carstyletype",String.valueOf(styletype));// 0 舒适型 1 豪华型 7做商务2 其他9
-//        param.put("isprivatecar","0");// 0 舒适型 1 豪华型 7做商务2 其他9
-
         param.put("pk_user", SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_PK_USER,""));
         param.put("fromlatitude",LocationUtils.getLocation().latitue+"");
         param.put("fromlongitude",LocationUtils.getLocation().longitude+"");
@@ -224,12 +200,13 @@ public class OrderBuildFragment extends Fragment implements View.OnClickListener
                 .getInstance(getActivity()).getEndPoint().latitue+"");
         Log.v("tolongitude----------",RouteTask
                 .getInstance(getActivity()).getEndPoint().longitude+"");
-        Log.v("title----------","jjj");
+        Log.v("title----------","用户123预约您");
+        Log.v("content----------","用户123预约您");
         Log.v("ridertel----------",SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE,"")+"");
         Log.v("status----------",0+"");
         Log.v("fromaddress----------",from_address);
         Log.v("toaddress----------",to_address);
-        Log.v("ordertype----------",2+"");
+        Log.v("ordertype----------",1+"");
         Log.v("carstyletype----------",styletype+"");
         Log.v("isprivatecar----------",0+"");
         carAPI.generateOrder(param).enqueue(new Callback<String>() {
@@ -237,14 +214,14 @@ public class OrderBuildFragment extends Fragment implements View.OnClickListener
             public void onResponse(Call<String> call, Response<String> response) {
                 try{
                     CallCarResult result = new Gson().fromJson(response.body(),CallCarResult.class);
-//                    Toast.makeText(getActivity(), response.body(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), response.body(), Toast.LENGTH_SHORT).show();
                     //下单成功
                     if("0".equals(result.getCode())){
 //                        SPUtils.setParam(getActivity(),SPConstants.KEY_CUSTOMER_MOBILE,result.getPk_userOder());
 //                        Intent intent = new Intent(getActivity(), CallCarSucessActivity.class);
 //                        startActivity(intent);
                         ToastUtils.shortToast(getActivity(),result.getMsg());
-                        ((CustomerOrderActivity)getActivity()).switchFragment(CustomerOrderActivity.WAIT);
+//                        ((CustomerOrderActivity)getActivity()).switchFragment(CustomerOrderActivity.WAIT);
 
                     }else {
                         ToastUtils.shortToast(getActivity(),result.getMsg());

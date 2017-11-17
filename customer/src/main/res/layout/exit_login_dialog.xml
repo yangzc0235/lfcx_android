@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="290dp"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bt_check_dialog_corner"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_hint_dialog_check"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/common_two"
+        android:textColor="@color/lyt_color"
+        android:text="确定要退出登录吗?"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_small"
+        android:background="@color/me_line"
+        android:layout_marginTop="@dimen/common_two"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_five">
+        <TextView
+            android:id="@+id/tv_cancel_dialog_check"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/phone_color"
+            android:textSize="16sp"
+            android:text="取消"/>
+        <View
+            android:layout_width="@dimen/common_small"
+            android:layout_height="match_parent"
+            android:background="@color/me_line"/>
+        <TextView
+            android:id="@+id/tv_ok_dialog_check"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/blue"
+            android:textSize="16sp"
+            android:text="退出"/>
+    </LinearLayout>
+</LinearLayout>

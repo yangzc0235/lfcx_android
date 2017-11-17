@@ -55,6 +55,7 @@
                         android:layout_weight="4"
                         android:background="@color/app_main"
                         android:gravity="center"
+                        android:layout_marginRight="5dp"
                         android:text="马上用车"
                         android:textColor="@color/white"
                         android:textSize="@dimen/middle_text_size" />
@@ -64,7 +65,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/btn_yellow_bg"
+                        android:background="@drawable/btn_relley_yellow_bg"
                         android:gravity="center"
                         android:text="预约"
                         android:textColor="@color/white"

@@ -19,8 +19,8 @@ import com.lfcx.common.utils.SPUtils;
 import com.lfcx.common.utils.ToastUtils;
 import com.lfcx.customer.R;
 import com.lfcx.customer.R2;
-import com.lfcx.customer.activity.CallCarSucessActivity;
 import com.lfcx.customer.activity.CustomerMainActivity;
+import com.lfcx.customer.activity.CustomerOrderActivity;
 import com.lfcx.customer.activity.DestinationActivity;
 import com.lfcx.customer.adapter.ShareCarAdapter;
 import com.lfcx.customer.consts.SPConstants;
@@ -368,6 +368,9 @@ public class SharingCarFragment extends Fragment implements CustomerMainActivity
 //        ispacket :( 是否带小件 0:是;1:否);packetmoney;小件金额；consignee 收货人; consigneetel 收货人电话;
 //        ishelpother(是否替人叫车 0:是;1:否);Name :(乘车人姓名);ridertel(乘车人电话);
 //        carstyletype:车辆类型(0:舒适型，1:豪华型，2:7座商务) ;isprivatecar:是否专车(0:是专车;1:顺风车)
+        String from_address = LocationUtils.getLocation().address;
+        String to_address = RouteTask
+                .getInstance(getActivity()).getEndPoint().address;
         Map<String, Object> param = new HashMap<>();
         param.put("pk_user", SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_PK_USER, ""));
         param.put("fromaddress", LocationUtils.getLocation().address);
@@ -375,7 +378,6 @@ public class SharingCarFragment extends Fragment implements CustomerMainActivity
                 .getInstance(getActivity().getApplicationContext()).getEndPoint().address);
         param.put("fromlongitude", LocationUtils.getLocation().longitude);
         param.put("fromlatitude", LocationUtils.getLocation().latitue);
-
         param.put("tolongitude", RouteTask
                 .getInstance(getActivity().getApplicationContext()).getEndPoint().longitude);
         param.put("tolatitude", RouteTask
@@ -384,8 +386,6 @@ public class SharingCarFragment extends Fragment implements CustomerMainActivity
         param.put("content", "用户123预约您");
         param.put("reservatedate", "2017-10-22 20:00:00");
         param.put("ridertel", SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE, ""));
-        param.put("fromaddress", "银川金凤区六盘水中学");
-        param.put("toaddress", "银川市绿地21城");
         param.put("ordertype", 0);
         param.put("status", 0);// 0 待付款 1 订单完成 2 订单取消
         param.put("isprivatecar", 1);
@@ -394,18 +394,24 @@ public class SharingCarFragment extends Fragment implements CustomerMainActivity
         param.put("consignee", consignee);//收货人姓名
         param.put("consigneetel", consigneetel);//收货人电话
         param.put("ishelpother", ishelpother);//是否替人叫车
-
+        Log.v("fromlatitude----------",LocationUtils.getLocation().latitue+"");
+        Log.v("fromlongitude----------",LocationUtils.getLocation().longitude+"");
+        Log.v("tolatitude----------",RouteTask
+                .getInstance(getActivity()).getEndPoint().latitue+"");
+        Log.v("tolongitude----------",RouteTask
+                .getInstance(getActivity()).getEndPoint().longitude+"");
         carAPI.generateOrder(param).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 try {
                     CallCarResult result = new Gson().fromJson(response.body(), CallCarResult.class);
-
                     Toast.makeText(getActivity().getApplicationContext(), response.body(), Toast.LENGTH_SHORT).show();
+
+                    Log.v("system---下单信息-->",response.body());
                     //下单成功
                     if ("0".equals(result.getCode())) {
-                        Intent intent = new Intent(getActivity(), CallCarSucessActivity.class);
-                        startActivity(intent);
+                        ((CustomerOrderActivity)getActivity()).switchFragment(CustomerOrderActivity.WAIT);
+                        Toast.makeText(getContext(), "等待接单啦", Toast.LENGTH_SHORT).show();
                     } else {
                         ToastUtils.shortToast(getActivity(), result.getMsg());
                     }
@@ -436,7 +442,6 @@ public class SharingCarFragment extends Fragment implements CustomerMainActivity
     public void onResume() {
         super.onResume();
         PositionEntity location = LocationUtils.getLocation();
-        Toast.makeText(getActivity().getApplicationContext(), "location:" + location, Toast.LENGTH_SHORT).show();
         if (null != location && !isSelectStartAdress) {
             if (mSftype == 1) {
                 etStartAdressMy.setText(location.getAddress());

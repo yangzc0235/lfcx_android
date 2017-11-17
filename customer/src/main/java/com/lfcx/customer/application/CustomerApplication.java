@@ -1,6 +1,12 @@
 package com.lfcx.customer.application;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
+
+import com.lfcx.common.crashhandler.CrashHandler;
+
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * author: drawthink
@@ -9,10 +15,22 @@ import android.app.Application;
 
 public class CustomerApplication extends Application {
 
-//    private RefWatcher mRefWatcher;
+
     @Override
     public void onCreate() {
         super.onCreate();
-//        mRefWatcher = LeakCanary.install(this);
+        CrashHandler.getInstance().init(this);
+        JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+
+        //极光推送
+        JPushInterface.init(this);
+
     }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
+
 }

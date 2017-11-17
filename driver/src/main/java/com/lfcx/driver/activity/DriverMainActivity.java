@@ -31,6 +31,7 @@ public class DriverMainActivity extends DriverBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.d_activity_main);
         unbinder = ButterKnife.bind(this);
+        //每三分钟上传一次司机的位置
         LocationService.startService(this);
         init();
     }

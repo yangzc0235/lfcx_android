@@ -95,7 +95,7 @@ public class CustomerMainActivity extends CustomerBaseActivity {
         if(!UserUtil.isLogin(this)){
             goToActivity(CustomerLoginActivity.class);
         }else {
-            goToActivity(CustomerPersonCenterActivity.class);
+            goToActivity(CustomerUserCenterActivity.class);
         }
 
     }
@@ -127,6 +127,14 @@ public class CustomerMainActivity extends CustomerBaseActivity {
         } else {
             finish();
             System.exit(0);
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if(!UserUtil.isLogin(this)){
+           finish();
         }
     }
 }

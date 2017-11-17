@@ -30,6 +30,8 @@
             android:layout_height="@dimen/default_title_bar_height"
             android:background="@null"
             android:hint="@string/phone_title"
+            android:inputType="number"
+            android:text="18801117356"
             android:layout_toRightOf="@+id/iv_user"
             android:layout_marginLeft="5dp"/>
     </RelativeLayout>

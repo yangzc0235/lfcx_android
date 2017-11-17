@@ -1,1 +1,1 @@
-include ':app', ':customer', ':driver', 'common'
+include ':customer', ':driver', 'common'

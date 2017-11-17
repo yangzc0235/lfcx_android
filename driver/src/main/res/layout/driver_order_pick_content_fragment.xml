@@ -94,6 +94,7 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/imgv_call"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/phone_icon"/>

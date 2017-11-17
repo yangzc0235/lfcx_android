@@ -4,6 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
+
 import com.lfcx.common.utils.LogUtils;
 import com.lfcx.customer.event.CallCarSuccessEvent;
 import org.greenrobot.eventbus.EventBus;
@@ -20,7 +22,9 @@ public class CustomerJPushReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         try {
             Bundle bundle = intent.getExtras();
+            Toast.makeText(context, intent.getAction(), Toast.LENGTH_SHORT).show();
             String codeStyle = (String)bundle.get("code");
+            Toast.makeText(context, codeStyle, Toast.LENGTH_SHORT).show();
             switch (codeStyle){
                 case "0-1"://增加
                     break;

@@ -49,6 +49,6 @@ dependencies {
     compile 'com.prolificinteractive:material-calendarview:1.4.0'
     compile 'com.contrarywind:Android-PickerView:3.2.6'
     compile 'com.yanzhenjie:album:2.0.1'
-
+    compile 'com.android.support:multidex:1.0.1'
 
 }

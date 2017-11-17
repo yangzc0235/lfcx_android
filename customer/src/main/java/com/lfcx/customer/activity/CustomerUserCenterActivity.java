@@ -5,15 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lfcx.common.utils.SPUtils;
 import com.lfcx.customer.R;
 import com.lfcx.customer.consts.SPConstants;
 import com.lfcx.customer.net.NetConfig;
-import com.lfcx.customer.util.UserUtil;
+import com.lfcx.customer.widget.dialog.ExitLoginDialog;
 
-public class CustomerPersonCenterActivity extends CustomerBaseActivity implements View.OnClickListener {
+public class CustomerUserCenterActivity extends CustomerBaseActivity implements View.OnClickListener {
     private LinearLayout mLlBarActivityCustomerPersonCenter;
     private TextView mTitleLeftActivityCustomerPersonCenter;
     private TextView mTitleCenterActivityCustomerPersonCenter;
@@ -69,8 +68,9 @@ public class CustomerPersonCenterActivity extends CustomerBaseActivity implement
             finish();
 
         } else if (i == R.id.tv_exit_login_activity_customer_person_center) {//退出登录
-            UserUtil.cleanUserInfo(this);
-            Toast.makeText(this, "退出登录啦", Toast.LENGTH_SHORT).show();
+
+            ExitLoginDialog exitLoginDialog=new ExitLoginDialog(this, R.style.customDialog);
+            exitLoginDialog.show();
 
         }
     }

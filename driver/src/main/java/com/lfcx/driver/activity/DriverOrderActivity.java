@@ -68,8 +68,6 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
     LinearLayout title_container;
     private ImageView mIvBack;
     private TextView mTitleBar;
-
-
     private FrameLayout mMainContainer;
     AMap mAmap;
     LocationTask mLocation;
@@ -83,8 +81,6 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
             super.handleMessage(msg);
             if (msg.what == 1) {
                 requestUploadPosition(mLatitue, mLongitude);
-
-
             }
         }
     };
@@ -189,9 +185,9 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
         RouteTask.getInstance(getApplicationContext()).setStartPoint(entity);
         Log.v("system----latitude--->", entity.getLatitue() + "");
         Log.v("system----longitude--->", entity.getLongitude() + "");
-        if (mLatitue != 0.0 && mLongitude != 0.0) {
-            requestUploadPosition(mLatitue, mLongitude);
-        }
+//        if (mLatitue != 0.0 && mLongitude != 0.0) {
+//            requestUploadPosition(mLatitue, mLongitude);
+//        }
         CameraUpdate cameraUpate = CameraUpdateFactory.newLatLngZoom(
                 new LatLng(entity.getLatitue(), entity.getLongitude()), mAmap.getCameraPosition().zoom);
         mAmap.animateCamera(cameraUpate);
@@ -211,15 +207,18 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
     private void requestUploadPosition(double latitue, double longitude) {
         Map<String, Object> param = new HashMap<>();
         param.put("latitude", latitue);
-        param.put("longitude ", longitude);
-        param.put("pk_user", "752b85a9-6ca0-4467-93e8-5fbf9d1c2f90");
+        param.put("longitude", longitude);
+        param.put("pk_user", SPUtils.getParam(this,SPConstants.KEY_DRIVER_PK_USER,""));
+        Log.v("system----latitue---->",latitue+"");
+        Log.v("system----longitude-->",longitude+"");
+        Log.v("system----pk_user-->",SPUtils.getParam(this,SPConstants.KEY_DRIVER_PK_USER,"")+"");
         mDriverCarAPI.insertLocation(param).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (null != response && !TextUtils.isEmpty(response.body())) {
                     BaseResultBean res = new Gson().fromJson(response.body(), BaseResultBean.class);
                     if ("0".equals(res.getCode())) {
-                        //showToast(res.getMsg());
+                        showToast(res.getMsg());
                         Log.v("system-------->", res.getMsg());
                         mHandler.sendEmptyMessageDelayed(1, 30000);
                     } else {
@@ -231,7 +230,7 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                showToast("注册失败！！");
+                showToast("上传失败！！");
             }
         });
     }
