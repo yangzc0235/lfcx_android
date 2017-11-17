@@ -1,8 +1,14 @@
 package com.lfcx.customer.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -12,6 +18,7 @@ import com.lfcx.customer.R2;
 import com.lfcx.customer.adapter.CustomerMainFragmentPagerAdapter;
 import com.lfcx.customer.fragment.CustomerIndexFragment;
 import com.lfcx.customer.fragment.SharingCarFragment;
+import com.lfcx.customer.util.ExampleUtil;
 import com.lfcx.customer.util.UserUtil;
 import com.lfcx.customer.widget.view.NoScrollViewPager;
 
@@ -44,6 +51,7 @@ public class CustomerMainActivity extends CustomerBaseActivity {
 
     private CustomerMainFragmentPagerAdapter fragmentPagerAdapter;
     private List<Fragment> fragments;
+    public static boolean isForeground = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +72,18 @@ public class CustomerMainActivity extends CustomerBaseActivity {
         fragmentPagerAdapter = new CustomerMainFragmentPagerAdapter(getSupportFragmentManager(),this,fragments);
         vp.setAdapter(fragmentPagerAdapter);
         tableLayout.setupWithViewPager(vp);
-        JPushInterface.setAlias(getApplicationContext(),1,"18511004876");
-        JPushInterface.resumePush(getApplicationContext());
+//        JPushInterface.setAlias(getApplicationContext(),1,"18511004876");
+//        JPushInterface.resumePush(getApplicationContext());
+        String appKey = ExampleUtil.getAppKey(getApplicationContext());
+        String packageName =  getPackageName();
+        String deviceId = ExampleUtil.getDeviceId(getApplicationContext());
+        String udid =  ExampleUtil.getImei(getApplicationContext(), "");
+        String rid = JPushInterface.getRegistrationID(getApplicationContext());
+        Log.v("system--appKey---->",appKey);
+        Log.v("system---pac--->",packageName);
+        Log.v("system---deviceId--->",deviceId);
+        Log.v("system---udid--->",udid);
+        Log.v("system---rid--->",rid);
     }
 
     /**
@@ -136,6 +154,62 @@ public class CustomerMainActivity extends CustomerBaseActivity {
         if(!UserUtil.isLogin(this)){
            finish();
         }
+    }
+
+
+    @Override
+    protected void onResume() {
+        isForeground = true;
+        super.onResume();
+    }
+
+
+    @Override
+    protected void onPause() {
+        isForeground = false;
+        super.onPause();
+    }
+
+
+
+
+    //for receive customer msg from jpush server
+    private MessageReceiver mMessageReceiver;
+    public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_MESSAGE = "message";
+    public static final String KEY_EXTRAS = "extras";
+
+    public void registerMessageReceiver() {
+        mMessageReceiver = new MessageReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        filter.addAction(MESSAGE_RECEIVED_ACTION);
+        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, filter);
+    }
+
+    public class MessageReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            try {
+                if (MESSAGE_RECEIVED_ACTION.equals(intent.getAction())) {
+                    String messge = intent.getStringExtra(KEY_MESSAGE);
+                    String extras = intent.getStringExtra(KEY_EXTRAS);
+                    StringBuilder showMsg = new StringBuilder();
+                    showMsg.append(KEY_MESSAGE + " : " + messge + "\n");
+                    if (!ExampleUtil.isEmpty(extras)) {
+                        showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
+                    }
+                    setCostomMsg(showMsg.toString());
+                }
+            } catch (Exception e){
+            }
+        }
+    }
+
+    private void setCostomMsg(String msg){
+
     }
 }
 
