@@ -102,7 +102,7 @@ public class DriverLoginActivity extends DriverBaseActivity implements View.OnCl
 
     @OnClick(R2.id.tv_register)
     public void onClickGoRegister(View v) {
-        Intent intent = new Intent(this, DriverRegisterActivity.class);
+        Intent intent = new Intent(this, DriverUploadActivity.class);
         startActivity(intent);
     }
 

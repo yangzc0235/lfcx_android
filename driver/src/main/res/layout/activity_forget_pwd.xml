@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activity.DriverForgetPwdActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_activity_phone_num_check"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_four"
+        android:layout_marginLeft="@dimen/common_three_eight"
+        android:layout_marginRight="@dimen/common_three_eight"
+        android:layout_marginTop="@dimen/common_seven"
+        android:background="@drawable/bt_username_corner"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/edt_phone_activity_phone_num_check"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/common_one_six"
+            android:background="@null"
+            android:digits="0123456789"
+            android:gravity="left|center_vertical"
+            android:hint="请输入手机号码"
+            android:maxLength="11"
+            android:lines="1"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:singleLine="true"
+            android:imeOptions="flagNavigateNext"
+            android:textColorHint="@color/name_pwd"
+            android:textSize="15sp" />
+        <View
+            android:layout_width="@dimen/common_small"
+            android:layout_height="@dimen/common_two_three"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/common"
+            android:layout_marginRight="@dimen/common"
+            android:background="@color/me_line" />
+
+        <TextView
+            android:id="@+id/tv_yzm_activity_phone_num_check"
+            android:layout_width="@dimen/common_seven"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/common_one_eight"
+            android:gravity="center"
+            android:text="获取验证码"
+            android:textColor="@color/grey"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_activity_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_four"
+        android:background="@drawable/bt_login_corner"
+        android:layout_below="@+id/ll_activity_phone_num_check"
+        android:layout_marginTop="@dimen/common_two"
+        android:layout_marginLeft="@dimen/common_three_eight"
+        android:layout_marginRight="@dimen/common_three_eight"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/edt_pwd_activity_phone_num_check"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/common_one_six"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="left|center_vertical"
+            android:hint="请输入验证码"
+            android:maxLength="6"
+            android:lines="1"
+            android:inputType="number"
+            android:singleLine="true"
+            android:imeOptions="flagNavigateNext"
+            android:textColorHint="@color/name_pwd"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/bt_commit_activity_phone_num_check"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_four_five"
+        android:layout_below="@+id/ll_activity_pwd"
+        android:layout_marginLeft="@dimen/common_three_eight"
+        android:layout_marginRight="@dimen/common_three_eight"
+        android:layout_marginTop="@dimen/common_four"
+        android:background="@drawable/bt_login_corner"
+        android:text="下一步"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        />
+</RelativeLayout>
+
+

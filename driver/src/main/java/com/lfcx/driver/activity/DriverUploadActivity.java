@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.lfcx.common.net.APIFactory;
+import com.lfcx.common.net.result.BaseResultBean;
 import com.lfcx.common.utils.LogUtils;
 import com.lfcx.driver.R;
 import com.lfcx.driver.R2;
@@ -20,8 +23,15 @@ import com.yanzhenjie.album.Action;
 import com.yanzhenjie.album.Album;
 import com.yanzhenjie.album.AlbumFile;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -206,26 +216,42 @@ public class DriverUploadActivity extends DriverBaseActivity {
     }
 
     private void uploadPhoto(){
-        goToActivity(DriverMainActivity.class);
-        if(param.size()<10){
-            showToast("请确认全部照片已选择");
-            return;
-        }
+//        if(param.size()<10){
+//            showToast("请确认全部照片已选择");
+//            return;
+//        }
         Map<String,RequestBody> requestParam = new HashMap<>();
         int i=0;
         for(Map.Entry<String,File> entry : param.entrySet()){
-            requestParam.put("file"+i+"\"; filename=\""+entry.getKey(),RequestBody.create(MediaType.parse("image/jpeg"),entry.getValue()));
+            requestParam.put("file"+i+"\"; filename=\""+entry.getKey(),RequestBody.create(MediaType.parse("application/octet-stream"),entry.getValue()));
+            Log.v("system---图片集合----->",requestParam.toString());
+            Log.v("system-getKey()----->",entry.getKey());
+            File value = entry.getValue();
+            try {
+                long fileSize = getFileSize(value);
+                Log.v("system---文件大小------->",fileSize+"");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+//            Log.v("system-value----->",entry.getValue().toString());
+            Log.v("system-value----->",RequestBody.create(MediaType.parse("multipart/form-data"),entry.getValue()).toString());
             i++;
         }
-        showLoading();
         driverCarAPI.uploadPhoto(requestParam).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                hideLoading();
                 String str = response.body();
-                Log.v("system---认证信息------>",str);
-                goToActivity(DriverMainActivity.class);
-                finish();
+                BaseResultBean baseResultBean=new Gson().fromJson(response.body(),BaseResultBean.class);
+                if(baseResultBean.getCode().equals("0")){
+                    Log.v("system---认证信息------>",str);
+                    Toast.makeText(DriverUploadActivity.this, baseResultBean.getMsg(), Toast.LENGTH_SHORT).show();
+                    goToActivity(DriverLoginActivity.class);
+                    finish();
+                }else {
+                    Toast.makeText(DriverUploadActivity.this, baseResultBean.getMsg(), Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
@@ -234,6 +260,26 @@ public class DriverUploadActivity extends DriverBaseActivity {
                 LogUtils.e(TAG,t.getMessage());
             }
         });
+    }
+
+    /**
+     * 获取指定文件大小(单位：字节)
+     *
+     * @param file
+     * @return
+     * @throws Exception
+     */
+    public static long getFileSize(File file) throws Exception {
+        if (file == null) {
+            return 0;
+        }
+        long size = 0;
+        if (file.exists()) {
+            FileInputStream fis = null;
+            fis = new FileInputStream(file);
+            size = fis.available();
+        }
+        return size;
     }
 
     private void pickPic(int requestCode){
@@ -253,45 +299,46 @@ public class DriverUploadActivity extends DriverBaseActivity {
                             bitmap = wrapperImage(file.getThumbPath());
                         }else {return;}
                         switch (requestCode){
+                            //cardfrontphoto，cardbackphoto，cardwithhandphoto，vehiregitcertphoto1，vehiregitcertphoto2，drivelicephoto，driverandcarphoto，car45photo，carfacephoto，safedocphoto  名称是 手机号_
                             case 1://身份证正面
                                 ivCardFron.setImageBitmap(bitmap);
-                                param.put(mMobile+"_cardfrontphoto",imageFile);
+                                param.put(mMobile+"_cardfrontphoto"+".jpg",imageFile);
                                 break;
                             case 2://身份证反面
                                 ivCardAfter.setImageBitmap(bitmap);
-                                param.put(mMobile+"_cardbackphoto",imageFile);
+                                param.put(mMobile+"_cardbackphoto"+".jpg",imageFile);
                                 break;
                             case 3://手持身份证照片
                                 ivCardHand.setImageBitmap(bitmap);
-                                param.put(mMobile+"_cardwithhandphoto",imageFile);
+                                param.put(mMobile+"_cardwithhandphoto"+".jpg",imageFile);
                                 break;
                             case 4://行驶证
                                 ivXingshi.setImageBitmap(bitmap);
-                                param.put(mMobile+"_vehiregitcertphoto1",imageFile);
+                                param.put(mMobile+"_vehiregitcertphoto1"+".jpg",imageFile);
                                 break;
                             case 5://行驶证sub
                                 ivXingshiSub.setImageBitmap(bitmap);
-                                param.put(mMobile+"_vehiregitcertphoto2",imageFile);
+                                param.put(mMobile+"_vehiregitcertphoto2"+".jpg",imageFile);
                                 break;
                             case 6://驾驶证
                                 ivDrive.setImageBitmap(bitmap);
-                                param.put(mMobile+"_drivelicephoto",imageFile);
+                                param.put(mMobile+"_drivelicephoto"+".jpg",imageFile);
                                 break;
                             case 7://人车合影
                                 ivPeoCar.setImageBitmap(bitmap);
-                                param.put(mMobile+"_driverandcarphoto",imageFile);
+                                param.put(mMobile+"_driverandcarphoto"+".jpg",imageFile);
                                 break;
                             case 8://45
                                 ivCarTan.setImageBitmap(bitmap);
-                                param.put(mMobile+"_car45photo",imageFile);
+                                param.put(mMobile+"_car45photo"+".jpg",imageFile);
                                 break;
                             case 9://车正面
                                 ivCarFront.setImageBitmap(bitmap);
-                                param.put(mMobile+"_carfacephoto",imageFile);
+                                param.put(mMobile+"_carfacephoto"+".jpg",imageFile);
                                 break;
                             case 10://保险
                                 ivBaoxian.setImageBitmap(bitmap);
-                                param.put(mMobile+"_Safedocphoto",imageFile);
+                                param.put(mMobile+"_safedocphoto"+".jpg",imageFile);
                                 break;
                         }
                     }
@@ -314,5 +361,79 @@ public class DriverUploadActivity extends DriverBaseActivity {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
         return baos.toByteArray();
+    }
+
+    private String[] uploadFileByHttp(String srcPath) {
+        String uploadUrl = "upload/uploadPhoto";
+        String end = "\r\n";
+        String twoHyphens = "--";
+        String boundary = "******";
+
+        String[] ret = null;
+        while(ret == null)
+        {
+            try {
+                URL url = new URL(uploadUrl);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url
+                        .openConnection();
+                // 设置每次传输的流大小，可以有效防止手机因为内存不足崩溃
+                // 此方法用于在预先不知道内容长度时启用没有进行内部缓冲的 HTTP 请求正文的流。
+                httpURLConnection.setChunkedStreamingMode(2048 * 1024);// 2M
+                // 允许输入输出流
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setUseCaches(false);
+                // 使用POST方法
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setRequestProperty("Connection", "Keep-Alive");
+                httpURLConnection.setRequestProperty("Charset", "UTF-8");
+                httpURLConnection.setRequestProperty("Content-Type",
+                        "multipart/form-data;boundary=" + boundary);
+
+                httpURLConnection.connect();
+                DataOutputStream dos = new DataOutputStream(
+                        httpURLConnection.getOutputStream());
+                dos.writeBytes(twoHyphens + boundary + end);
+                dos.writeBytes("Content-Disposition: form-data; name=\"doc\"; filename=\""
+                        + srcPath.substring(srcPath.lastIndexOf("/") + 1)
+                        + "\""
+                        + end);
+                dos.writeBytes(end);
+
+                FileInputStream fis = new FileInputStream(srcPath);
+                byte[] buffer = new byte[8192]; // 8k
+                int count = 0;
+                // 读取文件
+                int sum = 0;
+                while ((count = fis.read(buffer)) != -1) {
+                    dos.write(buffer, 0, count);
+                    sum += count;
+                }
+                System.out.println(sum);
+                fis.close();
+
+                dos.writeBytes(end);
+                dos.writeBytes(twoHyphens + boundary + twoHyphens + end);
+                dos.flush();
+
+                InputStream is = httpURLConnection.getInputStream();
+                InputStreamReader isr = new InputStreamReader(is, "utf-8");
+                BufferedReader br = new BufferedReader(isr);
+                String result = br.readLine();
+
+                System.out.println(result);
+
+                dos.close();
+                is.close();
+                //httpURLConnection.disconnect();
+
+                return result.split(";");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                setTitle(e.getMessage());
+            }
+        }
+        return null;
     }
 }

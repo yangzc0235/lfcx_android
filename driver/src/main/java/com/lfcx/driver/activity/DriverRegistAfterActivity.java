@@ -134,15 +134,12 @@ public class DriverRegistAfterActivity extends DriverBaseActivity implements Vie
             Log.v("system------mPwd----->", mPwd);
             Log.v("system---推荐人--->", mRecommandMobile);
         }
-
-
     }
 
 
     @Override
     public void onClick(View v) {
         int i = v.getId();
-
         //初次领取驾照的日期
         if (i == R.id.tv_primary_date) {
             final DatePickDialog dialog = new DatePickDialog(this);
@@ -232,7 +229,6 @@ public class DriverRegistAfterActivity extends DriverBaseActivity implements Vie
             mDialogSelect.dismiss();
         }
     }
-
 
     /**
      * 选择联名卡账号或简易积分账户
@@ -337,10 +333,10 @@ public class DriverRegistAfterActivity extends DriverBaseActivity implements Vie
                     String idCard = response.body().getResult().getIdcard();
                     String realName = response.body().getResult().getRealname();
                     requestRegistDatas(idCard, realName);
-                    Log.v("system-----reson----->",response.body().getReason());
+                    Log.v("system-----reson----->", response.body().getReason());
                 } else {
                     Toast.makeText(DriverRegistAfterActivity.this, response.body().getReason(), Toast.LENGTH_SHORT).show();
-                    Log.v("system-----reson----->",response.body().getReason());
+                    Log.v("system-----reson----->", response.body().getReason());
                 }
             }
 
@@ -351,7 +347,12 @@ public class DriverRegistAfterActivity extends DriverBaseActivity implements Vie
         });
     }
 
-
+    /**
+     * 注册填入信息
+     *
+     * @param idcard   身份证号
+     * @param realname 真实姓名
+     */
     private void requestRegistDatas(String idcard, String realname) {
 
 //        参数: city:城市; mobile:电话;pwd : 密码; drivername:姓名;drivercard:身份证;firstdetcreddate:首次登记日期; type:车型号 ;

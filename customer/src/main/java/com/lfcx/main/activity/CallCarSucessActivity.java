@@ -115,6 +115,7 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
         mLocationTask.setOnLocationGetListener(this);
         mFlDriverInfo.setVisibility(View.GONE);
         mLlWait.setVisibility(View.VISIBLE);
+        mIvBack.setVisibility(View.GONE);
         mTvCancelOrderFirst.setOnClickListener(this);
         mRegeocodeTask = new RegeocodeTask(getApplicationContext());
         RouteTask.getInstance(getApplicationContext())

@@ -102,7 +102,6 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
     }
 
     private void initView() {
-
         mMainContainer = (FrameLayout) findViewById(R.id.main_container);
         content_container = (LinearLayout) findViewById(R.id.order_content);
         title_container = (LinearLayout) findViewById(R.id.order_title);
@@ -352,6 +351,11 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
      * @param pk_userOder
      * @param pk_userDriver
      * @param pk_user
+     * @param fromaddress
+     * @param fromlongitude
+     * @param fromlatitude
+     * @param aboutdistance
+     * @param aboutminutes
      */
     private void requestConfirmCustomer(String pk_userOder, String pk_userDriver, String pk_user, String fromaddress, double fromlongitude, double fromlatitude, double aboutdistance, String aboutminutes) {
         Map<String, Object> param = new HashMap<>();

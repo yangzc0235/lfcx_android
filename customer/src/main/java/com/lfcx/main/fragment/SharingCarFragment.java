@@ -386,8 +386,8 @@ public class SharingCarFragment extends Fragment implements CustomerMainActivity
                 .getInstance(getActivity().getApplicationContext()).getEndPoint().longitude);
         param.put("tolatitude", RouteTask
                 .getInstance(getActivity().getApplicationContext()).getEndPoint().latitue);
-        param.put("title", "用户"+SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_PK_USER, "")+"预约您");
-        param.put("content", "用户"+SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_PK_USER, "")+"预约您");
+        param.put("title", "用户"+SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE, "")+"预约您");
+        param.put("content", "用户"+SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE, "")+"预约您");
         param.put("reservatedate", EdtUtil.getEdtText(etTimeMy));
         param.put("ridertel", SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE, ""));
         param.put("ordertype", 0);

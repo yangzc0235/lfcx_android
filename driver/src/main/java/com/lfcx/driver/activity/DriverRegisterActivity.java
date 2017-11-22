@@ -133,7 +133,6 @@ public class DriverRegisterActivity extends DriverBaseActivity implements View.O
      * 检查手机号和密码
      */
     private void checkRegister() {
-        goToActivity(DriverRegistAfterActivity.class);
         String moible =EdtUtil.getEdtText(mEtPhone);
         String pwd = EdtUtil.getEdtText(mEtPwd);
         String againPwd = EdtUtil.getEdtText(mEtConfirmPwd);
@@ -155,12 +154,6 @@ public class DriverRegisterActivity extends DriverBaseActivity implements View.O
             showToast("请输入验证码");
             return;
         }
-        Bundle bundle=new Bundle();
-        bundle.putString("mobile",moible);
-        bundle.putString("pwd",pwd);
-        bundle.putString("recommandMobile",recommandMobile);
-        goToActivity(DriverRegistAfterActivity.class,bundle);
-
         if(StringEmptyUtil.isEmpty(checkCode)){
             Toast.makeText(this, "请先获取验证码", Toast.LENGTH_SHORT).show();
             return;
@@ -170,7 +163,11 @@ public class DriverRegisterActivity extends DriverBaseActivity implements View.O
             showToast("验证码输入错误");
             return;
         }
-
+        Bundle bundle=new Bundle();
+        bundle.putString("mobile",moible);
+        bundle.putString("pwd",pwd);
+        bundle.putString("recommandMobile",recommandMobile);
+        goToActivity(DriverRegistAfterActivity.class,bundle);
 
     }
 

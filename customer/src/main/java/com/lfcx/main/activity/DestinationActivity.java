@@ -5,7 +5,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,6 +18,7 @@ import com.lfcx.main.maphelper.PositionEntity;
 import com.lfcx.main.maphelper.RecomandAdapter;
 import com.lfcx.main.maphelper.RouteTask;
 import com.lfcx.main.util.EdtUtil;
+import com.lfcx.main.widget.view.LimitEditText;
 
 /**
  * author: drawthink
@@ -33,7 +33,7 @@ public class DestinationActivity extends CustomerBaseActivity implements View.On
 
     private TextView mSearchText;
 
-    private EditText mDestinaionText;
+    private LimitEditText mDestinaionText;
 
     private RecomandAdapter mRecomandAdapter;
 
@@ -49,7 +49,7 @@ public class DestinationActivity extends CustomerBaseActivity implements View.On
         mSearchText=(TextView) findViewById(R.id.destination_search);
         mSearchText.setOnClickListener(this);
 
-        mDestinaionText=(EditText) findViewById(R.id.destination_edittext);
+        mDestinaionText=(LimitEditText) findViewById(R.id.destination_edittext);
         mDestinaionText.addTextChangedListener(this);
         mRecomandAdapter=new RecomandAdapter(getApplicationContext());
         mRecommendList.setAdapter(mRecomandAdapter);

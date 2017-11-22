@@ -6,6 +6,8 @@ import com.amap.api.navi.AMapNaviView;
 import com.amap.api.navi.enums.NaviType;
 import com.lfcx.driver.R;
 
+import static com.lfcx.driver.activity.DriverOrderActivity.userOrderEntity;
+
 public class DriverGPSNaviActivity extends DriverBaseActivity {
 
     @Override
@@ -41,7 +43,11 @@ public class DriverGPSNaviActivity extends DriverBaseActivity {
         }
         mAMapNavi.setCarNumber("京", "DFZ588");
         mAMapNavi.calculateDriveRoute(sList, eList, mWayPointList, strategy);
-
+        //userOrderEntity.getFromlongitude(), userOrderEntity.getFromlatitude(), userOrderEntity.getTolongitude(), userOrderEntity.getTolatitude()
+        mStartLatlng.setLongitude(userOrderEntity.getFromlongitude());
+        mStartLatlng.setLatitude(userOrderEntity.getFromlatitude());
+        mEndLatlng.setLongitude(userOrderEntity.getTolongitude());
+        mEndLatlng.setLatitude(userOrderEntity.getTolatitude());
     }
 
     @Override

@@ -34,6 +34,8 @@ public interface DriverCarAPI {
     @POST(NetConfig.UPLOAD_PHOTO)
     Call<String> uploadPhoto(@PartMap Map<String, RequestBody> param);
 
+
+
     @FormUrlEncoded
     @POST(NetConfig.DRIVER_ACCEPT_ORDER)
     Call<String> acceptOrder(@FieldMap Map<String, Object> param);

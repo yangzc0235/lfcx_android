@@ -145,7 +145,7 @@ public class CustomerLoginActivity extends CustomerBaseActivity implements View.
         param.put("user", moible);
         param.put("pwd", pwd);
         param.put("isdriver", "0");
-        showLoading();
+//        showLoading();
         userAPI.customerLogin(param).enqueue(new Callback<LoginResult>() {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {

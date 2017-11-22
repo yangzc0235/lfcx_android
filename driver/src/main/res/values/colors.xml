@@ -56,4 +56,5 @@
     <color name="home">#c17892</color>
     <color name="home_life">#a38868</color>
     <color name="home_travel">#5e8d69</color>
+    <color name="login_color">#c8c8c8</color>
 </resources>
