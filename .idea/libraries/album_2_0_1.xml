@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="album-2.0.1">
     <CLASSES>
-      <root url="file://$USER_HOME$/.android/build-cache/60227ffa8d9012e5dae8bb8aa06e55b679daf251/output/res" />
-      <root url="jar://$USER_HOME$/.android/build-cache/60227ffa8d9012e5dae8bb8aa06e55b679daf251/output/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/common/build/intermediates/exploded-aar/com.yanzhenjie/album/2.0.1/res" />
+      <root url="jar://$PROJECT_DIR$/common/build/intermediates/exploded-aar/com.yanzhenjie/album/2.0.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -2,8 +2,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightgrey"
-    android:paddingLeft="@dimen/horizontal_margin"
-    android:paddingRight="@dimen/horizontal_margin"
+    android:paddingRight="16dp"
+    android:paddingLeft="16dp"
     android:paddingTop="@dimen/vertical_margin">
 
     <LinearLayout
@@ -32,12 +32,13 @@
 
             <TextView
                 android:id="@+id/iv_now_address"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:drawablePadding="5dp"
+                android:textColor="@color/lyt_color"
                 android:drawableLeft="@drawable/icon_spoint"
                 android:text="出发地址:"
                 />
@@ -46,11 +47,10 @@
                 android:id="@+id/et_start_address"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/default_edit_height"
-                android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/iv_now_address"
                 android:background="@null"
                 android:editable="false"
-                android:textColorHint="@color/c_text_black"
+                android:hint="正在定位中"
                 android:textSize="@dimen/small_text_size" />
         </RelativeLayout>
 
@@ -62,12 +62,13 @@
 
             <TextView
                 android:id="@+id/iv_to_address"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:drawablePadding="5dp"
+                android:textColor="@color/lyt_color"
                 android:drawableLeft="@drawable/icon_epoint"
                 android:text="带货到哪去:"
                  />
@@ -77,10 +78,9 @@
                 android:editable="false"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/default_edit_height"
-                android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/iv_to_address"
                 android:background="@null"
-                android:textColorHint="@color/c_text_black"
+                android:hint="请输入终点位置"
                 android:textSize="@dimen/small_text_size" />
         </RelativeLayout>
 
@@ -91,12 +91,13 @@
 
             <TextView
                 android:id="@+id/iv_goods_weight"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:drawablePadding="5dp"
+                android:textColor="@color/lyt_color"
                 android:text="重量(kg):"
                 android:drawableLeft="@drawable/time_fill"/>
 
@@ -107,8 +108,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/iv_goods_weight"
                 android:background="@null"
-                android:paddingLeft="10dp"
-                android:textColorHint="@color/c_text_black"
+                android:hint="请输入输入重量"
                 android:textColor="@color/c_text_black"
                 android:textSize="@dimen/small_text_size"
                 android:inputType="number"/>
@@ -122,13 +122,14 @@
 
             <TextView
                 android:id="@+id/iv_time"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:drawablePadding="5dp"
                 android:text="出发时间:"
+                android:textColor="@color/lyt_color"
                 android:drawableLeft="@drawable/time_fill" />
 
             <EditText
@@ -138,9 +139,8 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/iv_time"
                 android:background="@null"
-                android:paddingLeft="10dp"
                 android:editable="false"
-                android:textColorHint="@color/c_text_black"
+                android:hint="请选择出发时间"
                 android:textColor="@color/c_text_black"
                 android:textSize="@dimen/small_text_size" />
         </RelativeLayout>
@@ -152,13 +152,14 @@
 
             <TextView
                 android:id="@+id/iv_group_fill"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:drawablePadding="5dp"
                 android:text="收货人姓名:"
+                android:textColor="@color/lyt_color"
                 android:drawableLeft="@drawable/group_fill"
                  />
 
@@ -169,7 +170,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/iv_group_fill"
                 android:background="@null"
-                android:paddingLeft="10dp"
+                android:hint="请输入收货人姓名"
                 android:textColor="@color/c_text_black"
                 android:textSize="@dimen/small_text_size" />
         </RelativeLayout>
@@ -181,12 +182,13 @@
 
             <TextView
                 android:id="@+id/iv_contact_user"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:drawablePadding="5dp"
+                android:textColor="@color/lyt_color"
                 android:drawableLeft="@drawable/group_fill"
                 android:text="收货人电话:"/>
 
@@ -197,7 +199,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/iv_contact_user"
                 android:background="@null"
-                android:paddingLeft="10dp"
+                android:hint="请输入收货人电话"
                 android:textColor="@color/c_text_black"
                 android:textSize="@dimen/small_text_size"
                 android:inputType="number"/>
@@ -213,9 +215,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="45dp"
             android:background="@color/white"
             android:gravity="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:orientation="horizontal">
 
             <TextView
@@ -234,16 +238,15 @@
         <Button
             android:id="@+id/btn_confirm"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/default_edit_height"
+            android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_below="@id/tv_gologin"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginBottom="15dp"
             android:layout_marginTop="30dp"
             android:textSize="@dimen/title_size"
-            android:background="@drawable/btn_yellow_bg"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_small_blue_bg"
             android:text="确认发布" />
     </LinearLayout>
 </RelativeLayout>

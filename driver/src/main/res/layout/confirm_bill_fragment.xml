@@ -3,149 +3,184 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="@color/me_back"
     android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/tv_money"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/lyt_color"
-        android:textSize="30sp"
-        android:layout_marginTop="40dp"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:text="6.25元"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/lyt_color"
-        android:layout_marginTop="40dp"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:text="行程中若产生附加费,请添加"/>
-
     <LinearLayout
+        android:id="@+id/ll_one"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/btn_white_bg"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="16dp"
-            android:layout_weight="1"
-            android:textColor="@color/login_name"
-            android:text="高速费"/>
+            android:id="@+id/tv_money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:textSize="30sp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="行程费22元"/>
 
-        <EditText
-            android:id="@+id/edt_balance_gs"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:textColor="@color/lyt_color"
-            android:textColorHint="@color/lyt_color"
-            android:background="@null"
-            android:inputType="number"
-            android:singleLine="true"
-            android:textSize="14sp"
-            android:hint="请输入金额"/>
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="行程中若产生附加费,请添加"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/btn_white_bg"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="1"
+                android:textColor="@color/login_name"
+                android:text="高速费"/>
+
+            <EditText
+                android:id="@+id/edt_balance_gs"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/lyt_color"
+                android:textColorHint="@color/lyt_color"
+                android:background="@null"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textSize="14sp"
+                android:text="0"
+                android:hint="请输入金额"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="16dp"
+                android:text="元"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/btn_white_bg"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="1"
+                android:textColor="@color/login_name"
+                android:text="路桥费"/>
+
+            <EditText
+                android:id="@+id/edt_balance_lq"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/lyt_color"
+                android:textColorHint="@color/lyt_color"
+                android:background="@null"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textSize="14sp"
+                android:text="0"
+                android:hint="请输入金额"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="16dp"
+                android:text="元"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/btn_white_bg"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="1"
+                android:textColor="@color/login_name"
+                android:text="停车费"/>
+
+            <EditText
+                android:id="@+id/edt_balance_tc"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/lyt_color"
+                android:textColorHint="@color/lyt_color"
+                android:background="@null"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textSize="14sp"
+                android:text="0"
+                android:hint="请输入金额"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="16dp"
+                android:text="元"/>
+        </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="16dp"
-            android:text="元"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/btn_white_bg"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
+            android:id="@+id/tv_collection"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="60dp"
             android:layout_marginLeft="16dp"
-            android:layout_weight="1"
-            android:textColor="@color/login_name"
-            android:text="路桥费"/>
-
-        <EditText
-            android:id="@+id/edt_balance_lq"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textColor="@color/lyt_color"
-            android:textColorHint="@color/lyt_color"
-            android:background="@null"
-            android:inputType="number"
-            android:singleLine="true"
-            android:textSize="14sp"
-            android:hint="请输入金额"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="5dp"
             android:layout_marginRight="16dp"
-            android:text="元"/>
+            android:textColor="@color/white"
+            android:background="@drawable/btn_blue_bg"
+            android:gravity="center"
+            android:text="发起收款" />
     </LinearLayout>
-
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/ll_wait"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/btn_white_bg"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@color/white">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="16dp"
-            android:layout_weight="1"
-            android:textColor="@color/login_name"
-            android:text="停车费"/>
-
-        <EditText
-            android:id="@+id/edt_balance_tc"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textColor="@color/lyt_color"
-            android:textColorHint="@color/lyt_color"
-            android:background="@null"
-            android:inputType="number"
-            android:singleLine="true"
-            android:textSize="14sp"
-            android:hint="请输入金额"/>
-
+            android:layout_height="wrap_content"
+            android:textColor="@color/yellow"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:textSize="28sp"
+            android:text="请稍后,用户正在支付"/>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="16dp"
-            android:text="元"/>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_collection"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:textColor="@color/white"
-        android:background="@drawable/btn_blue_bg"
-        android:gravity="center"
-        android:text="发起收款" />
+            android:id="@+id/tv_cancel_order_first"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:background="@drawable/btn_blue_bg"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentBottom="true"
+            android:text="重新收款"/>
+    </RelativeLayout>
 </LinearLayout>

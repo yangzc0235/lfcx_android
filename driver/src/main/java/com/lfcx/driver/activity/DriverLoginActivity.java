@@ -2,6 +2,9 @@ package com.lfcx.driver.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.Selection;
+import android.text.Spannable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -35,7 +38,7 @@ import retrofit2.Response;
  * date  : 2017/7/28
  * des   : 司机登录页面
  */
-public class DriverLoginActivity extends DriverBaseActivity {
+public class DriverLoginActivity extends DriverBaseActivity implements View.OnClickListener {
 
     @BindView(R2.id.btn_login)
     Button btnLogin;
@@ -53,8 +56,10 @@ public class DriverLoginActivity extends DriverBaseActivity {
     private TextView mTvForget;
     private ImageView mImgvSelectActivityCardRegister;
     private TextView mTvLmAgreenmentActivityCardRegister;
-
+    private ImageView mImgvClearNumActivityLogin;
+    private ImageView mImgvEyeActivityLogin;
     private DUserAPI userAPI;
+    private boolean mHidePasswd=true;
 
 
     @Override
@@ -71,8 +76,12 @@ public class DriverLoginActivity extends DriverBaseActivity {
         mBtnLogin = (Button) findViewById(R.id.btn_login);
         mTvRegister = (TextView) findViewById(R.id.tv_register);
         mTvForget = (TextView) findViewById(R.id.tv_forget);
+        mImgvClearNumActivityLogin = (ImageView) findViewById(R.id.imgv_clear_num_activity_login);
+        mImgvEyeActivityLogin = (ImageView) findViewById(R.id.imgv_eye_activity_login);
         mImgvSelectActivityCardRegister = (ImageView) findViewById(R.id.imgv_select_activity_card_register);
         mTvLmAgreenmentActivityCardRegister = (TextView) findViewById(R.id.tv_lm_agreenment_activity_card_register);
+        mImgvEyeActivityLogin.setOnClickListener(this);
+        mImgvClearNumActivityLogin.setOnClickListener(this);
     }
 
     @OnClick(R2.id.btn_login)
@@ -114,11 +123,11 @@ public class DriverLoginActivity extends DriverBaseActivity {
         param.put("user", moible);
         param.put("pwd", pwd);
         param.put("isdriver", "1");
-        //showLoading();
+//        showLoading();
         userAPI.customerLogin(param).enqueue(new Callback<LoginResult>() {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
-                //hideLoading();
+//                hideLoading();
                 LoginResult result = null;
                 try {
                     result = response.body();
@@ -148,6 +157,36 @@ public class DriverLoginActivity extends DriverBaseActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        int i = v.getId();
+        if (i == R.id.imgv_clear_num_activity_login) {
+            mEtPhone.setText("");
+        } else if (i == R.id.imgv_eye_activity_login) {
+            isHidePwd();
+        }
+    }
+
+    /**
+     * 是否影藏密码
+     */
+    public void isHidePwd() {
+        if (mHidePasswd) {
+            mImgvEyeActivityLogin.setBackgroundResource(R.mipmap.icon_visual);
+            mHidePasswd = false;
+            mEtPwd.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+        } else {
+            mEtPwd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            mImgvEyeActivityLogin.setBackgroundResource(R.mipmap.icon_notvisible);
+            mHidePasswd = true;
+        }
+        //切换后将EditText光标置于末尾
+        CharSequence charSequence = mEtPwd.getText();
+        if (charSequence instanceof Spannable) {
+            Spannable spanText = (Spannable) charSequence;
+            Selection.setSelection(spanText, charSequence.length());
+        }
+    }
 }
 
 

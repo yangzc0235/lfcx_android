@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/me_back"
-    tools:context="com.lfcx.customer.activity.CustomerMeWalletActivity">
+    tools:context="com.lfcx.main.activity.CustomerMeWalletActivity">
 
     <RelativeLayout
         android:id="@+id/ll_bar_activity_customer_person_center"
@@ -18,8 +18,9 @@
         <TextView
             android:id="@+id/title_left_activity_customer_person_center"
             android:layout_width="60dp"
-            android:layout_height="match_parent"
+            android:layout_height="30dp"
             android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:drawableLeft="@mipmap/ic_nav_back"
              />

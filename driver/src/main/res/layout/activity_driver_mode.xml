@@ -34,6 +34,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:visibility="gone"
         android:paddingRight="@dimen/activity_horizontal_margin">
 
         <View
@@ -119,7 +120,7 @@
             android:layout_height="@dimen/default_edit_height"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:background="@color/colorPrimary">
+            android:background="@drawable/btn_white_bg">
 
             <TextView
                 android:id="@+id/tv_toaddress_activity_driver_mode"
@@ -128,8 +129,9 @@
                 android:layout_alignParentLeft="true"
                 android:gravity="center_vertical|left"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:hint="添加目的地"
-                android:textColor="@color/text_white" />
+                android:hint="请添加目的地"
+                android:textColorHint="@color/login_name"
+                android:textColor="@color/login_name" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -165,6 +167,7 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="20dp"
+            android:background="@drawable/btn_white_bg"
             android:orientation="horizontal">
 
             <TextView
@@ -172,10 +175,10 @@
                 android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
-                android:background="@color/colorPrimary"
                 android:gravity="center"
-                android:hint="请选择开始"
-                android:textColor="@color/text_white"
+                android:hint="请选择开始时间"
+                android:textColor="@color/login_name"
+                android:textColorHint="@color/login_name"
                 android:textSize="14sp" />
 
             <TextView
@@ -185,17 +188,17 @@
                 android:background="@null"
                 android:gravity="center"
                 android:text="至"
-                android:textColor="@color/text_white" />
+                android:textColor="@color/login_name" />
 
             <TextView
                 android:id="@+id/edt_end_activity_driver_mode"
                 android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
-                android:background="@color/colorPrimary"
                 android:gravity="center"
-                android:hint="请选择结束"
-                android:textColor="@color/text_white"
+                android:hint="请选择结束时间"
+                android:textColorHint="@color/login_name"
+                android:textColor="@color/login_name"
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>

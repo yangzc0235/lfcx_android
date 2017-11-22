@@ -13,12 +13,12 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         app:tabIndicatorColor="@color/app_main"
         app:tabSelectedTextColor="@color/app_main"
         app:tabTextColor="@color/black"
         />
-    <com.lfcx.customer.widget.view.NoScrollViewPager
+    <com.lfcx.main.widget.view.NoScrollViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"

@@ -2,8 +2,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightgrey"
-    android:paddingLeft="@dimen/horizontal_margin"
-    android:paddingRight="@dimen/horizontal_margin"
+    android:paddingLeft="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_vertical_margin"
     android:paddingTop="@dimen/vertical_margin">
 
     <LinearLayout
@@ -30,13 +30,14 @@
 
             <TextView
                 android:id="@+id/iv_now_address"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:drawableLeft="@drawable/icon_spoint"
                 android:text="出发地址:"
+                android:textColor="@color/lyt_color"
                 android:drawablePadding="5dp"
                  />
 
@@ -44,11 +45,10 @@
                 android:id="@+id/et_start_address"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/default_edit_height"
-                android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/iv_now_address"
                 android:background="@null"
                 android:editable="false"
-                android:textColorHint="@color/c_text_black"
+                android:hint="正在定位中"
                 android:textSize="@dimen/small_text_size" />
         </RelativeLayout>
 
@@ -60,12 +60,13 @@
 
             <TextView
                 android:id="@+id/iv_to_address"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:drawablePadding="5dp"
+                android:textColor="@color/lyt_color"
                 android:drawableLeft="@drawable/icon_epoint"
                 android:text="目的地:"/>
 
@@ -74,10 +75,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/default_edit_height"
                 android:editable="false"
-                android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/iv_to_address"
                 android:background="@null"
-                android:textColorHint="@color/c_text_black"
+                android:hint="请输入目的地"
                 android:textSize="@dimen/small_text_size" />
         </RelativeLayout>
 
@@ -88,11 +88,12 @@
 
             <TextView
                 android:id="@+id/iv_group_fill"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
+                android:textColor="@color/lyt_color"
                 android:drawableLeft="@drawable/group_fill"
                 android:drawablePadding="5dp"
                 android:text="几人乘车:"
@@ -104,10 +105,10 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:layout_toRightOf="@+id/iv_group_fill"
-                android:paddingLeft="10dp"
                 android:textColor="@color/c_text_black"
                 android:textSize="@dimen/small_text_size"
                 android:inputType="number"
+                android:hint="请输入几人乘车"
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
 
@@ -118,13 +119,14 @@
 
             <TextView
                 android:id="@+id/iv_time"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:drawablePadding="5dp"
                 android:text="出发时间:"
+                android:textColor="@color/lyt_color"
                 android:drawableLeft="@drawable/time_fill"
                  />
 
@@ -134,9 +136,9 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:layout_toRightOf="@+id/iv_time"
-                android:paddingLeft="10dp"
                 android:textColor="@color/c_text_black"
                 android:textSize="@dimen/small_text_size"
+                android:hint="请选择出发时间"
                 android:editable="false"
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
@@ -148,13 +150,14 @@
 
             <TextView
                 android:id="@+id/iv_contact_user"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:drawablePadding="5dp"
                 android:text="乘车人电话:"
+                android:textColor="@color/lyt_color"
                 android:drawableLeft="@drawable/group_fill" />
 
             <EditText
@@ -163,9 +166,9 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:layout_toRightOf="@+id/iv_contact_user"
-                android:paddingLeft="10dp"
                 android:textColor="@color/c_text_black"
                 android:textSize="@dimen/small_text_size"
+                android:hint="请输入乘车人电话"
                 android:inputType="number"
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
@@ -179,9 +182,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="45dp"
             android:background="@color/white"
             android:gravity="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:orientation="horizontal">
 
             <TextView
@@ -200,16 +205,15 @@
         <Button
             android:id="@+id/btn_confirm"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/default_edit_height"
+            android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_below="@id/tv_gologin"
             android:layout_marginBottom="15dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
             android:layout_marginTop="15dp"
             android:textSize="@dimen/title_size"
-            android:background="@drawable/btn_yellow_bg"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_small_blue_bg"
             android:text="确认发布" />
     </LinearLayout>
 </RelativeLayout>

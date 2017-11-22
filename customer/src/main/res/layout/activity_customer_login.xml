@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.lfcx.customer.activity.CustomerLoginActivity">
+    tools:context="com.lfcx.main.activity.CustomerLoginActivity">
 
     <include
         android:id="@+id/action_bar"
@@ -45,8 +45,19 @@
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/iv_user"
                 android:background="@null"
+                android:inputType="number"
                 android:hint="@string/phone_title"
                 android:textSize="14sp" />
+            <ImageView
+                android:id="@+id/imgv_clear_num_activity_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/common_one_five"
+                android:background="@mipmap/icon_delete"
+                android:gravity="center_vertical"
+                 />
         </RelativeLayout>
 
         <RelativeLayout
@@ -71,6 +82,15 @@
                 android:hint="@string/pwd_title"
                 android:inputType="textPassword"
                 android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/imgv_eye_activity_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/common_one_two"
+                android:background="@mipmap/icon_notvisible" />
         </RelativeLayout>
 
 

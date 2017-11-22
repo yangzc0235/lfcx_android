@@ -14,19 +14,22 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:layout_gravity="top"
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/vertical_padding"
-        android:paddingLeft="@dimen/horizontal_padding"
+        android:layout_marginLeft="@dimen/horizontal_padding"
+        android:layout_marginRight="@dimen/horizontal_padding"
         android:paddingTop="@dimen/vertical_padding">
 
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_start" />
+            android:paddingLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_spoint" />
 
         <TextView
             android:id="@+id/address_text"
@@ -35,28 +38,38 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="我的位置"
-            android:textColor="@color/grey"
+            android:hint="我的位置"
+            android:paddingRight="10dp"
+            android:textColor="@color/phone_color"
+            android:textColorHint="@color/grey"
             android:textSize="@dimen/normal_text_size" />
     </LinearLayout>
 
-    <View style="@style/divider_line"></View>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="@dimen/common"
+        android:layout_marginRight="@dimen/common"
+        android:background="@color/me_line"/>
 
     <LinearLayout
         android:id="@+id/destination_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:layout_gravity="top"
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/vertical_padding"
-        android:paddingLeft="@dimen/horizontal_padding"
+        android:layout_marginLeft="@dimen/horizontal_padding"
+        android:layout_marginRight="@dimen/horizontal_padding"
         android:paddingTop="@dimen/vertical_padding">
 
         <ImageView
+            android:paddingLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_end" />
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_epoint" />
 
         <TextView
             android:id="@+id/destination_text"
@@ -65,8 +78,10 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="目的地"
-            android:textColor="@color/grey"
+            android:hint="你要去哪儿"
+            android:paddingRight="10dp"
+            android:textColor="@color/phone_color"
+            android:textColorHint="@color/grey"
             android:textSize="@dimen/normal_text_size" />
     </LinearLayout>
 
@@ -82,6 +97,8 @@
         android:paddingBottom="@dimen/vertical_padding"
         android:paddingTop="@dimen/vertical_padding"
         android:text="￥"
+        android:layout_marginLeft="@dimen/common"
+        android:layout_marginRight="@dimen/common"
         android:textColor="@color/black"
         android:textSize="14sp"
         android:visibility="gone"/>
@@ -91,10 +108,12 @@
     <Button
         android:id="@+id/c_btn_confirm"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/default_btn_height"
+        android:layout_height="44dp"
         android:layout_marginBottom="10dp"
-        android:background="@color/app_main"
+        android:background="@drawable/btn_blue_bg"
         android:gravity="center"
+        android:layout_marginLeft="@dimen/common"
+        android:layout_marginRight="@dimen/common"
         android:text="@string/destination_button"
         android:textColor="@color/white"
         android:textSize="@dimen/middle_text_size" />

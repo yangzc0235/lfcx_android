@@ -13,9 +13,10 @@
         android:src="@drawable/d_icon_lfzc" />
 
     <TextView
+        android:id="@+id/tv_driver_mobile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="司机" />
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -192,5 +193,20 @@
             android:layout_height="1px"
             android:background="@color/d_divider_color"></View>
     </LinearLayout>
-
+    <TextView
+        android:id="@+id/tv_exit_login_activity_customer_person_center"
+        android:layout_below="@+id/view_five"
+        android:layout_width="match_parent"
+        android:text="退出登录"
+        android:gravity="center"
+        android:drawablePadding="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:background="@color/white"
+        android:textColor="@color/blue"
+        android:layout_height="50dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/d_divider_color"></View>
 </LinearLayout>

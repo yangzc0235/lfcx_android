@@ -15,22 +15,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lfcx.driver.R;
+import com.lfcx.driver.activity.DriverOrderActivity;
 import com.lfcx.driver.event.EventUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
 /**
- *
+ *接单之后的流程
  */
 
 public class OrderPickFragment extends Fragment implements View.OnClickListener {
-    private TextView mTvCarid;
+    private TextView mTvMoible;
     private ImageView mImageView1;
     private TextView mTvStart;
     private ImageView mImageView2;
     private TextView mTvEnd;
     private Button mBtnNow;
     private ImageView mImgvCall;
+    private TextView mTvTime;
+
 
 
 
@@ -41,13 +44,14 @@ public class OrderPickFragment extends Fragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.driver_order_pick_content_fragment, container, false);
 
-        mTvCarid = (TextView) view.findViewById(R.id.tv_carid);
+        mTvMoible = (TextView) view.findViewById(R.id.tv_mobile);
         mImageView1 = (ImageView) view.findViewById(R.id.imageView1);
         mTvStart = (TextView) view.findViewById(R.id.tv_start);
         mImageView2 = (ImageView) view.findViewById(R.id.imageView2);
         mTvEnd = (TextView) view.findViewById(R.id.tv_end);
         mBtnNow = (Button) view.findViewById(R.id.btn_now);
         mImgvCall = (ImageView) view.findViewById(R.id.imgv_call);
+        mTvTime = (TextView) view.findViewById(R.id.tv_time);
         return view;
     }
 
@@ -60,6 +64,10 @@ public class OrderPickFragment extends Fragment implements View.OnClickListener 
     private void init() {
         mImgvCall.setOnClickListener(this);
         mBtnNow.setOnClickListener(this);
+        mTvStart.setText(DriverOrderActivity.userOrderEntity.getFromaddress());
+        mTvEnd.setText(DriverOrderActivity.userOrderEntity.getToaddress());
+        mTvMoible.setText(DriverOrderActivity.userOrderEntity.getMobile());
+        mTvTime.setText(DriverOrderActivity.userOrderEntity.getReservatedate());
     }
 
 
@@ -83,29 +91,35 @@ public class OrderPickFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.imgv_call) {
-            callPhone("15901126195");
-
+            callPhone(DriverOrderActivity.userOrderEntity.getMobile());
         } else if (i == R.id.btn_now) {
-            if (mBtnNow.getText().toString().trim().equals("到达约定地点")) {
-                mBtnNow.setText("接到乘客");
-                return;
-            }
-            if (mBtnNow.getText().toString().trim().equals("接到乘客")) {
-                //EventBus.getDefault().post(new EventUtil("arrive_point"));
-                mBtnNow.setText("开始行程");
+            if(mBtnNow.getText().toString().trim().equals("接到乘客")){
+                //Received the passengers
+                EventBus.getDefault().post(new EventUtil("received_passengers"));
                 return;
             }
             if (mBtnNow.getText().toString().trim().equals("开始行程")) {
-//                    EventBus.getDefault().post(new EventUtil("arrive_point"));
-                mBtnNow.setText("结束行程");
-
+                EventBus.getDefault().post(new EventUtil("start_travel"));
             }
             if (mBtnNow.getText().toString().trim().equals("结束行程")) {
                 EventBus.getDefault().post(new EventUtil("arrive_point"));
-                mBtnNow.setText("订单完成");
+
             }
-
-
         }
+    }
+
+    /**
+     * 设置文字为开始行程
+     */
+    public void setButtonTextFirst(){
+        mBtnNow.setText("开始行程");
+    }
+
+
+    /**
+     * 设置文字为结束行程
+     */
+    public void setButtonText(){
+        mBtnNow.setText("结束行程");
     }
 }

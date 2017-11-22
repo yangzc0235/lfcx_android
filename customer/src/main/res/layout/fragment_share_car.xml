@@ -3,8 +3,8 @@
     android:layout_height="match_parent"
     android:background="@color/lightgrey"
     >
-    <com.lfcx.customer.widget.view.NoScrollViewPager
+    <com.lfcx.main.widget.view.NoScrollViewPager
         android:id="@+id/c_share_vp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.lfcx.customer.widget.view.NoScrollViewPager>
+        android:layout_height="match_parent"></com.lfcx.main.widget.view.NoScrollViewPager>
 </RelativeLayout>

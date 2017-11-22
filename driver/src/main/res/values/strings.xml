@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">雷风专车</string>
+    <string name="app_name">雷风车主</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="car_use_title">我要用车</string>
@@ -21,6 +21,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_customer_register">CustomerRegisterActivity</string>
     <string name="title_activity_call_car_sucess">CallCarSucessActivity</string>
+    <string name="hint">亲爱的雷风专车车主,赚钱的机会真的来了,亲爱的雷风专车车主,赚钱的机会真的来了,亲爱的雷风专车车主,赚钱的机会真的来了,亲爱的雷风专车车主,赚钱的机会真的来了</string>
 
 
     <string-array name="stream_entries">

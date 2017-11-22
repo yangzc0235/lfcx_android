@@ -98,4 +98,25 @@ public interface NetConfig {
      * 结束行程
      */
     String FINISH_DRIVER = "travelrecord/finishtravel";
+    /**
+     * 获取今日订单量
+     */
+    String CURRENT_COUNT_INFO = "userOrder/getCurrentCountInfo";
+
+
+    /**
+     * 附加费
+     */
+    String UPDATE_FINISH_TRAVEL = "userOrder/updateOrderForFinishTravel";
+
+    /**
+     * 确认乘客上车
+     */
+    String CONFIRM_CUSTOMER = "travelrecord/receivePassengers";
+
+
+    /**
+     * 设置
+     */
+    String USER_SETTER = "http://101.200.58.37:8899/LFCar/mycenter/build/pages/my-center/index.html";
 }

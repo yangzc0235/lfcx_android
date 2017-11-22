@@ -123,10 +123,10 @@ public class LocationService extends IntentService {
                 if (null != response && !TextUtils.isEmpty(response.body())) {
                     BaseResultBean res = new Gson().fromJson(response.body(), BaseResultBean.class);
                     if ("0".equals(res.getCode())) {
-                        Toast.makeText(LocationService.this, res.getMsg(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(LocationService.this, res.getMsg(), Toast.LENGTH_SHORT).show();
                         Log.v("system-------->", res.getMsg());
                     } else {
-                        Toast.makeText(LocationService.this, res.getMsg(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(LocationService.this, res.getMsg(), Toast.LENGTH_SHORT).show();
                     }
                 }
 

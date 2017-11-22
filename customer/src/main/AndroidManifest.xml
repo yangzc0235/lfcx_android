@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lfcx.customer">
+    package="com.lfcx.main">
 
     <!-- Required -->
     <permission
         android:name="com.lfcx.main.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
-
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <!-- Required  一些系统要求的权限，如访问网络等-->
     <uses-permission android:name="com.lfcx.main.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
@@ -52,7 +52,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
-        android:name=".application.CustomerApplication"
+        android:name="com.lfcx.main.application.CustomerApplication"
         android:allowBackup="true"
         android:icon="@mipmap/icon_lfzc"
         android:label="@string/app_name"
@@ -153,7 +153,7 @@
 
         </meta-data>
         <activity
-            android:name=".activity.CustomerLoginActivity"
+            android:name="com.lfcx.main.activity.CustomerLoginActivity"
             android:windowSoftInputMode="adjustPan|stateHidden">
 
         </activity>
@@ -173,7 +173,7 @@
         <!--</receiver>-->
 
         <receiver
-            android:name=".receiver.MyReceiver"
+            android:name="com.lfcx.main.receiver.CustomerReceiver"
             android:exported="false"
             android:enabled="true">
             <intent-filter>
@@ -186,10 +186,10 @@
             </intent-filter>
         </receiver>
         <activity
-            android:name=".activity.DestinationActivity"
+            android:name="com.lfcx.main.activity.DestinationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.CustomerMainActivity"
+            android:name="com.lfcx.main.activity.CustomerMainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing">
@@ -202,21 +202,21 @@
         <service android:name="com.amap.api.location.APSService" />
 
         <activity
-            android:name=".activity.CustomerRegisterActivity"
+            android:name="com.lfcx.main.activity.CustomerRegisterActivity"
             android:label="@string/title_activity_customer_register"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".activity.CallCarSucessActivity" />
-        <activity android:name=".activity.CustomerOrderActivity" />
-        <activity android:name=".activity.CustomerBookActivity" />
-        <activity android:name=".activity.CustomerWebviewActivity" />
-        <activity android:name=".activity.CallWaitActivity"></activity>
-        <activity android:name=".activity.CustomerMeWalletActivity"></activity>
-        <activity android:name=".activity.CustomerUserCenterActivity"></activity>
+        <activity android:name="com.lfcx.main.activity.CallCarSucessActivity" />
+        <activity android:name="com.lfcx.main.activity.CustomerOrderActivity" />
+        <activity android:name="com.lfcx.main.activity.CustomerBookActivity" />
+        <activity android:name="com.lfcx.main.activity.CustomerWebviewActivity" />
+        <activity android:name="com.lfcx.main.activity.CallWaitActivity"></activity>
+        <activity android:name="com.lfcx.main.activity.CustomerMeWalletActivity"></activity>
+        <activity android:name="com.lfcx.main.activity.CustomerUserCenterActivity"></activity>
 
 
         <!-- 微信支付 -->
         <activity
-            android:name=".pay.weixin.WXPayCallbackActivity"
+            android:name="com.lfcx.main.pay.weixin.WXPayCallbackActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
@@ -224,7 +224,7 @@
         <activity-alias
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
-            android:targetActivity=".pay.weixin.WXPayCallbackActivity" />
+            android:targetActivity="com.lfcx.main.pay.weixin.WXPayCallbackActivity" />
 
         <!-- 支付宝支付 -->
         <activity

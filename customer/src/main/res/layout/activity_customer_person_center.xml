@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/me_back"
-    tools:context="com.lfcx.customer.activity.CustomerUserCenterActivity">
+    tools:context="com.lfcx.main.activity.CustomerUserCenterActivity">
     <LinearLayout
         android:id="@+id/ll_bar_activity_customer_person_center"
         android:layout_width="match_parent"
@@ -17,9 +17,10 @@
         <TextView
             android:id="@+id/title_left_activity_customer_person_center"
             android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:paddingLeft="16dp"
-            android:drawableLeft="@drawable/ic_nav_back"
+            android:layout_height="25dp"
+            android:layout_marginLeft="15dp"
+            android:layout_gravity="center_vertical"
+            android:drawableLeft="@mipmap/ic_nav_back"
             android:gravity="center" />
 
         <TextView
@@ -49,8 +50,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="80dp"
             android:src="@mipmap/icon_lfzc"
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"/>
@@ -59,11 +60,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:textColor="@color/login_name"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:text="15901126195"/>
     </LinearLayout>
     <View
@@ -73,87 +74,135 @@
         android:layout_height="1dp"
         android:background="@color/me_line"/>
 
-    <TextView
-        android:id="@+id/tv_money_activity_customer_person_center"
-        android:layout_below="@+id/view_one"
+    <LinearLayout
+        android:id="@+id/ll_two"
         android:layout_width="match_parent"
-        android:text="我的钱包"
-        android:drawableLeft="@drawable/wallet"
-        android:drawableRight="@drawable/right_arrow"
-        android:gravity="center_vertical"
-        android:drawablePadding="10dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:layout_below="@+id/view_one"
         android:background="@color/white"
-        android:textColor="@color/black"
-        android:layout_height="50dp" />
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="5dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/wallet"/>
+        <TextView
+            android:id="@+id/tv_money_activity_customer_person_center"
+            android:layout_width="match_parent"
+            android:text="我的钱包"
+            android:drawableRight="@drawable/right_arrow"
+            android:gravity="center_vertical"
+            android:drawablePadding="10dp"
+            android:paddingRight="16dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:layout_height="50dp" />
+    </LinearLayout>
     <View
         android:id="@+id/view_two"
-        android:layout_below="@+id/tv_money_activity_customer_person_center"
+        android:layout_below="@+id/ll_two"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/me_line"/>
 
-    <TextView
-        android:id="@+id/tv_stroke_activity_customer_person_center"
-        android:layout_below="@+id/view_two"
+    <LinearLayout
+        android:id="@+id/ll_three"
         android:layout_width="match_parent"
-        android:text="我的行程"
-        android:drawableLeft="@drawable/trip"
-        android:drawableRight="@drawable/right_arrow"
-        android:gravity="center_vertical"
-        android:drawablePadding="10dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:layout_below="@+id/view_two"
         android:background="@color/white"
-        android:textColor="@color/black"
-        android:layout_height="50dp" />
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="5dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/trip"/>
+        <TextView
+            android:id="@+id/tv_stroke_activity_customer_person_center"
+            android:layout_below="@+id/view_two"
+            android:layout_width="match_parent"
+            android:text="我的行程"
+            android:drawableRight="@drawable/right_arrow"
+            android:gravity="center_vertical"
+            android:drawablePadding="10dp"
+            android:paddingRight="16dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:layout_height="50dp" />
+    </LinearLayout>
     <View
         android:id="@+id/view_three"
-        android:layout_below="@+id/tv_stroke_activity_customer_person_center"
+        android:layout_below="@+id/ll_three"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/me_line"/>
 
-    <TextView
-        android:id="@+id/tv_recommend_activity_customer_person_center"
+    <LinearLayout
+        android:id="@+id/ll_four"
         android:layout_below="@+id/view_three"
         android:layout_width="match_parent"
-        android:text="推荐有奖"
-        android:drawableLeft="@drawable/recommend"
-        android:drawableRight="@drawable/right_arrow"
-        android:gravity="center_vertical"
-        android:drawablePadding="10dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:layout_height="wrap_content"
         android:background="@color/white"
-        android:textColor="@color/black"
-        android:layout_height="50dp" />
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="5dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/recommend"/>
+        <TextView
+            android:id="@+id/tv_recommend_activity_customer_person_center"
+            android:layout_below="@+id/view_three"
+            android:layout_width="match_parent"
+            android:text="推荐有奖"
+            android:drawableRight="@drawable/right_arrow"
+            android:gravity="center_vertical"
+            android:drawablePadding="10dp"
+            android:paddingRight="16dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:layout_height="50dp" />
+    </LinearLayout>
+
+
     <View
         android:id="@+id/view_four"
-        android:layout_below="@+id/tv_recommend_activity_customer_person_center"
+        android:layout_below="@+id/ll_four"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/me_line"/>
-
-
-    <TextView
-        android:id="@+id/tv_complaint_activity_customer_person_center"
+    <LinearLayout
+        android:id="@+id/ll_five"
         android:layout_below="@+id/view_four"
         android:layout_width="match_parent"
-        android:text="申诉中心"
-        android:drawableLeft="@drawable/appeal"
-        android:drawableRight="@drawable/right_arrow"
-        android:gravity="center_vertical"
-        android:drawablePadding="10dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
         android:background="@color/white"
-        android:textColor="@color/black"
-        android:layout_height="50dp" />
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="5dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/appeal"/>
+        <TextView
+            android:id="@+id/tv_complaint_activity_customer_person_center"
+            android:layout_below="@+id/view_four"
+            android:layout_width="match_parent"
+            android:text="申诉中心"
+            android:drawableRight="@drawable/right_arrow"
+            android:gravity="center_vertical"
+            android:drawablePadding="10dp"
+            android:paddingRight="16dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:layout_height="50dp" />
+    </LinearLayout>
     <View
         android:id="@+id/view_five"
-        android:layout_below="@+id/tv_complaint_activity_customer_person_center"
+        android:layout_below="@+id/ll_five"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/me_line"/>

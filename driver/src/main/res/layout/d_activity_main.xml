@@ -19,6 +19,7 @@
             android:padding="@dimen/activity_horizontal_margin">
 
             <TextView
+                android:id="@+id/tv_sevice_point"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="80"
@@ -47,6 +48,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_today_recepiet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="80"
@@ -58,7 +60,7 @@
                         android:layout_height="wrap_content"
                         android:text="今日接单"
                         android:textColor="@color/text_white"
-                        android:textSize="@dimen/small_text_size" />
+                        android:textSize="@dimen/common_one_two" />
                 </LinearLayout>
 
                 <View
@@ -74,6 +76,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_today_income"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="80"
@@ -85,7 +88,7 @@
                         android:layout_height="wrap_content"
                         android:text="今日收入"
                         android:textColor="@color/text_white"
-                        android:textSize="@dimen/small_text_size" />
+                        android:textSize="@dimen/common_one_two" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -96,21 +99,25 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/tv_rewards"
                     android:layout_width="0px"
                     android:layout_height="45dp"
                     android:layout_marginRight="15dp"
                     android:layout_weight="1"
                     android:padding="8dp"
                     android:text="奖励"
+                    android:background="@drawable/btn_blue_bg"
                     android:textColor="@color/text_white" />
 
                 <Button
+                    android:id="@+id/tv_rlt"
                     android:layout_width="0px"
                     android:layout_height="45dp"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
                     android:padding="8dp"
                     android:text="热力图"
+                    android:background="@drawable/btn_blue_bg"
                     android:textColor="@color/text_white" />
             </LinearLayout>
         </LinearLayout>
@@ -120,18 +127,26 @@
             android:layout_height="8dp"
             android:background="@color/lightgrey"></View>
 
-        <ListView
-            android:id="@+id/d_news_lv"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="温馨提醒:\n"
+            />
+        <TextView
+            android:id="@+id/tv_news"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="@color/d_divider_color"
-            android:dividerHeight="5px"
-            android:scrollbars="none"></ListView>
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/login_name"
+            android:layout_marginRight="10dp"
+            android:text="@string/hint"
+            />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:background="@color/darkgrey"
         android:gravity="center_vertical"
@@ -141,7 +156,7 @@
 
         <LinearLayout
             android:id="@+id/d_mode_select"
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"

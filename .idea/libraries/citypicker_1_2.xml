@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="citypicker-1.2">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/3dfcfac16991ed0cfa1dd643fc4dad36cc05394a/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/3dfcfac16991ed0cfa1dd643fc4dad36cc05394a/output/res" />
-      <root url="jar://$USER_HOME$/.android/build-cache/3dfcfac16991ed0cfa1dd643fc4dad36cc05394a/output/jars/libs/AMap_Location_V3.5.0_20170731.jar!/" />
+      <root url="jar://$PROJECT_DIR$/common/build/intermediates/exploded-aar/com.zaaach/citypicker/1.2/jars/libs/AMap_Location_V3.5.0_20170731.jar!/" />
+      <root url="jar://$PROJECT_DIR$/common/build/intermediates/exploded-aar/com.zaaach/citypicker/1.2/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/common/build/intermediates/exploded-aar/com.zaaach/citypicker/1.2/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

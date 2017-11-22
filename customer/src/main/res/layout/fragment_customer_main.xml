@@ -93,7 +93,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="目的地"
+                    android:text="请输入目的地"
                     android:textColor="@color/grey"
                     android:textSize="@dimen/normal_text_size" />
             </LinearLayout>

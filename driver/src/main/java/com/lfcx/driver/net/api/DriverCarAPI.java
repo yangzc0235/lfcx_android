@@ -22,6 +22,7 @@ public interface DriverCarAPI {
 
     /**
      * latitude , longitude pk_user
+     *
      * @param param
      * @return
      */
@@ -31,7 +32,7 @@ public interface DriverCarAPI {
 
     @Multipart
     @POST(NetConfig.UPLOAD_PHOTO)
-    Call<String> uploadPhoto(@PartMap Map<String,RequestBody> param);
+    Call<String> uploadPhoto(@PartMap Map<String, RequestBody> param);
 
     @FormUrlEncoded
     @POST(NetConfig.DRIVER_ACCEPT_ORDER)
@@ -54,4 +55,16 @@ public interface DriverCarAPI {
     @FormUrlEncoded
     @POST(NetConfig.FINISH_DRIVER)
     Call<String> finishTravel(@FieldMap Map<String, Object> param);
+
+    @FormUrlEncoded
+    @POST(NetConfig.CURRENT_COUNT_INFO)
+    Call<String> getCurrentCountInfo(@FieldMap Map<String, Object> param);
+
+    @FormUrlEncoded
+    @POST(NetConfig.UPDATE_FINISH_TRAVEL)
+    Call<String> updateOrderForFinishTravel(@FieldMap Map<String, Object> param);
+
+    @FormUrlEncoded
+    @POST(NetConfig.CONFIRM_CUSTOMER)
+    Call<String> confirmCustomer(@FieldMap Map<String, Object> param);
 }

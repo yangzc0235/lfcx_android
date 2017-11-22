@@ -1,8 +1,11 @@
 package com.lfcx.driver.fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lfcx.driver.R;
+import com.lfcx.driver.activity.DriverOrderActivity;
 import com.lfcx.driver.event.EventUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -25,6 +29,8 @@ public class OrderFinishFragment extends Fragment implements View.OnClickListene
     private TextView mTvEnd;
     private TextView mTvCollect;
     private TextView mTvFinish;
+    private TextView mTvTime;
+
 
     @Nullable
     @Override
@@ -36,6 +42,7 @@ public class OrderFinishFragment extends Fragment implements View.OnClickListene
         mTvEnd = (TextView) view.findViewById(R.id.tv_end);
         mTvCollect = (TextView) view.findViewById(R.id.tv_collect);
         mTvFinish = (TextView) view.findViewById(R.id.tv_finish);
+        mTvTime = (TextView) view.findViewById(R.id.tv_time);
         return view;
     }
 
@@ -49,6 +56,12 @@ public class OrderFinishFragment extends Fragment implements View.OnClickListene
 
     private void init() {
         mTvFinish.setOnClickListener(this);
+        mTvTime.setText(DriverOrderActivity.userOrderEntity.getReservatedate());
+        mTvCarid.setText(DriverOrderActivity.userOrderEntity.getMobile());
+        mTvStart.setText(DriverOrderActivity.userOrderEntity.getFromaddress());
+        mTvEnd.setText(DriverOrderActivity.userOrderEntity.getToaddress());
+        mTvMoney.setText(DriverOrderActivity.incomeEntity.getTotalfee()+"");
+
     }
 
 
@@ -61,9 +74,25 @@ public class OrderFinishFragment extends Fragment implements View.OnClickListene
             Toast.makeText(getContext(), "完成了", Toast.LENGTH_SHORT).show();
             EventBus.getDefault().post(new EventUtil("collect_car"));
         } else if (i == R.id.tv_carid) {
-            Toast.makeText(getContext(), "打电话", Toast.LENGTH_SHORT).show();
+           callPhone(DriverOrderActivity.userOrderEntity.getMobile());
         }
 
+    }
+
+    /**
+     * 打电话
+     */
+    private void callPhone(String mobile) {
+        if (TextUtils.isEmpty(mobile)) {
+            Toast.makeText(getContext(), "号码不能为空！", Toast.LENGTH_SHORT).show();
+        } else {
+            // 拨号：激活系统的拨号组件
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_CALL);
+            Uri data = Uri.parse("tel:" + mobile);
+            intent.setData(data);
+            startActivity(intent);
+        }
     }
 
 }

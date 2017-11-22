@@ -28,13 +28,13 @@
 
             <TextView
                 android:id="@+id/tv_now_address"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="@dimen/default_edit_height"
+                android:textColor="@color/lyt_color"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/iv_now_address"
                 android:background="@null"
                 android:text="出发地:"
-                android:textColorHint="@color/grey"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/small_text_size"
                 />
@@ -43,11 +43,12 @@
                 android:id="@+id/et_start_address"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/default_edit_height"
-                android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/tv_now_address"
                 android:background="@null"
+                android:textColor="@color/check_color"
+                android:textColorHint="@color/check_color"
                 android:editable="false"
-                android:textColorHint="@color/c_text_black"
+                android:hint="正在定位中"
                 android:textSize="@dimen/small_text_size" />
         </RelativeLayout>
 
@@ -67,12 +68,13 @@
                 android:background="@drawable/icon_epoint" />
             <TextView
                 android:id="@+id/tv_to_address"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="@dimen/default_edit_height"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/iv_to_address"
                 android:background="@null"
                 android:text="目的地:"
+                android:textColor="@color/lyt_color"
                 android:textColorHint="@color/grey"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/small_text_size"
@@ -81,11 +83,12 @@
                 android:id="@+id/et_end_address"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/default_edit_height"
-                android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/tv_to_address"
                 android:background="@null"
                 android:editable="false"
-                android:textColorHint="@color/c_text_black"
+                android:textColor="@color/check_color"
+                android:textColorHint="@color/check_color"
+                android:hint="请选择终点位置"
                 android:textSize="@dimen/small_text_size" />
         </RelativeLayout>
 
@@ -100,13 +103,13 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
+                android:textColor="@color/lyt_color"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/group_fill" />
             <TextView
                 android:id="@+id/tv_group_fill"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="@dimen/default_edit_height"
-                android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/iv_group_fill"
                 android:background="@null"
                 android:text="几人乘车:"
@@ -120,9 +123,10 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:layout_toRightOf="@+id/tv_group_fill"
-                android:paddingLeft="10dp"
-                android:textColor="@color/c_text_black"
+                android:textColor="@color/check_color"
                 android:textSize="@dimen/small_text_size"
+                android:hint="请输入乘车人数"
+                android:textColorHint="@color/check_color"
                 android:layout_centerVertical="true"
                 android:singleLine="true"
                 android:inputType="number"/>
@@ -143,12 +147,12 @@
                 android:background="@drawable/time_fill" />
             <TextView
                 android:id="@+id/tv_time"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="@dimen/default_edit_height"
-                android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/iv_time"
                 android:background="@null"
                 android:text="出发时间:"
+                android:textColor="@color/lyt_color"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/small_text_size"
                 />
@@ -158,9 +162,10 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:layout_toRightOf="@+id/tv_time"
-                android:paddingLeft="10dp"
-                android:textColor="@color/c_text_black"
+                android:textColor="@color/check_color"
                 android:textSize="@dimen/small_text_size"
+                android:hint="请选择出发时间"
+                android:textColorHint="@color/check_color"
                 android:editable="false"
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
@@ -173,7 +178,7 @@
 
             <ImageView
                 android:id="@+id/iv_contact_user"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
@@ -186,9 +191,8 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:layout_toRightOf="@+id/iv_contact_user"
-                android:paddingLeft="10dp"
                 android:text="乘车人电话"
-                android:textColor="@color/c_text_black"
+                android:textColor="@color/check_color"
                 android:textSize="@dimen/small_text_size"
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
@@ -207,7 +211,7 @@
                 android:layout_below="@id/tv_gologin"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:background="@color/app_main"
+                android:background="@drawable/btn_small_blue_bg"
                 android:text="帮人叫车"
                 android:textSize="@dimen/normal_text_size"
                 android:textColor="@color/white"/>
@@ -222,7 +226,7 @@
                 android:layout_below="@id/tv_gologin"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:background="@color/app_main"
+                android:background="@drawable/btn_small_blue_bg"
                 android:text="带小件"
                 android:textSize="@dimen/normal_text_size"
                 android:textColor="@color/white"/>
@@ -240,16 +244,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/default_edit_height"
             android:background="@color/white"
             android:gravity="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:orientation="horizontal">
 
             <TextView
@@ -270,14 +273,14 @@
         <Button
             android:id="@+id/btn_confirm"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/default_edit_height"
+            android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_below="@id/tv_gologin"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="15dp"
             android:textSize="@dimen/normal_text_size"
-            android:background="@color/app_main"
+            android:background="@drawable/btn_small_blue_bg"
             android:text="确认发布"
             android:textColor="@color/white"/>
     </LinearLayout>
