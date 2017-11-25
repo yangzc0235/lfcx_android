@@ -1,5 +1,6 @@
 package com.lfcx.driver.activity;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
@@ -64,6 +65,11 @@ public class DriverHeatMapActivity extends DriverBaseActivity implements AMap.On
         mAmap.setOnCameraChangeListener(this);
         //首次进入地图设置地图的缩放级别
         mAmap.moveCamera(CameraUpdateFactory.zoomTo(Constants.MAP_INIT_ZOOM));
+        Intent intent=getIntent();
+        Bundle bundleExtra = intent.getBundleExtra(BUNDLE_KEY);
+        if(bundleExtra!=null){
+            goToActivity(DriverModeActivity.class);
+        }
 
     }
 

@@ -26,9 +26,11 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.lfcx.common.net.APIFactory;
 import com.lfcx.common.net.result.BaseResultBean;
-import com.lfcx.common.utils.LogUtils;
+import com.lfcx.common.utils.SPUtils;
 import com.lfcx.main.R;
+import com.lfcx.main.consts.SPConstants;
 import com.lfcx.main.event.ReceiptResultEvent;
+import com.lfcx.main.fragment.SharingCarFragment;
 import com.lfcx.main.maphelper.LocationTask;
 import com.lfcx.main.maphelper.OnLocationGetListener;
 import com.lfcx.main.maphelper.PositionEntity;
@@ -37,6 +39,7 @@ import com.lfcx.main.maphelper.RouteTask;
 import com.lfcx.main.maphelper.Utils;
 import com.lfcx.main.net.api.UserAPI;
 import com.lfcx.main.net.result.DriverOrderEntity;
+import com.lfcx.main.net.result.IncomeEntity;
 import com.lfcx.main.net.result.PayEntity;
 import com.lfcx.main.net.result.StartTravelEntity;
 import com.lfcx.main.widget.dialog.PayDialog;
@@ -54,7 +57,7 @@ import retrofit2.Response;
 
 public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.OnCameraChangeListener,
         AMap.OnMapLoadedListener, OnLocationGetListener, View.OnClickListener,
-        RouteTask.OnRouteCalculateListener {
+        RouteTask.OnRouteCalculateListener,SharingCarFragment.CallBackValue {
 
     public static final String TAG = CallCarSucessActivity.class.getSimpleName();
     private MapView mMapView;
@@ -83,7 +86,11 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
     private FrameLayout mFlDriverInfo;
     private TextView mTvConfirm;
     private TextView mTvCancelOrderFirst;
-    private String userOrderid;
+
+    @Override
+    public void SendMessageValue(String strValue) {
+        mPk_userOder=strValue;
+    }
 
     public interface OnGetLocationListener {
         public void getLocation(String locationAddress);
@@ -120,12 +127,6 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
         mRegeocodeTask = new RegeocodeTask(getApplicationContext());
         RouteTask.getInstance(getApplicationContext())
                 .addRouteCalculateListener(this);
-        try {
-            mPk_userOder = getIntent().getStringExtra("pk_userOder");
-        } catch (Exception e) {
-            LogUtils.e(TAG, e.getMessage());
-        }
-
     }
 
     private void init(Bundle savedInstanceState) {
@@ -177,7 +178,14 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
 
             case R.id.tv_cancel_order_first:
                 //取消订单
-                cancelOrderInfo(mPk_userOder);
+                SharingCarFragment sharingCarFragment=new SharingCarFragment();
+                sharingCarFragment.setCallBackValue(new SharingCarFragment.CallBackValue() {
+                    @Override
+                    public void SendMessageValue(String strValue) {
+                        cancelOrderInfo(strValue);
+                    }
+                });
+
                 break;
         }
     }
@@ -195,10 +203,9 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
             Log.v("system---value--->", value);
             Gson gson = new Gson();
             driverOrderEntity = gson.fromJson(value, DriverOrderEntity.class);
-            mCardId.setText("车牌号:"+driverOrderEntity.getCarCode());
-            mCardName.setText("车型:"+driverOrderEntity.getType());
-            mTvName.setText("司机:"+driverOrderEntity.getDrivername());
-            userOrderid = driverOrderEntity.getPk_userorder();
+            mCardId.setText("车牌号:" + driverOrderEntity.getCarCode());
+            mCardName.setText("车型:" + driverOrderEntity.getType());
+            mTvName.setText("司机:" + driverOrderEntity.getDrivername());
             mTvCancelOrder.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -242,10 +249,11 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
             PayEntity payEntity = gson.fromJson(message, PayEntity.class);
             PayDialog payDialog = new PayDialog(this, R.style.customDialog, payEntity);
             payDialog.show();
-        }else if (event.getKey().equals("receivePayFinish")) {
+        } else if (event.getKey().equals("receivePayFinish")) {
             Toast.makeText(this, "您已经付款成功,感谢您下次乘坐雷风专车", Toast.LENGTH_SHORT).show();
+            IncomeEntity incomeEntity=new Gson().fromJson(event.getValue(),IncomeEntity.class);
+            requestRradeRecord(incomeEntity.getPk_userorder(),incomeEntity.getPk_user(),incomeEntity.getIncome(),incomeEntity.getPay(),incomeEntity.getType(),incomeEntity.getTradetype());
         }
-
 
     }
 
@@ -298,9 +306,11 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
         Map<String, String> param = new HashMap<>();
         param.put("isdriver", "0");
         param.put("pk_userorder", pk_userorder);
+        Log.v("system---order----->", pk_userorder+"");
         userAPI.cancelOrderInfo(param).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                hideLoading();
                 try {
                     Gson gson = new Gson();
                     BaseResultBean resultBean = gson.fromJson(response.body(), BaseResultBean.class);
@@ -324,6 +334,49 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
             }
         });
 
+    }
+
+    /**
+     * 生成交易记录
+     * @param pk_userorder
+     * @param pk_user
+     * @param income
+     * @param pay
+     * @param type
+     * @param tradetype
+     */
+    private void requestRradeRecord(String pk_userorder, String pk_user, double income, double pay, int type, int tradetype) {
+        Map<String, Object> param = new HashMap<>();
+        param.put("pk_userorder", pk_userorder);
+        param.put("pk_user", pk_user);
+        param.put("income", income);
+        param.put("pay", pay);
+        param.put("type", type);
+        param.put("fromtype", "0");
+        param.put("mobile", SPUtils.getParam(this, SPConstants.KEY_CUSTOMER_MOBILE, ""));
+        param.put("tradetype", tradetype);
+        userAPI.generateTradeRecord(param).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (null != response && !TextUtils.isEmpty(response.body())) {
+                    Log.v("system-用户生成交易记录--->", response.body());
+                    try {
+                        BaseResultBean res = new Gson().fromJson(response.body(), BaseResultBean.class);
+                        if ("0".equals(res.getCode())) {
+                            Toast.makeText(CallCarSucessActivity.this, res.getMsg(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(CallCarSucessActivity.this, res.getMsg(), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+            }
+        });
     }
 
 

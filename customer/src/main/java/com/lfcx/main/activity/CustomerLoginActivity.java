@@ -81,6 +81,7 @@ public class CustomerLoginActivity extends CustomerBaseActivity implements View.
         mIvBack.setOnClickListener(this);
         mIvUser.setOnClickListener(this);
         mTvRegister.setOnClickListener(this);
+        mTvFindPwd.setOnClickListener(this);
         userAPI = APIFactory.create(UserAPI.class);
     }
 
@@ -109,6 +110,8 @@ public class CustomerLoginActivity extends CustomerBaseActivity implements View.
             isHidePwd();
         } else if (i == R.id.iv_back) {
             finish();
+        }else if (i == R.id.tv_findPwd) {
+            goToActivity(CustomerForgotPwdActivity.class);
         }
     }
 

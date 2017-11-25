@@ -191,7 +191,6 @@ public class CustomerOrderActivity extends CustomerBaseActivity  implements AMap
     private void initView() {
         ivBack.setVisibility(View.VISIBLE);
         fragmentManager = this.getSupportFragmentManager();
-
         fragmentMap = new HashMap<>();
         Fragment orderBuildFragment = new OrderBuildFragment();
         Fragment orderCancelFragment = new OrderCancelFragment();

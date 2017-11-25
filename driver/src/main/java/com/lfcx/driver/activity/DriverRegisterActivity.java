@@ -12,7 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.lfcx.common.net.APIFactory;
+import com.lfcx.common.net.result.BaseResultBean;
 import com.lfcx.common.utils.StringUtils;
 import com.lfcx.driver.R;
 import com.lfcx.driver.consts.Constants;
@@ -49,10 +51,10 @@ public class DriverRegisterActivity extends DriverBaseActivity implements View.O
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            mBtnGetcode.setText((--count)+"s");
-            if(count >= 0 ){
-                mHandler.sendEmptyMessageDelayed(0,1000);
-            }else {
+            mBtnGetcode.setText((--count) + "s");
+            if (count >= 0) {
+                mHandler.sendEmptyMessageDelayed(0, 1000);
+            } else {
                 mBtnGetcode.setText("获取验证码");
                 mBtnGetcode.setEnabled(true);
             }
@@ -89,7 +91,7 @@ public class DriverRegisterActivity extends DriverBaseActivity implements View.O
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.btn_getcode) {
-            String mobile= EdtUtil.getEdtText(mEtPhone);
+            String mobile = EdtUtil.getEdtText(mEtPhone);
             if (mBtnGetcode.isEnabled()) {
                 String phone = EdtUtil.getEdtText(mEtPhone);
                 if (TextUtils.isEmpty(phone) && phone.length() < 11) {
@@ -106,24 +108,76 @@ public class DriverRegisterActivity extends DriverBaseActivity implements View.O
         }
     }
 
-    //获取验证码
-    private void sendCheckCode(String phone){
-        Map<String,Object> param = new HashMap<>();
-        param.put("mobile",phone);
+    /**
+     * 获取验证码
+     * @param phone
+     */
+    private void sendCheckCode(String phone) {
+        showLoading();
+        Map<String, Object> param = new HashMap<>();
+        param.put("mobile", phone);
         param.put("key", Constants.D_SEND_CHECKCODE_KEY);
-        param.put("tpl_id",Constants.D_REGIST_CHECKCODE_MESSAGE_ID);
+        param.put("tpl_id", Constants.D_REGIST_CHECKCODE_MESSAGE_ID);
         checkCode = StringUtils.generateCheckCode();
-        param.put("tpl_value","%23code%23%3D"+checkCode);
-        userAPI.customerSendMessage(NetConfig.DRIVER_SEND_MESSAGE,param).enqueue(new Callback<SendMessageResult>() {
+        param.put("tpl_value", "%23code%23%3D" + checkCode);
+        userAPI.customerSendMessage(NetConfig.DRIVER_SEND_MESSAGE, param).enqueue(new Callback<SendMessageResult>() {
             @Override
             public void onResponse(Call<SendMessageResult> call, Response<SendMessageResult> response) {
-                if(response.body().getError_code() == 0){
+                hideLoading();
+                if (response.body().getError_code() == 0) {
                     showToast("验证码已发送成功，请注意查收");
                 }
             }
+
             @Override
             public void onFailure(Call<SendMessageResult> call, Throwable t) {
+                hideLoading();
+            }
+        });
+    }
 
+
+    /**
+     * 获取注册步骤
+     * @param mobile
+     * @param pwd
+     * @param recommandMobile
+     */
+    private void getRegisterStep(final String mobile, final String pwd, final String recommandMobile) {
+        Map<String, Object> param = new HashMap<>();
+        showLoading();
+        param.put("mobile", mobile);
+        Log.v("system-----mobile----->",mobile);
+        userAPI.getRegisterStep(param).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                hideLoading();
+                Log.v("system---注册步骤--->",response.body()+"");
+                BaseResultBean baseResultBean=new Gson().fromJson(response.body(),BaseResultBean.class);
+                if(baseResultBean.getCode().equals("0")){
+                    Log.v("system---注册步骤--->",response.body());
+                    Bundle bundle = new Bundle();
+                    bundle.putString("mobile", mobile);
+                    bundle.putString("pwd", pwd);
+                    bundle.putString("recommandMobile", recommandMobile);
+                    goToActivity(DriverRegistAfterActivity.class, bundle);
+                }else if(baseResultBean.getCode().equals("2")){
+                    Toast.makeText(DriverRegisterActivity.this, "该用户已经注册,请直接登录", Toast.LENGTH_SHORT).show();
+                }else if(baseResultBean.getCode().equals("1")){
+                    Bundle bundle = new Bundle();
+                    bundle.putString("mobile", mobile);
+                    bundle.putString("pwd", pwd);
+                    goToActivity(DriverUploadActivity.class, bundle);
+                }else {
+                    Toast.makeText(DriverRegisterActivity.this, "服务器异常, 请稍后重试", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(DriverRegisterActivity.this, "服务器异常,请稍后再试", Toast.LENGTH_SHORT).show();
+                hideLoading();
             }
         });
     }
@@ -133,11 +187,11 @@ public class DriverRegisterActivity extends DriverBaseActivity implements View.O
      * 检查手机号和密码
      */
     private void checkRegister() {
-        String moible =EdtUtil.getEdtText(mEtPhone);
+        String moible = EdtUtil.getEdtText(mEtPhone);
         String pwd = EdtUtil.getEdtText(mEtPwd);
         String againPwd = EdtUtil.getEdtText(mEtConfirmPwd);
         String code = EdtUtil.getEdtText(mEtCode);
-        String recommandMobile=EdtUtil.getEdtText(mEtIntroducePhone);
+        String recommandMobile = EdtUtil.getEdtText(mEtIntroducePhone);
         if (TextUtils.isEmpty(moible)) {
             showToast("请输入手机号");
             return;
@@ -146,7 +200,7 @@ public class DriverRegisterActivity extends DriverBaseActivity implements View.O
             showToast("请输入密码");
             return;
         }
-        if(!pwd.equals(againPwd)){
+        if (!pwd.equals(againPwd)) {
             showToast("两次输入密码不一致");
             return;
         }
@@ -154,25 +208,22 @@ public class DriverRegisterActivity extends DriverBaseActivity implements View.O
             showToast("请输入验证码");
             return;
         }
-        if(StringEmptyUtil.isEmpty(checkCode)){
+        if (StringEmptyUtil.isEmpty(checkCode)) {
             Toast.makeText(this, "请先获取验证码", Toast.LENGTH_SHORT).show();
             return;
         }
-        Log.v("checkCode---------->",checkCode);
+        Log.v("checkCode---------->", checkCode);
         if (!checkCode.equals(code)) {
             showToast("验证码输入错误");
             return;
         }
-        Bundle bundle=new Bundle();
-        bundle.putString("mobile",moible);
-        bundle.putString("pwd",pwd);
-        bundle.putString("recommandMobile",recommandMobile);
-        goToActivity(DriverRegistAfterActivity.class,bundle);
+        getRegisterStep(moible,pwd,recommandMobile);
+
 
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         mHandler.removeMessages(0);
         mHandler = null;
         super.onDestroy();

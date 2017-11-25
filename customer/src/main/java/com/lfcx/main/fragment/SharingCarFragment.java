@@ -4,7 +4,6 @@ package com.lfcx.main.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +49,7 @@ import retrofit2.Response;
  * date  : 2017/7/28
  * des   :  顺风车
  */
-public class SharingCarFragment extends Fragment implements CustomerMainActivity.IBackListener, RouteTask.OnRouteCalculateListener {
+public class SharingCarFragment extends BaseFragment implements CustomerMainActivity.IBackListener, RouteTask.OnRouteCalculateListener {
     private Unbinder unbinder;
 
     //个人叫车--
@@ -97,7 +96,7 @@ public class SharingCarFragment extends Fragment implements CustomerMainActivity
     private boolean isSelectStartAdress = false;
 
     private int mSftype = 1;
-
+    private static String pk_userOder;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -106,12 +105,14 @@ public class SharingCarFragment extends Fragment implements CustomerMainActivity
         unbinder = ButterKnife.bind(this, cv);
         RouteTask.getInstance(getActivity().getApplicationContext())
                 .addRouteCalculateListener(this);
+
         return cv;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         init();
     }
 
@@ -305,6 +306,14 @@ public class SharingCarFragment extends Fragment implements CustomerMainActivity
      * 自己叫车下单
      */
     private void generateOrderMy() {
+        if(EdtUtil.isEdtEmpty(etStartAdressMy)){
+            Toast.makeText(getActivity(), "定位失败,请输入开始位置", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(EdtUtil.isEdtEmpty(etEndAdressMy)){
+            Toast.makeText(getActivity(), "请输入目的地", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (EdtUtil.isEdtEmpty(etPeopleCountMy)) {
             Toast.makeText(getContext().getApplicationContext(), "请输入乘车人数", Toast.LENGTH_SHORT).show();
             return;
@@ -315,7 +324,8 @@ public class SharingCarFragment extends Fragment implements CustomerMainActivity
             return;
         }
        try {
-           bookCar(personCount, "1", "", "", "1");
+
+           bookCar(EdtUtil.getEdtText(etStartAdressMy),EdtUtil.getEdtText(etEndAdressMy),personCount, "1", "", "", "1");
        }catch (Exception e){
            Toast.makeText(getContext(), "正在定位中,请稍后再试", Toast.LENGTH_SHORT).show();
        }
@@ -325,6 +335,14 @@ public class SharingCarFragment extends Fragment implements CustomerMainActivity
      * 帮人叫车下单
      */
     private void generateOrderOther() {
+        if(EdtUtil.isEdtEmpty(etStartAdressOther)){
+            Toast.makeText(getActivity(), "定位失败,请输入开始位置", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(EdtUtil.isEdtEmpty(etEndAdressOther)){
+            Toast.makeText(getActivity(), "请输入目的地", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (EdtUtil.isEdtEmpty(etPeopleCountOther)) {
             Toast.makeText(getContext().getApplicationContext(), "请输入乘车人数", Toast.LENGTH_SHORT).show();
             return;
@@ -338,7 +356,7 @@ public class SharingCarFragment extends Fragment implements CustomerMainActivity
         String personPhone = EdtUtil.getEdtText(etPhoneGoods);
         String personName = EdtUtil.getEdtText(etUserNameGoods);
         try {
-            bookCar(personCount, "1", personName, personPhone, "0");
+            bookCar(EdtUtil.getEdtText(etStartAdressOther),EdtUtil.getEdtText(etEndAdressOther),personCount, "1", personName, personPhone, "0");
         }catch (Exception e){
             Toast.makeText(getContext(), "正在定位中,请稍后再试", Toast.LENGTH_SHORT).show();
         }
@@ -348,7 +366,14 @@ public class SharingCarFragment extends Fragment implements CustomerMainActivity
      * 带小件下单
      */
     private void generateOrderGoods() {
-
+        if(EdtUtil.isEdtEmpty(etStartAdressGoods)){
+            Toast.makeText(getActivity(), "定位失败,请输入开始位置", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(EdtUtil.isEdtEmpty(etEndAdressGoods)){
+            Toast.makeText(getActivity(), "请输入目的地", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (EdtUtil.isEdtEmpty(etWeightGoods)) {
             Toast.makeText(getContext().getApplicationContext(), "请输入货物重量", Toast.LENGTH_SHORT).show();
             return;
@@ -368,18 +393,27 @@ public class SharingCarFragment extends Fragment implements CustomerMainActivity
         String personPhone = EdtUtil.getEdtText(etPhoneGoods);
         String personName = EdtUtil.getEdtText(etUserNameGoods);
         try {
-            bookCar("0", "0", personName, personPhone, "0");
+            bookCar(EdtUtil.getEdtText(etStartAdressGoods),EdtUtil.getEdtText(etEndAdressGoods),"0", "0", personName, personPhone, "0");
         }catch (Exception e){
             Toast.makeText(getContext(), "正在定位中,请稍后再试", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void bookCar(String personcount, String ispacket, String consignee, String consigneetel, String ishelpother) {
+
+    /**
+     * 顺风车下单
+     * @param personcount
+     * @param ispacket
+     * @param consignee
+     * @param consigneetel
+     * @param ishelpother
+     */
+    public void bookCar(String fromAddress,String toAddress,String personcount, String ispacket, String consignee, String consigneetel, String ishelpother) {
+        showLoading();
         Map<String, Object> param = new HashMap<>();
         param.put("pk_user", SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_PK_USER, ""));
-        param.put("fromaddress", LocationUtils.getLocation().address);
-        param.put("toaddress", RouteTask
-                .getInstance(getActivity().getApplicationContext()).getEndPoint().address);
+        param.put("fromaddress", fromAddress);
+        param.put("toaddress", toAddress);
         param.put("fromlongitude", LocationUtils.getLocation().longitude);
         param.put("fromlatitude", LocationUtils.getLocation().latitue);
         param.put("tolongitude", RouteTask
@@ -408,14 +442,14 @@ public class SharingCarFragment extends Fragment implements CustomerMainActivity
         carAPI.generateOrder(param).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                hideLoading();
                 try {
                     CallCarResult result = new Gson().fromJson(response.body(), CallCarResult.class);
                     Log.v("system---下单信息-->",response.body());
                     //下单成功
                     if ("0".equals(result.getCode())) {
-                        String pk_userOder = result.getPk_userOder();
+                        pk_userOder = result.getPk_userOder();
                         Intent intent = new Intent(getActivity(), CallCarSucessActivity.class);
-                        intent.putExtra("pk_userOder",pk_userOder);
                         startActivity(intent);
                         Toast.makeText(getContext(), result.getMsg(), Toast.LENGTH_SHORT).show();
                     } else {
@@ -428,11 +462,20 @@ public class SharingCarFragment extends Fragment implements CustomerMainActivity
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-
+                hideLoading();
+                Toast.makeText(getActivity(), "叫车失败", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+    //定义一个回调接口
+    public interface CallBackValue{
+         void SendMessageValue(String strValue);
+    }
+
+    public void setCallBackValue(CallBackValue callBackValue) {
+        callBackValue.SendMessageValue(pk_userOder);
+    }
 
     @Override
     public boolean onBack() {

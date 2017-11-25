@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lfcx.common.utils.SPUtils;
 import com.lfcx.common.utils.ViewUtils;
@@ -90,11 +89,11 @@ public class CustomerMainActivity extends CustomerBaseActivity {
 
     private void setAlias(String alias) {
         if (TextUtils.isEmpty(alias)) {
-            Toast.makeText(this, "别名为空", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "别名为空", Toast.LENGTH_SHORT).show();
             return;
         }
         if (!ExampleUtil.isValidTagAndAlias(alias)) {
-            Toast.makeText(this, "别名为空", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "别名为空", Toast.LENGTH_SHORT).show();
             return;
         }
 

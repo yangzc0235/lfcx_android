@@ -26,6 +26,10 @@ public interface UserAPI {
     Call<String> customerRegist(@FieldMap Map<String, String> param);
 
     @FormUrlEncoded
+    @POST(NetConfig.FORGET_PWD)
+    Call<String> forgetPwd(@FieldMap Map<String, String> param);
+
+    @FormUrlEncoded
     @POST(NetConfig.CUSTOMER_LOGIN)
     Call<LoginResult> customerLogin(@FieldMap Map<String, String> param);
 
@@ -67,7 +71,9 @@ public interface UserAPI {
      */
     @FormUrlEncoded
     @POST(NetConfig.CONFIRM_CAR)
-    Call<String> userConfirmCar(@FieldMap Map<String, String> param);/**
+    Call<String> userConfirmCar(@FieldMap Map<String, String> param);
+
+    /**
      * 微信支付
      *
      * @param param
@@ -76,4 +82,9 @@ public interface UserAPI {
     @FormUrlEncoded
     @POST(NetConfig.WX_PAY)
     Call<String> wxPay(@FieldMap Map<String, String> param);
+
+
+    @FormUrlEncoded
+    @POST(NetConfig.TRADE_RECORD)
+    Call<String> generateTradeRecord(@FieldMap Map<String, Object> param);
 }

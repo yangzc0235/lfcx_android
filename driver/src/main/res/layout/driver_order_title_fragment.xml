@@ -49,6 +49,7 @@
 
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/ll_start_navigation"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

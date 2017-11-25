@@ -1,0 +1,1602 @@
+[
+    {
+        "firstLetter": "A",
+        "carmodels": "奥迪",
+        "Pingyin":"aodi",
+        "cartypes": [
+            "A1",
+            "A3",
+            "A4",
+            "A4L",
+            "A5",
+            "A6",
+            "A6L",
+            "A7",
+            "A8L",
+            "Q3",
+            "Q5",
+            "Q7 ",
+            "S4",
+            "S5",
+            "S6",
+            "S8",
+            "TT ",
+            "R8",
+            "Allroad quattro"
+        ]
+    },
+    {
+        "firstLetter": "A",
+        "carmodels": "奥驰",
+        "Pingyin":"aochi",
+        "cartypes": []
+    },
+    {
+        "firstLetter": "A",
+        "carmodels": "奥玲",
+        "Pingyin":"aolin",
+        "cartypes": []
+    },
+    {
+        "firstLetter": "A",
+        "carmodels": "阿斯顿·马丁",
+        "Pingyin":"asidun·mading",
+        "cartypes": [
+            "One-77",
+            "Rapide",
+            "Virage",
+            "V12 Vantage",
+            "V8 Vantage",
+            "DB9",
+            "DBS"
+        ]
+    },
+    {
+        "firstLetter": "B",
+        "carmodels": "奔驰Smart",
+        "Pingyin":"benchiSmart",
+        "cartypes": [
+            "Boxster",
+            "卡曼",
+            "卡宴",
+            "Panamera",
+            "911",
+            "918"
+        ]
+    },
+    {
+        "firstLetter": "B",
+        "carmodels": "宾利",
+        "Pingyin":"binli",
+        "cartypes": [
+            "雅骏",
+            "雅致",
+            "欧陆"
+        ]
+    },
+    {
+        "firstLetter": "B",
+        "carmodels": "标致",
+        "Pingyin":"biaozhi",
+        "cartypes": [
+            "206",
+            "206CC",
+            "207",
+            "207CC",
+            "307",
+            "307CC",
+            "308",
+            "406",
+            "407",
+            "408",
+            "508",
+            "607",
+            "3008",
+            "308CC",
+            "RCZ"
+        ]
+    },
+    {
+        "firstLetter": "B",
+        "carmodels": "宝骏",
+        "Pingyin":"baojun",
+        "cartypes": []
+    },
+    {
+        "firstLetter": "B",
+        "carmodels": "北汽",
+        "Pingyin":"beiqi",
+        "cartypes": [
+            "域胜",
+            "骑士",
+            "战旗"
+        ]
+    },
+    {
+        "firstLetter": "B",
+        "carmodels": "比亚迪",
+        "Pingyin":"biyadi",
+        "cartypes": [
+            "F0",
+            "F3",
+            "F3R",
+            "F3DM",
+            "F6",
+            "E6",
+            "G3",
+            "G3R",
+            "G6",
+            "L3",
+            "M6",
+            "S6",
+            "S8",
+            "速锐",
+            "福莱尔"
+        ]
+    },
+    {
+        "firstLetter": "B",
+        "carmodels": "奔驰",
+        "Pingyin":"benchi",
+        "cartypes": [
+            "A160",
+            "A180",
+            "B180",
+            "B200",
+            "B260",
+            "C180",
+            "C200",
+            "C230",
+            "C260",
+            "C280",
+            "C300",
+            "C63 AMG",
+            "CL600",
+            "CLS300",
+            "CLS350",
+            "CLS500",
+            "CLS63 AMG",
+            "CLK200",
+            "CLK280",
+            "CLK350",
+            "E200",
+            "E260",
+            "E300",
+            "E350",
+            "E63 AMG",
+            "G500",
+            "G55 AMG",
+            "GL350",
+            "GL450",
+            "GL550",
+            "GL63 AMG",
+            "GLA200",
+            "GLK300",
+            "GLK350",
+            "ML300",
+            "ML350",
+            "ML400",
+            "ML63 AMG",
+            "ML500",
+            "R300",
+            "R350",
+            "R500",
+            "S300L",
+            "S350L",
+            "S400L",
+            "S500L",
+            "S600L",
+            "S63 AMG",
+            "S65 AMG",
+            "SL300",
+            "SL350",
+            "SL500",
+            "SL63 AMG",
+            "SLK200",
+            "SLK300",
+            "SLK350",
+            "SLK55 AMG",
+            "SLS",
+            "唯雅诺",
+            "中誉房车"
+        ]
+    },
+    {
+        "firstLetter": "B",
+        "carmodels": "奔腾",
+        "Pingyin":"benteng",
+        "cartypes": [
+            "B50",
+            "B70",
+            "B90",
+            "SUV"
+        ]
+    },
+    {
+        "firstLetter": "B",
+        "carmodels": "本田",
+        "Pingyin":"bentian",
+        "cartypes": [
+            "缤智",
+            "杰德",
+            "CR-V",
+            "飞度",
+            "锋范",
+            "雅阁",
+            "奥德赛",
+            "思域",
+            "思迪",
+            "思铂睿",
+            "里程",
+            "歌诗图"
+        ]
+    },
+    {
+        "firstLetter": "B",
+        "carmodels": "宝马",
+        "Pingyin":"baoma",
+        "cartypes": [
+            "218i",
+            "116i",
+            "118i",
+            "120i",
+            "318",
+            "320",
+            "320i",
+            "320敞篷",
+            "325",
+            "330",
+            "428i",
+            "420i",
+            "GT320",
+            "520",
+            "523i",
+            "523Li",
+            "525Li",
+            "530Li",
+            "528Li",
+            "535",
+            "GT535",
+            "6系",
+            "730Li",
+            "740",
+            "745",
+            "750",
+            "760",
+            "X1",
+            "X3",
+            "X5",
+            "X6",
+            "Z4",
+            "M"
+        ]
+    },
+    {
+        "firstLetter": "B",
+        "carmodels": "宝马MINI",
+        "Pingyin":"baomaMINI",
+        "cartypes": [
+            "COUNTRYMAN",
+            "MINI",
+            " CLUBMAN",
+            "CABRIO",
+            "COUPE",
+            "ROADSTER",
+            "PACEMAN"
+        ]
+    },
+    {
+        "firstLetter": "B",
+        "carmodels": "别克",
+        "Pingyin":"bieke",
+        "cartypes": [
+            "GL8",
+            "凯越",
+            "凯越HRV",
+            "凯越旅行车",
+            "君威",
+            "君越",
+            "英朗GT",
+            "英朗XT",
+            "荣御",
+            "赛欧",
+            "林荫大道",
+            "昂科雷",
+            "昂科拉",
+            "新世纪"
+        ]
+    },
+    {
+        "firstLetter": "C",
+        "carmodels": "长安",
+        "Pingyin":"changan",
+        "cartypes": [
+            "CS15",
+            "CS35",
+            "奔奔",
+            "CX20",
+            "CX30",
+            "星光",
+            "S460",
+            "之星",
+            "杰勋",
+            "金牛星",
+            "悦翔",
+            "志翔",
+            "镭蒙",
+            "CM8",
+            "星卡",
+            "欧诺"
+        ]
+    },
+    {
+        "firstLetter": "C",
+        "carmodels": "昌河",
+        "Pingyin":"changhe",
+        "cartypes": [
+            "爱迪尔",
+            "福瑞达",
+            "海豚",
+            "骏马",
+            "面包车"
+        ]
+    },
+    {
+        "firstLetter": "C",
+        "carmodels": "长丰",
+        "Pingyin":"changfen",
+        "cartypes": [
+            "飞铃",
+            "飞扬",
+            "猎豹",
+            "帕杰罗",
+            "骐菱",
+            "奇兵",
+            "黑金刚"
+        ]
+    },
+    {
+        "firstLetter": "C",
+        "carmodels": "长城",
+        "Pingyin":"changcheng",
+        "cartypes": [
+            "V80",
+            "C50",
+            "C30",
+            "C20R",
+            "精灵",
+            "风骏",
+            "哈弗",
+            "嘉誉",
+            "酷熊",
+            "凌傲",
+            "赛弗",
+            "赛影",
+            "腾翼",
+            "炫丽",
+            "赛骏",
+            "赛酷",
+            "金迪尔",
+            "赛铃"
+        ]
+    },
+    {
+        "firstLetter": "D",
+        "carmodels": "大迪",
+        "Pingyin":"dadi",
+        "cartypes": [
+            "都市威菱",
+            "都市骏马",
+            "霸道",
+            "皮卡"
+        ]
+    },
+    {
+        "firstLetter": "D",
+        "carmodels": "道奇",
+        "Pingyin":"daoqi",
+        "cartypes": [
+            "凯领",
+            "公羊",
+            "翼龙",
+            "酷搏",
+            "酷威",
+            "锋哲"
+        ]
+    },
+    {
+        "firstLetter": "D",
+        "carmodels": "大运",
+        "Pingyin":"dayun",
+        "cartypes": []
+    },
+    {
+        "firstLetter": "D",
+        "carmodels": "大发",
+        "Pingyin":"dafa",
+        "cartypes": [
+            "森雅"
+        ]
+    },
+    {
+        "firstLetter": "D",
+        "carmodels": "东南",
+        "Pingyin":"dongnan",
+        "cartypes": [
+            "菱悦V3",
+            "菱致V5",
+            "菱帅",
+            "得利卡",
+            "富利卡",
+            "菱利",
+            "菱动",
+            "凌仕V6"
+        ]
+    },
+    {
+        "firstLetter": "D",
+        "carmodels": "东风",
+        "Pingyin":"dongfeng",
+        "cartypes": [
+            "风行",
+            "景逸",
+            "风神",
+            "小康",
+            "帅客",
+            "汗马",
+            "小王子",
+            "桑蒂雅"
+        ]
+    },
+    {
+        "firstLetter": "D",
+        "carmodels": "大宇",
+        "Pingyin":"dayu",
+        "cartypes": [
+            "典雅",
+            "蓝龙",
+            "旅行家"
+        ]
+    },
+    {
+        "firstLetter": "D",
+        "carmodels": "大众",
+        "Pingyin":"dazhong",
+        "cartypes": [
+            "凌渡",
+            "CC",
+            "EOS",
+            "波罗",
+            "途观",
+            "速腾",
+            "迈腾",
+            "捷达",
+            "帕萨特",
+            "朗逸",
+            "尚酷",
+            "凌度",
+            "朗行",
+            "桑塔纳",
+            "宝来",
+            "高尔夫",
+            "高尔",
+            "途安",
+            "途威",
+            "途锐",
+            "甲壳虫",
+            "辉腾",
+            "开迪",
+            "夏朗"
+        ]
+    },
+    {
+        "firstLetter": "F",
+        "carmodels": "福特",
+        "Pingyin":"fute",
+        "cartypes": [
+            "蒙迪欧",
+            "福克斯",
+            "嘉年华",
+            "S-MAX",
+            "GT",
+            "锐界",
+            "翼虎",
+            "翼博",
+            "野马",
+            "福莱克斯",
+            "商务车"
+        ]
+    },
+    {
+        "firstLetter": "F",
+        "carmodels": "丰田",
+        "Pingyin":"fengtian",
+        "cartypes": [
+            "凯美瑞",
+            "卡罗拉 ",
+            "汉兰达",
+            "雅力士",
+            "锐志",
+            "花冠",
+            "皇冠",
+            "逸致",
+            "兰德酷路泽",
+            "威驰",
+            "FJ酷路泽",
+            "霸道",
+            "RAV4",
+            "普锐斯",
+            "大霸王",
+            "佳美",
+            "陆地巡洋舰",
+            "柯斯达",
+            "海狮",
+            "特锐"
+        ]
+    },
+    {
+        "firstLetter": "F",
+        "carmodels": "福迪",
+        "Pingyin":"fudi",
+        "cartypes": [
+            "UFO",
+            "卡车"
+        ]
+    },
+    {
+        "firstLetter": "F",
+        "carmodels": "法拉利",
+        "Pingyin":"falali",
+        "cartypes": [
+            "F360",
+            "575",
+            "F430",
+            "599GTB",
+            "612",
+            "California",
+            "ENZO"
+        ]
+    },
+    {
+        "firstLetter": "F",
+        "carmodels": "福田",
+        "Pingyin":"futian",
+        "cartypes": [
+            "迷迪",
+            "传奇",
+            "蒙派克",
+            "风景冲浪",
+            "爱尔法",
+            "奥铃",
+            "风景海狮"
+        ]
+    },
+    {
+        "firstLetter": "F",
+        "carmodels": "菲亚特",
+        "Pingyin":"feiyate",
+        "cartypes": [
+            "西耶那",
+            "周末风",
+            "派力奥",
+            "派朗"
+        ]
+    },
+    {
+        "firstLetter": "G",
+        "carmodels": "G-GMC",
+        "Pingyin":"G-GMC",
+        "cartypes": [
+            "商务之星"
+        ]
+    },
+    {
+        "firstLetter": "G",
+        "carmodels": "广汽",
+        "Pingyin":"guangqi",
+        "cartypes": [
+            "传祺GA5",
+            "传祺GS5"
+        ]
+    },
+    {
+        "firstLetter": "H",
+        "carmodels": "华普",
+        "Pingyin":"huapu",
+        "cartypes": [
+            "飚风",
+            "朗风",
+            "海炫",
+            "M203",
+            "美鹿",
+            "飓风",
+            "海锋",
+            "海尚",
+            "海迅",
+            "海域",
+            "海悦"
+        ]
+    },
+    {
+        "firstLetter": "H",
+        "carmodels": "汇众",
+        "Pingyin":"huizhong",
+        "cartypes": [
+            "伊思坦纳"
+        ]
+    },
+    {
+        "firstLetter": "H",
+        "carmodels": "悍马",
+        "Pingyin":"hanma",
+        "cartypes": [
+            "H3",
+            "H2",
+            "H1"
+        ]
+    },
+    {
+        "firstLetter": "H",
+        "carmodels": "哈飞",
+        "Pingyin":"hafei",
+        "cartypes": [
+            "赛豹",
+            "赛马",
+            "路宝",
+            "中意",
+            "民意"
+        ]
+    },
+    {
+        "firstLetter": "H",
+        "carmodels": "华泰",
+        "Pingyin":"huatai",
+        "cartypes": [
+            "特拉卡",
+            "圣达菲",
+            "康迪",
+            "格林伯德"
+        ]
+    },
+    {
+        "firstLetter": "H",
+        "carmodels": "海马",
+        "Pingyin":"haima",
+        "cartypes": [
+            "欢动",
+            "福美来",
+            "海福星",
+            "海马3",
+            "普力马",
+            "丘比特",
+            "骑士"
+        ]
+    },
+    {
+        "firstLetter": "H",
+        "carmodels": "黑豹",
+        "Pingyin":"heibao",
+        "cartypes": [
+            "轿卡",
+            "旅行家",
+            "货车"
+        ]
+    },
+    {
+        "firstLetter": "H",
+        "carmodels": "红旗",
+        "Pingyin":"hongqi",
+        "cartypes": [
+            "盛世",
+            "概念SUV",
+            "旗舰",
+            "世纪星",
+            "明仕",
+            "H7"
+        ]
+    },
+    {
+        "firstLetter": "J",
+        "carmodels": "金龙",
+        "Pingyin":"jinlong",
+        "cartypes": [
+            "大型客车",
+            "中型客车",
+            "海狮",
+            "城市客车"
+        ]
+    },
+    {
+        "firstLetter": "J",
+        "carmodels": "吉利",
+        "Pingyin":"jili",
+        "cartypes": [
+            "熊猫",
+            "中国龙",
+            "美人豹",
+            "美日",
+            "自由舰",
+            "豪情",
+            "优利欧",
+            "豹风"
+        ]
+    },
+    {
+        "firstLetter": "J",
+        "carmodels": "解放",
+        "Pingyin":"jiefang",
+        "cartypes": [
+            "货车"
+        ]
+    },
+    {
+        "firstLetter": "J",
+        "carmodels": "江淮",
+        "Pingyin":"jianghuai",
+        "cartypes": [
+            "和悦",
+            "同悦",
+            "宾悦",
+            "瑞鹰",
+            "瑞风",
+            "帅铃"
+        ]
+    },
+    {
+        "firstLetter": "J",
+        "carmodels": "吉普",
+        "Pingyin":"jipu",
+        "cartypes": [
+            "2500",
+            "2700",
+            "指南者",
+            "指挥官",
+            "牧马人",
+            "自由人",
+            "自由客",
+            "大切诺基",
+            "切诺基",
+            "城市猎人"
+        ]
+    },
+    {
+        "firstLetter": "J",
+        "carmodels": "捷豹",
+        "Pingyin":"jiebao",
+        "cartypes": [
+            "S型",
+            "X型",
+            "XJL",
+            "XK",
+            "XF"
+        ]
+    },
+    {
+        "firstLetter": "J",
+        "carmodels": "jilidihao",
+        "cartypes": [
+            "EC7",
+            "EC7-RV",
+            "EC8",
+            "EV8"
+        ]
+    },
+    {
+        "firstLetter": "J",
+        "carmodels": "吉利上海英伦",
+        "Pingyin":"jilihaishangyinglun",
+        "cartypes": [
+            "SC5",
+            "SC7",
+            "TX4",
+            "金鹰",
+            "金刚",
+            "SX6",
+            "SX5"
+        ]
+    },
+    {
+        "firstLetter": "J",
+        "carmodels": "金杯",
+        "Pingyin":"jinbei",
+        "cartypes": [
+            "海狮",
+            "阁瑞斯",
+            "锐驰",
+            "面包车",
+            "勤务兵",
+            "快运",
+            "金典"
+        ]
+    },
+    {
+        "firstLetter": "J",
+        "carmodels": "江铃",
+        "Pingyin":"jiangling",
+        "cartypes": [
+            "陆风",
+            "宝典",
+            "轻卡",
+            "全顺",
+            "宝威"
+        ]
+    },
+    {
+        "firstLetter": "J",
+        "carmodels": "吉奥",
+        "Pingyin":"jiao",
+        "cartypes": [
+            "奥腾",
+            "凯旋",
+            "帅威",
+            "帅驰",
+            "猛将旅",
+            "凯睿",
+            "GX6",
+            "GS50",
+            "财运",
+            "伊美"
+        ]
+    },
+    {
+        "firstLetter": "J",
+        "carmodels": "吉利全球鹰",
+        "Pingyin":"jiliquanqiuying",
+        "cartypes": [
+            "GC7",
+            "GX2",
+            "熊猫",
+            "自由舰",
+            "远景",
+            "GX7"
+        ]
+    },
+    {
+        "firstLetter": "K",
+        "carmodels": "开瑞",
+        "Pingyin":"kairui",
+        "cartypes": [
+            "优派",
+            "优雅",
+            "优翼",
+            "优劲",
+            "优优",
+            "优胜"
+        ]
+    },
+    {
+        "firstLetter": "K",
+        "carmodels": "凯迪拉克",
+        "Pingyin":"kaidilake",
+        "cartypes": [
+            "CTS",
+            "SLS",
+            "SRX",
+            "XLR",
+            "凯雷德",
+            "帝威",
+            "赛威"
+        ]
+    },
+    {
+        "firstLetter": "K",
+        "carmodels": "克莱斯勒",
+        "Pingyin":"kelaisile",
+        "cartypes": [
+            "300C",
+            "铂锐 ",
+            "大捷龙",
+            "PT漫步者",
+            "太阳舞"
+        ]
+    },
+    {
+        "firstLetter": "K",
+        "carmodels": "凯马",
+        "Pingyin":"kaima",
+        "cartypes": []
+    },
+    {
+        "firstLetter": "L",
+        "carmodels": "路虎",
+        "Pingyin":"luhu",
+        "cartypes": [
+            "发现",
+            "神行者",
+            "揽胜",
+            "卫士",
+            "极光"
+        ]
+    },
+    {
+        "firstLetter": "L",
+        "carmodels": "林肯",
+        "Pingyin":"linken",
+        "cartypes": [
+            "领航员",
+            "城市"
+        ]
+    },
+    {
+        "firstLetter": "L",
+        "carmodels": "兰博基尼",
+        "Pingyin":"lanbojini",
+        "cartypes": [
+            "Gallardo",
+            "Murcielago Coupe",
+            "Reventon"
+        ]
+    },
+    {
+        "firstLetter": "L",
+        "carmodels": "力帆",
+        "Pingyin":"lifan",
+        "cartypes": [
+            "720",
+            "320",
+            "520",
+            "620",
+            "X60"
+        ]
+    },
+    {
+        "firstLetter": "L",
+        "carmodels": "铃木",
+        "Pingyin":"lingmu",
+        "cartypes": [
+            "奥拓",
+            "雨燕",
+            "天语SX4",
+            "利亚纳",
+            "北斗星",
+            "浪迪",
+            "羚羊",
+            "吉姆尼",
+            "凯泽西",
+            "超级维特拉"
+        ]
+    },
+    {
+        "firstLetter": "L",
+        "carmodels": "陆风",
+        "Pingyin":"lufeng",
+        "cartypes": [
+            "风华",
+            "风尚",
+            "X9",
+            "X6",
+            "X8"
+        ]
+    },
+    {
+        "firstLetter": "L",
+        "carmodels": "莲花",
+        "Pingyin":"lianhua",
+        "cartypes": [
+            "L3",
+            "L5",
+            "竞速",
+            "竞悦",
+            "欧洲之星"
+        ]
+    },
+    {
+        "firstLetter": "L",
+        "carmodels": "劳斯莱斯",
+        "Pingyin":"laosilaisi",
+        "cartypes": [
+            "幻影",
+            "古思特"
+        ]
+    },
+    {
+        "firstLetter": "L",
+        "carmodels": "雷诺",
+        "Pingyin":"leinuo",
+        "cartypes": [
+            "风景",
+            "拉古娜",
+            "梅甘娜",
+            "科雷傲"
+        ]
+    },
+    {
+        "firstLetter": "L",
+        "carmodels": "雷克萨斯",
+        "Pingyin":"leikesasi",
+        "cartypes": [
+            "ES",
+            "GS",
+            "IS",
+            "LS",
+            "LX",
+            "RX",
+            "SC"
+        ]
+    },
+    {
+        "firstLetter": "M",
+        "carmodels": "迈巴赫",
+        "Pingyin":"maibahe",
+        "cartypes": [
+            "62",
+            "57"
+        ]
+    },
+    {
+        "firstLetter": "M",
+        "carmodels": "玛莎拉蒂",
+        "Pingyin":"mashaladi",
+        "cartypes": [
+            "Coupe",
+            "GranSport",
+            "总裁",
+            "GT"
+        ]
+    },
+    {
+        "firstLetter": "M",
+        "carmodels": "名爵",
+        "Pingyin":"mingjue",
+        "cartypes": [
+            "3",
+            "5",
+            "6",
+            "7",
+            "TF"
+        ]
+    },
+    {
+        "firstLetter": "M",
+        "carmodels": "马自达",
+        "Pingyin":"mazida",
+        "cartypes": [
+            "阿特兹",
+            "CX-5",
+            "323",
+            "CX-7",
+            "CX-9",
+            "MX-5",
+            "RX-8",
+            "M2",
+            "M3",
+            "M5",
+            "M6",
+            "M8",
+            "睿翼"
+        ]
+    },
+    {
+        "firstLetter": "N",
+        "carmodels": "尼桑",
+        "Pingyin":"nisang",
+        "cartypes": [
+            "350Z",
+            "D22",
+            "GT-R",
+            "逍客",
+            "天籁",
+            "骐达",
+            "颐达",
+            "骊威",
+            "轩逸",
+            "骏逸",
+            "奇骏",
+            "御轩",
+            "奥丁",
+            "阳光",
+            "蓝鸟",
+            "帕拉丁",
+            "风度",
+            "风雅",
+            "贵士",
+            "途乐",
+            "西玛",
+            "ZN649",
+            "楼兰",
+            "nv200",
+            "公爵王"
+        ]
+    },
+    {
+        "firstLetter": "N",
+        "carmodels": "南汽",
+        "Pingyin":"nanqi",
+        "cartypes": [
+            "新雅途"
+        ]
+    },
+    {
+        "firstLetter": "N",
+        "carmodels": "纳智捷",
+        "Pingyin":"nazhijie",
+        "cartypes": [
+            "大7 SUV",
+            "MASTER CEO"
+        ]
+    },
+    {
+        "firstLetter": "O",
+        "carmodels": "讴歌",
+        "Pingyin":"ouge",
+        "cartypes": [
+            "MDX",
+            "RL",
+            "TL"
+        ]
+    },
+    {
+        "firstLetter": "O",
+        "carmodels": "欧宝",
+        "Pingyin":"oubao",
+        "cartypes": [
+            "GT",
+            "安德拉",
+            "赛飞利",
+            "威达",
+            "雅特",
+            "欧美佳",
+            "欧捷利"
+        ]
+    },
+    {
+        "firstLetter": "Q",
+        "carmodels": "奇瑞",
+        "Pingyin":"qirui",
+        "cartypes": [
+            "A1",
+            "A3",
+            "A5",
+            "E5",
+            "QQ",
+            "瑞虎",
+            "东方之子",
+            "旗云",
+            "风云"
+        ]
+    },
+    {
+        "firstLetter": "Q",
+        "carmodels": "起亚",
+        "Pingyin":"qiya",
+        "cartypes": [
+            "K3",
+            "K2",
+            "K5",
+            "狮跑",
+            "福瑞迪",
+            "赛拉图",
+            "RIO锐欧",
+            "智跑",
+            "千里马",
+            "普莱特",
+            "佳乐",
+            "欧菲莱斯",
+            "索兰托",
+            "嘉华",
+            "秀尔",
+            "远舰",
+            "霸锐",
+            "威客"
+        ]
+    },
+    {
+        "firstLetter": "Q",
+        "carmodels": "启辰",
+        "Pingyin":"qichen",
+        "cartypes": [
+            "D50",
+            "R50",
+            "E30"
+        ]
+    },
+    {
+        "firstLetter": "R",
+        "carmodels": "荣威",
+        "Pingyin":"rongwei",
+        "cartypes": [
+            "E50",
+            "350",
+            "550",
+            "750",
+            "950",
+            "W5"
+        ]
+    },
+    {
+        "firstLetter": "R",
+        "carmodels": "瑞麒",
+        "Pingyin":"ruiqi",
+        "cartypes": [
+            "G3",
+            "G5",
+            "G6",
+            "M1",
+            "M5",
+            "X1",
+            "2"
+        ]
+    },
+    {
+        "firstLetter": "S",
+        "carmodels": "斯巴鲁",
+        "Pingyin":"sibalu",
+        "cartypes": [
+            "森林人",
+            "驰鹏",
+            "傲虎",
+            "力狮",
+            "翼豹"
+        ]
+    },
+    {
+        "firstLetter": "S",
+        "carmodels": "萨博",
+        "Pingyin":"sabo",
+        "cartypes": [
+            "9-3",
+            "9-5"
+        ]
+    },
+    {
+        "firstLetter": "S",
+        "carmodels": "时代",
+        "Pingyin":"shidai",
+        "cartypes": [
+            "货车"
+        ]
+    },
+    {
+        "firstLetter": "S",
+        "carmodels": "斯柯达",
+        "Pingyin":"sikeda",
+        "cartypes": [
+            "昕锐",
+            "昕动",
+            "晶锐",
+            "明锐",
+            "昊锐",
+            "速派",
+            "欧雅",
+            "法比亚"
+        ]
+    },
+    {
+        "firstLetter": "S",
+        "carmodels": "上汽大通",
+        "Pingyin":"shangqidatong",
+        "cartypes": [
+            "D90",
+            "V80",
+            "G10"
+        ]
+    },
+    {
+        "firstLetter": "S",
+        "carmodels": "曙光",
+        "Pingyin":"shuguang",
+        "cartypes": [
+            "傲羚",
+            "娇子",
+            "法萨特",
+            "征服者",
+            "旗胜",
+            "领航者",
+            "大柴神",
+            "挑战者",
+            "傲龙",
+            "翱龙",
+            "SUV"
+        ]
+    },
+    {
+        "firstLetter": "S",
+        "carmodels": "双龙",
+        "Pingyin":"shuanglong",
+        "cartypes": [
+            "爱腾",
+            "路帝",
+            "享御",
+            "主席",
+            "柯兰多",
+            "雷斯特"
+        ]
+    },
+    {
+        "firstLetter": "S",
+        "carmodels": "双环",
+        "Pingyin":"shuanghuan",
+        "cartypes": [
+            "来宝SRV",
+            "小贵族",
+            "来旺",
+            "SCEO"
+        ]
+    },
+    {
+        "firstLetter": "S",
+        "carmodels": "三菱",
+        "Pingyin":"sanling",
+        "cartypes": [
+            "帕杰罗",
+            "蓝瑟",
+            "戈蓝",
+            "欧蓝德",
+            "君阁",
+            "翼神",
+            "格蓝迪",
+            "菱绅"
+        ]
+    },
+    {
+        "firstLetter": "T",
+        "carmodels": "唐骏",
+        "Pingyin":"tangjun",
+        "cartypes": []
+    },
+    {
+        "firstLetter": "T",
+        "carmodels": "特斯拉",
+        "Pingyin":"tesila",
+        "cartypes": [
+            "MODEL S"
+        ]
+    },
+    {
+        "firstLetter": "W",
+        "carmodels": "沃尔沃",
+        "Pingyin":"woerwo",
+        "cartypes": [
+            "C30",
+            "C70",
+            "S40",
+            "S60",
+            "S70",
+            "S80",
+            "V60",
+            "V70",
+            "XC60",
+            "XC70",
+            "XC90"
+        ]
+    },
+    {
+        "firstLetter": "W",
+        "carmodels": "五十铃",
+        "Pingyin":"wushiling",
+        "cartypes": [
+            "货车",
+            "皮卡",
+            "铁金刚"
+        ]
+    },
+    {
+        "firstLetter": "W",
+        "carmodels": "威麟",
+        "Pingyin":"weiling",
+        "cartypes": [
+            "V5",
+            "H5",
+            "X5"
+        ]
+    },
+    {
+        "firstLetter": "W",
+        "carmodels": "五菱",
+        "Pingyin":"wuling",
+        "cartypes": [
+            "之光",
+            "兴旺",
+            "宏光",
+            "荣光"
+        ]
+    },
+    {
+        "firstLetter": "W",
+        "carmodels": "万丰",
+        "Pingyin":"wanfeng",
+        "cartypes": [
+            "多功能商务车",
+            "速威",
+            "泰威",
+            "皮卡"
+        ]
+    },
+    {
+        "firstLetter": "X",
+        "carmodels": "夏利",
+        "Pingyin":"xiali",
+        "cartypes": [
+            "夏利",
+            "N3",
+            "2000",
+            "N5"
+        ]
+    },
+    {
+        "firstLetter": "X",
+        "carmodels": "现代",
+        "Pingyin":"xiandai",
+        "cartypes": [
+            "i30",
+            "ix25",
+            "ix35",
+            "朗动",
+            "伊兰特悦动",
+            "名图",
+            "伊兰特",
+            "劳恩斯",
+            "酷派",
+            "途胜",
+            "瑞纳",
+            "索纳塔八",
+            "索纳塔九",
+            "索纳塔",
+            "雅绅特",
+            "胜达",
+            "格锐",
+            "雅科仕",
+            "美佳",
+            "世纪",
+            "君爵",
+            "维拉克斯",
+            "雅尊",
+            "SONATA御翔",
+            "新胜达",
+            "领翔"
+        ]
+    },
+    {
+        "firstLetter": "X",
+        "carmodels": "雪铁龙",
+        "Pingyin":"xuetielong",
+        "cartypes": [
+            "DS",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6",
+            "世嘉",
+            "爱丽舍",
+            "赛纳",
+            "凯旋",
+            "毕加索",
+            "富康"
+        ]
+    },
+    {
+        "firstLetter": "X",
+        "carmodels": "雪佛兰",
+        "Pingyin":"xuefolan",
+        "cartypes": [
+            "迈锐宝",
+            "科迈罗",
+            "斯帕可",
+            "沃蓝达",
+            "科鲁兹",
+            "赛欧",
+            "爱唯欧",
+            "乐风",
+            "乐驰",
+            "景程",
+            "科帕奇",
+            "乐骋 ",
+            "子弹头"
+        ]
+    },
+    {
+        "firstLetter": "Y",
+        "carmodels": "依维柯",
+        "Pingyin":"yiweike",
+        "cartypes": [
+            "宝迪",
+            "都灵",
+            "得意"
+        ]
+    },
+    {
+        "firstLetter": "Y",
+        "carmodels": "一汽",
+        "Pingyin":"yiqi",
+        "cartypes": [
+            "威乐",
+            "威姿",
+            "威志",
+            "森雅",
+            "特锐",
+            "夏利",
+            "佳宝",
+            "自由风"
+        ]
+    },
+    {
+        "firstLetter": "Y",
+        "carmodels": "跃进",
+        "Pingyin":"yuejin",
+        "cartypes": [
+            "货车"
+        ]
+    },
+    {
+        "firstLetter": "Y",
+        "carmodels": "永源",
+        "Pingyin":"yongyuan",
+        "cartypes": [
+            "UFO",
+            "A380"
+        ]
+    },
+    {
+        "firstLetter": "Y",
+        "carmodels": "英菲尼迪",
+        "Pingyin":"yingfeinidi",
+        "cartypes": [
+            "G系",
+            "M系",
+            "EX",
+            "FX",
+            "QX"
+        ]
+    },
+    {
+        "firstLetter": "Z",
+        "carmodels": "中顺",
+        "Pingyin":"zhongshun",
+        "cartypes": [
+            "MPV",
+            "皮卡",
+            "SUV",
+            "世纪"
+        ]
+    },
+    {
+        "firstLetter": "Z",
+        "carmodels": "众泰",
+        "Pingyin":"zhongtai",
+        "cartypes": [
+            "江南TT",
+            "M300",
+            "Z200",
+            "2008",
+            "Z300",
+            "5008",
+            "梦迪博朗",
+            "V10"
+        ]
+    },
+    {
+        "firstLetter": "Z",
+        "carmodels": "重汽",
+        "Pingyin":"zhongqi",
+        "cartypes": []
+    },
+    {
+        "firstLetter": "Z",
+        "carmodels": "中兴",
+        "Pingyin":"zhongxing",
+        "cartypes": [
+            "无限",
+            "海豹",
+            "皮卡",
+            "田野SUV",
+            "驰野",
+            "福星",
+            "威虎",
+            "金狮",
+            "万禧龙"
+        ]
+    },
+    {
+        "firstLetter": "Z",
+        "carmodels": "中华",
+        "Pingyin":"zhonghua",
+        "cartypes": [
+            "骏捷",
+            "酷宝",
+            "H530",
+            "尊驰",
+            "V5"
+        ]
+    }
+]

@@ -259,4 +259,6 @@ public class PayDialog extends Dialog implements View.OnClickListener, RadioGrou
             }
         });
     }
+
+
 }

@@ -20,7 +20,10 @@ public interface NetConfig {
      * 司机实时上传位置到服务器
      */
     String INSERT_LOCATION = "dvlct/insertlocation";
-
+    /**
+     * 忘记密码
+     */
+    String FORGET_PWD = "user/rememberpwd";
 
     /**
      * 司机接单类型设置
@@ -108,6 +111,10 @@ public interface NetConfig {
      * 附加费
      */
     String UPDATE_FINISH_TRAVEL = "userOrder/updateOrderForFinishTravel";
+    /**
+     * 生成交易记录
+     */
+    String TRADE_RECORD = "basetraderecord/generatetraderecord";
 
     /**
      * 确认乘客上车
@@ -116,7 +123,20 @@ public interface NetConfig {
 
 
     /**
+     * 注册的步骤
+     */
+    String REG_STEP = "user/getRegDriverPoint";
+
+
+    /**
      * 设置
      */
     String USER_SETTER = "http://101.200.58.37:8899/LFCar/mycenter/build/pages/my-center/index.html";
+
+    /**
+     * oktttputils上传图片
+     */
+    String UPLOAD_PHOTO_OK = "http://101.200.58.37:8899/LFCar/upload/uploadPhoto";
+
+
 }

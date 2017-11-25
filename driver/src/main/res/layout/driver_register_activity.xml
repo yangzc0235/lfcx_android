@@ -40,6 +40,7 @@
                 android:layout_marginRight="@dimen/vertical_padding"
                 android:background="@drawable/border_blue"
                 android:paddingLeft="@dimen/short_padding"
+                android:inputType="number"
                 android:textSize="@dimen/hint_text_size"/>
 
             <Button

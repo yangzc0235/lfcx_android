@@ -59,7 +59,7 @@ public class DriverLoginActivity extends DriverBaseActivity implements View.OnCl
     private ImageView mImgvClearNumActivityLogin;
     private ImageView mImgvEyeActivityLogin;
     private DUserAPI userAPI;
-    private boolean mHidePasswd=true;
+    private boolean mHidePasswd = true;
 
 
     @Override
@@ -102,7 +102,13 @@ public class DriverLoginActivity extends DriverBaseActivity implements View.OnCl
 
     @OnClick(R2.id.tv_register)
     public void onClickGoRegister(View v) {
-        Intent intent = new Intent(this, DriverUploadActivity.class);
+        Intent intent = new Intent(this, DriverRegisterActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R2.id.tv_forget)
+    public void onClickGoForgetPwd(View v) {
+        Intent intent = new Intent(this, DriverForgotPwdActivity.class);
         startActivity(intent);
     }
 
@@ -119,15 +125,15 @@ public class DriverLoginActivity extends DriverBaseActivity implements View.OnCl
      * @param pwd
      */
     private void goLogin(final String moible, final String pwd) {
+        showLoading();
         Map<String, String> param = new HashMap<>();
         param.put("user", moible);
         param.put("pwd", pwd);
         param.put("isdriver", "1");
-//        showLoading();
         userAPI.customerLogin(param).enqueue(new Callback<LoginResult>() {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
-//                hideLoading();
+                hideLoading();
                 LoginResult result = null;
                 try {
                     result = response.body();
@@ -142,14 +148,13 @@ public class DriverLoginActivity extends DriverBaseActivity implements View.OnCl
                     }
 
                 } catch (Exception e) {
-                    // hideLoading();
                     LogUtils.e(DriverLoginActivity.this.getClass().getSimpleName(), e.getMessage());
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResult> call, Throwable t) {
-                // hideLoading();
+                 hideLoading();
                 LogUtils.e(DriverLoginActivity.this.getClass().getSimpleName(), t.getMessage());
                 showToast("网络错误，请稍后再试!");
             }

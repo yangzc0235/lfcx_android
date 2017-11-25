@@ -7,93 +7,157 @@
     android:orientation="vertical">
 
    <LinearLayout
-       android:layout_weight="1"
+       android:id="@+id/ll_order"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+       android:layout_height="match_parent"
+       android:visibility="gone"
        android:orientation="vertical">
-       <TextView
-           android:id="@+id/tv_time"
-           android:layout_width="wrap_content"
+       <LinearLayout
+           android:layout_weight="1"
+           android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:layout_centerHorizontal="true"
-           android:layout_gravity="center_horizontal"
-           android:layout_marginTop="50dp"
+           android:orientation="vertical">
+           <TextView
+               android:id="@+id/tv_time"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_centerHorizontal="true"
+               android:layout_gravity="center_horizontal"
+               android:layout_marginTop="50dp"
+               android:gravity="center"
+               android:text="10分钟后订单自动取消"
+               android:textColor="@color/login_name"
+               android:textSize="16sp"></TextView>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="80dp"
+               android:layout_marginTop="100dp">
+
+               <ImageView
+                   android:id="@+id/iv_now_address"
+                   android:layout_width="20dp"
+                   android:layout_height="20dp"
+                   android:layout_centerVertical="true"
+                   android:layout_marginLeft="40dp"
+                   android:layout_marginRight="5dp"
+                   android:background="@drawable/icon_start" />
+
+               <EditText
+                   android:id="@+id/et_start_address"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_marginLeft="5dp"
+                   android:layout_toRightOf="@+id/iv_now_address"
+                   android:background="@null"
+                   android:editable="false"
+                   android:hint="开始地址"
+                   android:textColor="@color/login_name"
+                   android:textColorHint="@color/login_name"
+                   android:textSize="22sp" />
+           </RelativeLayout>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/default_edit_height"
+               android:layout_marginTop="20dp"
+               android:layout_marginBottom="60dp">
+
+               <ImageView
+                   android:id="@+id/iv_to_address"
+                   android:layout_width="20dp"
+                   android:layout_height="20dp"
+                   android:layout_centerVertical="true"
+                   android:layout_marginLeft="40dp"
+                   android:layout_marginRight="5dp"
+                   android:background="@drawable/icon_end" />
+
+               <EditText
+                   android:id="@+id/et_end_address"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_marginLeft="5dp"
+                   android:layout_toRightOf="@+id/iv_to_address"
+                   android:background="@null"
+                   android:editable="false"
+                   android:hint="目的地"
+                   android:singleLine="true"
+                   android:ellipsize="end"
+                   android:textColor="@color/login_name"
+                   android:textColorHint="@color/login_name"
+                   android:textSize="22sp" />
+           </RelativeLayout>
+       </LinearLayout>
+
+       <TextView
+           android:id="@+id/tv_grab"
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:layout_marginTop="120dp"
+           android:layout_marginLeft="16dp"
+           android:layout_marginRight="16dp"
+           android:layout_marginBottom="10dp"
+           android:background="@drawable/btn_blue_bg"
            android:gravity="center"
-           android:text="10分钟后订单自动取消"
-           android:textColor="@color/login_name"
-           android:textSize="16sp"></TextView>
-
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="80dp"
-           android:layout_marginTop="100dp">
-
-           <ImageView
-               android:id="@+id/iv_now_address"
-               android:layout_width="20dp"
-               android:layout_height="20dp"
-               android:layout_centerVertical="true"
-               android:layout_marginLeft="40dp"
-               android:layout_marginRight="5dp"
-               android:background="@drawable/icon_start" />
-
-           <EditText
-               android:id="@+id/et_start_address"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:layout_marginLeft="5dp"
-               android:layout_toRightOf="@+id/iv_now_address"
-               android:background="@null"
-               android:editable="false"
-               android:hint="开始地址"
-               android:textColor="@color/login_name"
-               android:textColorHint="@color/login_name"
-               android:textSize="22sp" />
-       </RelativeLayout>
-
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="@dimen/default_edit_height"
-           android:layout_marginTop="20dp"
-           android:layout_marginBottom="60dp">
-
-           <ImageView
-               android:id="@+id/iv_to_address"
-               android:layout_width="20dp"
-               android:layout_height="20dp"
-               android:layout_centerVertical="true"
-               android:layout_marginLeft="40dp"
-               android:layout_marginRight="5dp"
-               android:background="@drawable/icon_end" />
-
-           <EditText
-               android:id="@+id/et_end_address"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:layout_marginLeft="5dp"
-               android:layout_toRightOf="@+id/iv_to_address"
-               android:background="@null"
-               android:editable="false"
-               android:hint="目的地"
-               android:singleLine="true"
-               android:ellipsize="end"
-               android:textColor="@color/login_name"
-               android:textColorHint="@color/login_name"
-               android:textSize="22sp" />
-       </RelativeLayout>
+           android:text="确认订单"
+           android:textSize="22sp"
+           android:textColor="@color/white" />
    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_grab"
+    <RelativeLayout
+        android:id="@+id/ll_wait"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/btn_yellow_bg"
-        android:gravity="center"
-        android:text="确认订单"
-        android:textSize="22sp"
-        android:textColor="@color/white" />
+        android:layout_height="match_parent"
+        android:background="@color/me_line">
+
+        <ImageView
+            android:id="@+id/ivBackGround"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="120dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/icon_car"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="15dp"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+                <com.lfcx.common.widget.ProgressView
+                    android:id="@+id/ivProgress"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    />
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/tvText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="正在接单中..."
+                android:textSize="16sp"
+                android:textColor="@color/login_name"
+                android:layout_marginTop="5dp"
+                />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_cancel_order_first"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:background="@drawable/btn_blue_bg"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/common"
+            android:layout_marginRight="@dimen/common"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentBottom="true"
+            android:text="收车"/>
+    </RelativeLayout>
 </LinearLayout>

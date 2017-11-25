@@ -33,6 +33,7 @@ public interface DUserAPI {
      * {"key":"regitdate","value":"2013-05-09","description":""},
      * {"key":"engineno","value":"wwrr","description":""},
      * {"key":"carcode","value":"冀FJE174","description":""} ] StyleType ：0：舒适型 ; 1：豪华型 ;2：七座商务; 9：其他型 推荐人手机号： recommobile：手机号码
+     *
      * @param param
      * @return
      */
@@ -41,27 +42,35 @@ public interface DUserAPI {
     Call<String> driverRegist(@FieldMap Map<String, Object> param);
 
 
-
-
     /**
      * 调用聚合接口发送短信
+     *
      * @param param
      * @return
      */
     @GET
-    Call<SendMessageResult> customerSendMessage(@Url String url, @QueryMap Map<String,Object> param);
+    Call<SendMessageResult> customerSendMessage(@Url String url, @QueryMap Map<String, Object> param);
 
 
     /**
      * 调用聚合接口身份认证
+     *
      * @param param
      * @return
      */
     @GET
-    Call<IdCardResult> customerCheckIdCard(@Url String url, @QueryMap Map<String,Object> param);
+    Call<IdCardResult> customerCheckIdCard(@Url String url, @QueryMap Map<String, Object> param);
 
 
     @FormUrlEncoded
     @POST(NetConfig.CUSTOMER_LOGIN)
-    Call<LoginResult> customerLogin(@FieldMap Map<String,String> param);
+    Call<LoginResult> customerLogin(@FieldMap Map<String, String> param);
+
+    @FormUrlEncoded
+    @POST(NetConfig.REG_STEP)
+    Call<String> getRegisterStep(@FieldMap Map<String, Object> param);
+
+    @FormUrlEncoded
+    @POST(NetConfig.FORGET_PWD)
+    Call<String> fortgetPwd(@FieldMap Map<String, String> param);
 }

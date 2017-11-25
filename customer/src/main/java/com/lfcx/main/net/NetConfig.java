@@ -29,6 +29,10 @@ public interface NetConfig {
      */
     String CUSTOMER_REGISTER = "user/registUser";
     /**
+     * 忘记密码
+     */
+    String FORGET_PWD = "user/rememberpwd";
+    /**
      * 用户登录
      */
     String CUSTOMER_LOGIN = "user/verifyLogin";
@@ -77,8 +81,13 @@ public interface NetConfig {
      */
     String GET_USERINFO = "user/getUserInfoByUserMobile";
     /**
-     * 微信支付
+     * 微信,支付宝支付
      * 参数：mobile
      */
     String WX_PAY = "apppay/pay";
+
+    /**
+     * 生成交易记录
+     */
+    String TRADE_RECORD = "basetraderecord/generatetraderecord";
 }

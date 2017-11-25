@@ -64,10 +64,14 @@ public class OrderPickFragment extends Fragment implements View.OnClickListener 
     private void init() {
         mImgvCall.setOnClickListener(this);
         mBtnNow.setOnClickListener(this);
-        mTvStart.setText(DriverOrderActivity.userOrderEntity.getFromaddress());
-        mTvEnd.setText(DriverOrderActivity.userOrderEntity.getToaddress());
-        mTvMoible.setText(DriverOrderActivity.userOrderEntity.getMobile());
-        mTvTime.setText(DriverOrderActivity.userOrderEntity.getReservatedate());
+        try {
+            mTvStart.setText(DriverOrderActivity.userOrderEntity.getFromaddress()+"");
+            mTvEnd.setText(DriverOrderActivity.userOrderEntity.getToaddress()+"");
+            mTvMoible.setText(DriverOrderActivity.userOrderEntity.getMobile()+"");
+            mTvTime.setText(DriverOrderActivity.userOrderEntity.getReservatedate()+"");
+        }catch (Exception e){
+
+        }
     }
 
 

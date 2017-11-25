@@ -3,6 +3,7 @@ package com.lfcx.driver.activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -94,8 +95,20 @@ public class DestinationActivity extends DriverBaseActivity implements View.OnCl
                 Toast.makeText(this, "请输入目的地", Toast.LENGTH_SHORT).show();
                 return;
             }
-            PoiSearchTask poiSearchTask = new PoiSearchTask(getApplicationContext(), mRecomandAdapter);
-            poiSearchTask.search(mDestinaionText.getText().toString(), RouteTask.getInstance(getApplicationContext()).getStartPoint().city);
+            try {
+                PoiSearchTask poiSearchTask = new PoiSearchTask(getApplicationContext(), mRecomandAdapter);
+//                if(RouteTask.getInstance(getApplicationContext()).getStartPoint().city==null){
+//
+//                    return;
+//                }
+//                poiSearchTask.search(mDestinaionText.getText().toString(), );
+                Log.v("system----distance---->",mDestinaionText.getText().toString());
+                Log.v("system----city---->",RouteTask.getInstance(getApplicationContext()).getStartPoint().city+"");
+                poiSearchTask.search(mDestinaionText.getText().toString(), mDestinaionText.getText().toString());
+            }catch (Exception e){
+                Toast.makeText(this, "获取位置失败,请稍后再试", Toast.LENGTH_SHORT).show();
+
+            }
         }
 
     }
@@ -108,8 +121,8 @@ public class DestinationActivity extends DriverBaseActivity implements View.OnCl
         if (entity.latitue == 0 && entity.longitude == 0) {
             PoiSearchTask poiSearchTask=new PoiSearchTask(getApplicationContext(), mRecomandAdapter);
             poiSearchTask.search(entity.address, RouteTask.getInstance(getApplicationContext()).getStartPoint().city);
-
         } else {
+            entity.setAddress(mDestinaionText.getText().toString());
             mRouteTask.setEndPoint(entity);
             mRouteTask.search();
 //            Intent intent = new Intent(DestinationActivity.this, CustomerOrderActivity.class);

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:id="@+id/ll"
     android:orientation="vertical">
     <include layout="@layout/driver_common_title"></include>
     <ScrollView
@@ -38,7 +39,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:gravity="center_vertical"
                 android:paddingBottom="8dp"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -47,7 +48,7 @@
 
                 <TextView
                     android:id="@+id/d_tv_driver_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:textColor="@color/login_name"
@@ -60,8 +61,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_toRightOf="@+id/d_tv_driver_name"
                     android:background="@null"
-                    android:hint="请输入司机姓名"
-                    android:gravity="left"
+                    android:hint="请输入"
+                    android:gravity="right"
                     android:textColorHint="@color/darkgrey"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -69,11 +70,11 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/lightgrey"></View>
+                android:background="@color/bk_line"></View>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:gravity="center_vertical"
                 android:paddingBottom="8dp"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -82,7 +83,7 @@
 
                 <TextView
                     android:id="@+id/d_tv_driver_ID"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:textColor="@color/login_name"
@@ -95,8 +96,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_toRightOf="@+id/d_tv_driver_ID"
                     android:background="@null"
-                    android:gravity="left"
-                    android:hint="请输入身份证号码"
+                    android:gravity="right"
+                    android:hint="请输入"
                     android:textColorHint="@color/darkgrey"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -104,12 +105,12 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/lightgrey"></View>
+                android:background="@color/bk_line"></View>
 
             <RelativeLayout
                 android:id="@+id/d_rl_carcode"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:gravity="center_vertical"
                 android:paddingBottom="8dp"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -121,6 +122,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:textColor="@color/login_name"
+                    android:layout_centerVertical="true"
                     android:text="初次领取驾照日期" />
 
                 <TextView
@@ -146,7 +148,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:gravity="center_vertical"
                 android:paddingBottom="8dp"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -155,33 +157,49 @@
 
                 <TextView
                     android:id="@+id/d_tv_car_id"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/login_name"
                     android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
                     android:text="车牌号:" />
+
+                <TextView
+                    android:id="@+id/tv_select_car_type"
+                    android:layout_width="30dp"
+                    android:layout_height="18dp"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/d_tv_car_id"
+                    android:textColor="@color/blue"
+                    android:paddingLeft="2dp"
+                    android:background="@drawable/car_type_border"
+                    android:paddingRight="2dp"
+                    android:drawableRight="@drawable/right_arrow"
+                    android:textSize="12sp"
+                    android:text="宁"/>
 
                 <EditText
                     android:id="@+id/d_et_car_id"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_toRightOf="@+id/d_tv_car_id"
                     android:background="@null"
-                    android:gravity="left"
-                    android:hint="请输入车牌号码"
+                    android:gravity="right"
+                    android:hint="请输入"
                     android:textColorHint="@color/darkgrey"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/lightgrey"></View>
+                android:background="@color/bk_line"></View>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:gravity="center_vertical"
                 android:paddingBottom="8dp"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -190,7 +208,7 @@
 
                 <TextView
                     android:id="@+id/d_tv_car_owner"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/login_name"
                     android:layout_alignParentLeft="true"
@@ -203,8 +221,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_toRightOf="@+id/d_tv_car_owner"
                     android:background="@null"
-                    android:gravity="left"
-                    android:hint="请输入车辆所有人姓名"
+                    android:gravity="right"
+                    android:hint="请输入"
                     android:textColorHint="@color/darkgrey"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -212,12 +230,12 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/lightgrey"></View>
+                android:background="@color/bk_line"></View>
 
             <RelativeLayout
                 android:id="@+id/d_rl_car_type"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:gravity="center_vertical"
                 android:paddingBottom="8dp"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -245,12 +263,12 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/lightgrey"></View>
+                android:background="@color/bk_line"></View>
 
             <RelativeLayout
                 android:id="@+id/d_rl_car_regist"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:gravity="center_vertical"
                 android:paddingBottom="8dp"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -268,20 +286,21 @@
                     android:id="@+id/tv_register_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
                     android:drawableRight="@mipmap/icon_arrow"
                     android:gravity="center_vertical"
-                    android:hint="请选择" />
+                    android:hint="请选择"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/lightgrey"></View>
+                android:background="@color/bk_line"></View>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:gravity="center_vertical"
                 android:paddingBottom="8dp"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -290,7 +309,7 @@
 
                 <TextView
                     android:id="@+id/d_tv_car_mac"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:textColor="@color/login_name"
@@ -303,19 +322,19 @@
                     android:layout_alignParentRight="true"
                     android:layout_toRightOf="@+id/d_tv_car_mac"
                     android:background="@null"
-                    android:gravity="left"
-                    android:hint="请输入发动机号码"
+                    android:gravity="right"
+                    android:hint="请输入"
                     android:textColorHint="@color/darkgrey"
                     android:textSize="15sp" />
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/lightgrey"></View>
+                android:background="@color/bk_line"></View>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:gravity="center_vertical"
                 android:paddingBottom="8dp"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -328,6 +347,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:textColor="@color/login_name"
+                    android:layout_centerVertical="true"
                     android:text="汽车类型:" />
 
                 <TextView
@@ -345,17 +365,19 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:background="@color/lightgrey"></View>
+                android:background="@color/bk_line"></View>
 
             <Button
                 android:id="@+id/d_btn_save"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/default_button_height"
+                android:layout_height="44dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:background="@color/app_main"
                 android:text="保存"
+                android:layout_marginBottom="20dp"
+                android:textSize="16sp"
                 android:textColor="@color/text_white" />
         </LinearLayout>
     </ScrollView>

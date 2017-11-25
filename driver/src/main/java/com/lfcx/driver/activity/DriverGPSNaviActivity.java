@@ -1,6 +1,7 @@
 package com.lfcx.driver.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.amap.api.navi.AMapNaviView;
 import com.amap.api.navi.enums.NaviType;
@@ -14,9 +15,16 @@ public class DriverGPSNaviActivity extends DriverBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_gpsnavi);
+        showLoading();
         mAMapNaviView = (AMapNaviView) findViewById(R.id.navi_view);
         mAMapNaviView.onCreate(savedInstanceState);
         mAMapNaviView.setAMapNaviViewListener(this);
+        mStartLatlng.setLongitude(userOrderEntity.getFromlongitude());
+        mStartLatlng.setLatitude(userOrderEntity.getFromlatitude());
+        mEndLatlng.setLongitude(userOrderEntity.getTolongitude());
+        mEndLatlng.setLatitude(userOrderEntity.getTolatitude());
+        sList.add(mStartLatlng);
+        eList.add(mEndLatlng);
     }
 
     @Override
@@ -44,15 +52,23 @@ public class DriverGPSNaviActivity extends DriverBaseActivity {
         mAMapNavi.setCarNumber("京", "DFZ588");
         mAMapNavi.calculateDriveRoute(sList, eList, mWayPointList, strategy);
         //userOrderEntity.getFromlongitude(), userOrderEntity.getFromlatitude(), userOrderEntity.getTolongitude(), userOrderEntity.getTolatitude()
-        mStartLatlng.setLongitude(userOrderEntity.getFromlongitude());
-        mStartLatlng.setLatitude(userOrderEntity.getFromlatitude());
-        mEndLatlng.setLongitude(userOrderEntity.getTolongitude());
-        mEndLatlng.setLatitude(userOrderEntity.getTolatitude());
+        Log.v("system---lo-->",userOrderEntity.getFromlongitude()+"");
+        Log.v("system---La-->",userOrderEntity.getFromlatitude()+"");
+        Log.v("system---Lo222-->",userOrderEntity.getTolongitude()+"");
+        Log.v("system---La222-->",userOrderEntity.getTolatitude()+"");
+
     }
 
     @Override
     public void onCalculateRouteSuccess(int[] ids) {
         super.onCalculateRouteSuccess(ids);
         mAMapNavi.startNavi(NaviType.GPS);
+
+    }
+
+    @Override
+    public void onNaviViewLoaded() {
+        super.onNaviViewLoaded();
+        hideLoading();
     }
 }

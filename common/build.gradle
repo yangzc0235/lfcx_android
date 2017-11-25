@@ -51,4 +51,7 @@ dependencies {
     compile 'com.yanzhenjie:album:2.0.1'
     compile 'com.android.support:multidex:1.0.1'
 
+    compile 'com.zhy:okhttputils:2.6.2'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.2'
+
 }

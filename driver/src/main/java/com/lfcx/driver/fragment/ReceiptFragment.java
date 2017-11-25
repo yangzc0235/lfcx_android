@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lfcx.driver.R;
@@ -29,6 +31,10 @@ public class ReceiptFragment extends Fragment implements View.OnClickListener {
     private TextView mTvGrab;
     LocationTask mLocation;
     private TextView mTvTime;
+    private LinearLayout mLlOrder;
+    private RelativeLayout mLlWait;
+    private TextView mTvCancelOrderFirst;
+
 
 
 
@@ -43,6 +49,9 @@ public class ReceiptFragment extends Fragment implements View.OnClickListener {
         mEtEndAddress = (EditText) view.findViewById(R.id.et_end_address);
         mTvTime = (TextView) view.findViewById(R.id.tv_time);
         mTvGrab = (TextView) view.findViewById(R.id.tv_grab);
+        mLlOrder = (LinearLayout) view.findViewById(R.id.ll_order);
+        mLlWait = (RelativeLayout) view.findViewById(R.id.ll_wait);
+        mTvCancelOrderFirst = (TextView) view.findViewById(R.id.tv_cancel_order_first);
         return view;
     }
 
@@ -50,14 +59,13 @@ public class ReceiptFragment extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         init();
-
+        mLlOrder.setVisibility(View.GONE);
+        mLlWait.setVisibility(View.VISIBLE);
     }
 
     private void init() {
         mTvGrab.setOnClickListener(this);
-        mEtStartAddress.setText(DriverOrderActivity.userOrderEntity.getFromaddress());
-        mEtEndAddress.setText(DriverOrderActivity.userOrderEntity.getToaddress());
-
+        mTvCancelOrderFirst.setOnClickListener(this);
     }
 
 
@@ -65,6 +73,15 @@ public class ReceiptFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         if(v.getId()==R.id.tv_grab){
             EventBus.getDefault().post(new EventUtil("receipt"));
+        }else if(v.getId()==R.id.tv_cancel_order_first){
+            EventBus.getDefault().post(new EventUtil("collect_car"));
         }
+    }
+
+    public void setStartReciept(){
+        mLlOrder.setVisibility(View.VISIBLE);
+        mLlWait.setVisibility(View.GONE);
+        mEtStartAddress.setText(DriverOrderActivity.userOrderEntity.getFromaddress());
+        mEtEndAddress.setText(DriverOrderActivity.userOrderEntity.getToaddress());
     }
 }

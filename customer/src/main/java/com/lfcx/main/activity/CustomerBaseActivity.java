@@ -48,6 +48,7 @@ public class CustomerBaseActivity extends FragmentActivity {
            return;
         }
         mLoadDialog.hide();
+        mLoadDialog.dismiss();
     }
 
 

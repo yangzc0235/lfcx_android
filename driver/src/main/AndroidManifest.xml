@@ -204,7 +204,9 @@
         <activity android:name=".activity.CarTypeSelectActivity" />
         <activity android:name=".activity.DestinationActivity" />
         <activity android:name=".activity.DriverHeatMapActivity" />
-        <activity android:name=".activity.DriverGPSNaviActivity"></activity>
+        <activity android:name=".activity.DriverGPSNaviActivity" />
+        <activity android:name=".activity.CarNameSelectActivity"></activity>
+        <activity android:name=".activity.DriverForgotPwdActivity"></activity>
     </application>
 
 </manifest>

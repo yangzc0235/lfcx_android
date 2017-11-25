@@ -15,7 +15,9 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.lfcx.common.net.APIFactory;
 import com.lfcx.common.net.result.BaseResultBean;
+import com.lfcx.common.utils.SPUtils;
 import com.lfcx.driver.R;
+import com.lfcx.driver.consts.SPConstants;
 import com.lfcx.driver.maphelper.RouteTask;
 import com.lfcx.driver.net.api.DriverCarAPI;
 import com.lfcx.driver.util.DriveTimeSelectUtils;
@@ -46,7 +48,6 @@ public class DriverModeActivity extends DriverBaseActivity implements RouteTask.
     private DriverCarAPI mDriverCarAPI;
     private String toAddress, startTime, endTime;
     protected Handler mainHandler;
-
 
 
     @Override
@@ -107,7 +108,7 @@ public class DriverModeActivity extends DriverBaseActivity implements RouteTask.
                 Toast.makeText(this, "请选择目的地", Toast.LENGTH_SHORT).show();
                 return;
             }
-            requestSetOrderType("", "", toAddress, 1);
+            requestSetOrderType("0", "0", toAddress, 1);
         } else if (view.getId() == R.id.btn_book) {
             mTts.startSpeaking("只听预约订单", mTtsListener);
             real_container.setVisibility(View.GONE);
@@ -115,7 +116,15 @@ public class DriverModeActivity extends DriverBaseActivity implements RouteTask.
             btn_book.setBackgroundResource(R.drawable.btn_yellow_shape_bg);
             btn_current.setBackgroundResource(android.R.color.transparent);
             btn_all.setBackgroundResource(android.R.color.transparent);
-            //requestSetOrderType("", "", "", 2);
+            if (StringEmptyUtil.isEmpty(startTime)) {
+                Toast.makeText(this, "请选择开始时间", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (StringEmptyUtil.isEmpty(endTime)) {
+                Toast.makeText(this, "请选择结束时间", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            requestSetOrderType(startTime, endTime, "0", 0);
         } else if (view.getId() == R.id.btn_all) {
             mTts.startSpeaking("听全部订单", mTtsListener);
             real_container.setVisibility(View.VISIBLE);
@@ -138,8 +147,9 @@ public class DriverModeActivity extends DriverBaseActivity implements RouteTask.
                 Toast.makeText(this, "请选择结束时间", Toast.LENGTH_SHORT).show();
                 return;
             }
-
+            requestSetOrderType(startTime, endTime, toAddress, 0);
         } else if (view.getId() == R.id.tv_confirm) {
+            goToActivity(DriverMainActivity.class);
             finish();
         } else if (view.getId() == R.id.rl_toaddress_activity_driver_mode) {
             //选择目的地
@@ -161,7 +171,7 @@ public class DriverModeActivity extends DriverBaseActivity implements RouteTask.
                 @Override
                 public void selectTime(String startDate, String entDate) {
                     mEdtEndActivityDriverMode.setText(startDate);
-                    requestSetOrderType(startTime, endTime, toAddress, 0);
+
                 }
             });
             //显示我们的时间选择器
@@ -181,16 +191,17 @@ public class DriverModeActivity extends DriverBaseActivity implements RouteTask.
      * @param type      类型
      */
     private void requestSetOrderType(String begintime, String endtime, String toaddress, int type) {
-
+        showLoading();
         Map<String, Object> param = new HashMap<>();
         param.put("begintime", begintime);
         param.put("endtime", endtime);
         param.put("toaddress", toaddress);
         param.put("type", type);
-        param.put("pk_user", "752b85a9-6ca0-4467-93e8-5fbf9d1c2f90");
+        param.put("pk_user", SPUtils.getParam(this, SPConstants.KEY_DRIVER_PK_USER, ""));
         mDriverCarAPI.setOrderType(param).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                hideLoading();
                 if (null != response && !TextUtils.isEmpty(response.body())) {
                     BaseResultBean res = new Gson().fromJson(response.body(), BaseResultBean.class);
                     if ("0".equals(res.getCode())) {
@@ -206,7 +217,8 @@ public class DriverModeActivity extends DriverBaseActivity implements RouteTask.
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                showToast("注册失败！！");
+                showToast("设置失败！！");
+                hideLoading();
             }
         });
     }
@@ -228,15 +240,10 @@ public class DriverModeActivity extends DriverBaseActivity implements RouteTask.
 
         Log.v("system----address---->", RouteTask
                 .getInstance(getApplicationContext()).getEndPoint().address);
-
         Log.v("system---distance---->", distance + "");
         mTvToaddressActivityDriverMode.setText(RouteTask
                 .getInstance(getApplicationContext()).getEndPoint().address);
 
     }
-
-
-
-
 
 }

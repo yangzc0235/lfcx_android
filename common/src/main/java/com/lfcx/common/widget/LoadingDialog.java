@@ -3,12 +3,9 @@ package com.lfcx.common.widget;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.os.AsyncTask;
-import android.os.SystemClock;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -100,86 +97,12 @@ public class LoadingDialog extends Dialog {
 
 	public void hide() {
 		if (onDialogDismiss != null) {
-			this.setOnDismissListener(new OnDismissListener() {
+			onDialogDismiss.onDismiss();
+		}
 
-				@Override
-				public void onDismiss(DialogInterface dialog) {
-					onDialogDismiss.onDismiss();
-				}
-			});
-		}
-		dismissHUD();
 	}
-	public void dismissWithSuccess() {
-		tvMessage.setText("Success");
-		showSuccessImage();
-        
-		if (onDialogDismiss != null) {
-			this.setOnDismissListener(new OnDismissListener() {
-                
-				@Override
-				public void onDismiss(DialogInterface dialog) {
-					onDialogDismiss.onDismiss();
-				}
-			});
-		}
-		dismissHUD();
-	}
-    
-	public void dismissWithSuccess(String message) {
-		showSuccessImage();
-		if (message != null) {
-			tvMessage.setText(message);
-		} else {
-			tvMessage.setText("");
-		}
-        
-		if (onDialogDismiss != null) {
-			this.setOnDismissListener(new OnDismissListener() {
-                
-				@Override
-				public void onDismiss(DialogInterface dialog) {
-					onDialogDismiss.onDismiss();
-				}
-			});
-		}
-		dismissHUD();
-	}
-    
-	public void dismissWithFailure() {
-		showFailureImage();
-		tvMessage.setText("Failure");
-		if (onDialogDismiss != null) {
-			this.setOnDismissListener(new OnDismissListener() {
-                
-				@Override
-				public void onDismiss(DialogInterface dialog) {
-					onDialogDismiss.onDismiss();
-				}
-			});
-		}
-		dismissHUD();
-	}
-    
-	public void dismissWithFailure(String message) {
-		showFailureImage();
-		if (message != null) {
-			tvMessage.setText(message);
-		} else {
-			tvMessage.setText("");
-		}
-		if (onDialogDismiss != null) {
-			this.setOnDismissListener(new OnDismissListener() {
-                
-				@Override
-				public void onDismiss(DialogInterface dialog) {
-					onDialogDismiss.onDismiss();
-				}
-			});
-		}
-		dismissHUD();
-	}
-    
+
+
 	protected void showSuccessImage() {
 		ivProgressSpinner.setVisibility(View.GONE);
 		ivSuccess.setVisibility(View.VISIBLE);
@@ -197,24 +120,7 @@ public class LoadingDialog extends Dialog {
 		tvMessage.setText("Loading ...");
 	}
     
-	protected void dismissHUD() {
-		AsyncTask<String, Integer, Long> task = new AsyncTask<String, Integer, Long>() {
-            
-			@Override
-			protected Long doInBackground(String... params) {
-				SystemClock.sleep(500);
-				return null;
-			}
-            
-			@Override
-			protected void onPostExecute(Long result) {
-				super.onPostExecute(result);
-				dismiss();
-				reset();
-			}
-		};
-		task.execute();
-	}
+
     
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {

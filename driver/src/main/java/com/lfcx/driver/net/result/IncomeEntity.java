@@ -10,33 +10,36 @@ public class IncomeEntity implements Serializable {
 
 
     /**
-     * msg : 收到款项0.009000000000000001元
+     * msg : 收到款项0.01元
+     * income : 0.01
+     * tradetype : 1
      * code : 0
-     * orderCode : LF201711211807484483
+     * totalfee : 0.01
+     * pay : 0
+     * orderCode : LF201711251426523213
+     * fromtype : 1
      * actioncode : 1-401
-     * pk_user : 752b85a9-6ca0-4467-93e8-5fbf9d1c2f90
-     * pk_userorder : 42713d34-06fc-4fc2-ac80-5afbd09b3188
-     * pk_userdriver : e03399f3-8d34-4136-8cee-a99b9a738910
+     * type : 1
+     * pk_user : 22072dac-6e1b-4112-9578-0dcc75d9b218
+     * pk_userorder : 944f6c6d-a329-4b9c-9b93-96d8cf4440ad
+     * pk_userdriver : fe6e9fc4-cf6b-4dd4-b446-d6e5a0f10754
      * istruename : 0
      */
 
     private String msg;
+    private double income;
+    private int tradetype;
     private String code;
+    private double totalfee;
+    private int pay;
     private String orderCode;
+    private int fromtype;
     private String actioncode;
+    private int type;
     private String pk_user;
     private String pk_userorder;
     private String pk_userdriver;
     private int istruename;
-    private double totalfee;
-
-    public double getTotalfee() {
-        return totalfee;
-    }
-
-    public void setTotalfee(double totalfee) {
-        this.totalfee = totalfee;
-    }
 
     public String getMsg() {
         return msg;
@@ -44,6 +47,22 @@ public class IncomeEntity implements Serializable {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public double getIncome() {
+        return income;
+    }
+
+    public void setIncome(double income) {
+        this.income = income;
+    }
+
+    public int getTradetype() {
+        return tradetype;
+    }
+
+    public void setTradetype(int tradetype) {
+        this.tradetype = tradetype;
     }
 
     public String getCode() {
@@ -54,6 +73,22 @@ public class IncomeEntity implements Serializable {
         this.code = code;
     }
 
+    public double getTotalfee() {
+        return totalfee;
+    }
+
+    public void setTotalfee(double totalfee) {
+        this.totalfee = totalfee;
+    }
+
+    public int getPay() {
+        return pay;
+    }
+
+    public void setPay(int pay) {
+        this.pay = pay;
+    }
+
     public String getOrderCode() {
         return orderCode;
     }
@@ -62,12 +97,28 @@ public class IncomeEntity implements Serializable {
         this.orderCode = orderCode;
     }
 
+    public int getFromtype() {
+        return fromtype;
+    }
+
+    public void setFromtype(int fromtype) {
+        this.fromtype = fromtype;
+    }
+
     public String getActioncode() {
         return actioncode;
     }
 
     public void setActioncode(String actioncode) {
         this.actioncode = actioncode;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public String getPk_user() {

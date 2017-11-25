@@ -162,15 +162,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        android:background="@color/white">
+        android:background="@color/me_back">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/yellow"
             android:gravity="center"
-            android:layout_centerInParent="true"
-            android:textSize="28sp"
+            android:layout_marginTop="120dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="22sp"
             android:text="请稍后,用户正在支付"/>
+        <com.lfcx.common.widget.ProgressView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"/>
         <TextView
             android:id="@+id/tv_cancel_order_first"
             android:layout_width="match_parent"
@@ -179,6 +184,8 @@
             android:textSize="16sp"
             android:background="@drawable/btn_blue_bg"
             android:gravity="center"
+            android:layout_marginLeft="@dimen/common"
+            android:layout_marginRight="@dimen/common"
             android:layout_marginBottom="5dp"
             android:layout_alignParentBottom="true"
             android:text="重新收款"/>

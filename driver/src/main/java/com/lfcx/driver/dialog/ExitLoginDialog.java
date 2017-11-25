@@ -1,12 +1,14 @@
 package com.lfcx.driver.dialog;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
 import com.lfcx.driver.R;
+import com.lfcx.driver.activity.DriverLoginActivity;
 import com.lfcx.driver.activity.DriverUserActivity;
 import com.lfcx.driver.util.UserUtil;
 
@@ -60,6 +62,8 @@ public class ExitLoginDialog extends Dialog implements View.OnClickListener {
         } else if (i == R.id.tv_ok_dialog_check) {//退出登录
             UserUtil.cleanUserInfo(mContext);
             dismiss();
+            Intent intent=new Intent(mContext, DriverLoginActivity.class);
+            mContext.startActivity(intent);
             mContext.finish();
         }
     }

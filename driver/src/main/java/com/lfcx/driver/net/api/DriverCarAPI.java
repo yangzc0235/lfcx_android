@@ -3,13 +3,16 @@ package com.lfcx.driver.net.api;
 import com.lfcx.driver.net.NetConfig;
 import com.squareup.okhttp.RequestBody;
 
+import java.util.List;
 import java.util.Map;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 
 /**
@@ -35,6 +38,39 @@ public interface DriverCarAPI {
     Call<String> uploadPhoto(@PartMap Map<String, RequestBody> param);
 
 
+    /**
+     * 上传头像
+     */
+    @Multipart
+    @POST(NetConfig.UPLOAD_PHOTO)
+    Call<String> uploadMemberIcon(@Part List<MultipartBody.Part> partList);
+
+    /**
+     * 上传一张图片
+     *
+     * @param description
+     * @param imgs
+     * @return
+     */
+    @Multipart
+    @POST(NetConfig.UPLOAD_PHOTO)
+    Call<String> uploadImage(@Part("fileName") String description, @Part("file\"; filename=\"15901126195_cardfrontphoto.jpg\"") RequestBody imgs);
+
+    /**
+     * 上传三张图片
+     *
+     * @param description
+     * @param imgs
+     * @param imgs1
+     * @param imgs3
+     * @return
+     */
+    @Multipart
+    @POST(NetConfig.UPLOAD_PHOTO)
+    Call<String> uploadImage(@Part("fileName") String description,
+                             @Part("file\"; filename=\"15901126195_cardfrontphoto.jpg\"") RequestBody imgs,
+                             @Part("file\"; filename=\"15901126195_cardbackphoto.jpg\"") RequestBody imgs1,
+                             @Part("file\"; filename=\"15901126195_cardwithhandphoto.jpg\"") RequestBody imgs3);
 
     @FormUrlEncoded
     @POST(NetConfig.DRIVER_ACCEPT_ORDER)
@@ -67,6 +103,12 @@ public interface DriverCarAPI {
     Call<String> updateOrderForFinishTravel(@FieldMap Map<String, Object> param);
 
     @FormUrlEncoded
+    @POST(NetConfig.TRADE_RECORD)
+    Call<String> generateTradeRecord(@FieldMap Map<String, Object> param);
+
+    @FormUrlEncoded
     @POST(NetConfig.CONFIRM_CUSTOMER)
     Call<String> confirmCustomer(@FieldMap Map<String, Object> param);
+
+
 }

@@ -33,7 +33,7 @@
             android:paddingBottom="@dimen/vertical_padding"
             android:paddingTop="@dimen/vertical_padding"
             android:text="杨师傅车费"
-            android:textColor="@color/grey"
+            android:textColor="@color/lyt_color"
             android:textSize="16sp" />
 
         <TextView

@@ -136,6 +136,7 @@ public class DriverBaseActivity extends FragmentActivity implements AMapNaviList
             return;
         }
         mLoadDialog.hide();
+        mLoadDialog.dismiss();
     }
 
     //---------------------组件通信
@@ -486,6 +487,7 @@ public class DriverBaseActivity extends FragmentActivity implements AMapNaviList
     public void onNaviViewLoaded() {
         Log.d("wlx", "导航页面加载成功");
         Log.d("wlx", "请不要使用AMapNaviView.getMap().setOnMapLoadedListener();会overwrite导航SDK内部画线逻辑");
+
     }
 
     @Override

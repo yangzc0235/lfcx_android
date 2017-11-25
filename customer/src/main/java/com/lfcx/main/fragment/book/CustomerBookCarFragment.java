@@ -4,7 +4,6 @@ package com.lfcx.main.fragment.book;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,16 +20,18 @@ import com.lfcx.common.net.APIFactory;
 import com.lfcx.common.utils.LogUtils;
 import com.lfcx.common.utils.SPUtils;
 import com.lfcx.common.utils.ToastUtils;
-import com.lfcx.common.widget.LoadingDialog;
 import com.lfcx.main.R;
 import com.lfcx.main.R2;
 import com.lfcx.main.activity.CallCarSucessActivity;
 import com.lfcx.main.activity.DestinationActivity;
 import com.lfcx.main.consts.SPConstants;
+import com.lfcx.main.fragment.BaseFragment;
 import com.lfcx.main.maphelper.PositionEntity;
 import com.lfcx.main.maphelper.RouteTask;
 import com.lfcx.main.net.api.CarAPI;
 import com.lfcx.main.net.result.CallCarResult;
+import com.lfcx.main.util.Distance;
+import com.lfcx.main.util.EdtUtil;
 import com.lfcx.main.util.LocationUtils;
 import com.lfcx.main.util.TimeSelectUtils;
 
@@ -50,7 +51,7 @@ import retrofit2.Response;
  * date  : 2017/7/28
  * des   :  预约
  */
-public class CustomerBookCarFragment extends Fragment implements  RouteTask.OnRouteCalculateListener{
+public class CustomerBookCarFragment extends BaseFragment implements  RouteTask.OnRouteCalculateListener{
 
     public static final String TAG = CustomerBookCarFragment.class.getSimpleName();
 
@@ -97,7 +98,6 @@ public class CustomerBookCarFragment extends Fragment implements  RouteTask.OnRo
      */
     private boolean isSelectStartAdress = false;
 
-    private LoadingDialog mLoadDialog;
 
     /**
      * 车类型
@@ -164,7 +164,20 @@ public class CustomerBookCarFragment extends Fragment implements  RouteTask.OnRo
     public void onClickConfirm(View view) {
         //确认用车
         try {
-            bookCar();
+            if(EdtUtil.isEdtEmpty(etTime)){
+                Toast.makeText(getActivity(), "请选择时间", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(EdtUtil.isEdtEmpty(etStartAddress)){
+                Toast.makeText(getActivity(), "定位失败,请选择开始位置", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if(EdtUtil.isEdtEmpty(etEndAddress)){
+                Toast.makeText(getActivity(), "请选择目的地", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            bookCar(EdtUtil.getEdtText(etStartAddress),EdtUtil.getEdtText(etEndAddress));
         }catch (Exception e){
             Toast.makeText(getContext(), "请补全用车信息", Toast.LENGTH_SHORT).show();
         }
@@ -201,28 +214,31 @@ public class CustomerBookCarFragment extends Fragment implements  RouteTask.OnRo
         timeSelectUtils.dateTimePicKDialog();
     }
 
-    private void getCost(){
+    /**
+     * 获取到预估费用
+     * @param fromAddress
+     * @param toAddress
+     */
+    private void getCost(String fromAddress,String toAddress,double distance){
         showLoading();
         Map<String,Object> param = new HashMap<>();
-        param.put("fromaddress",LocationUtils.getLocation().address);
-        param.put("toaddress",RouteTask
-                .getInstance( getActivity().getApplicationContext()).getEndPoint().address);
+        param.put("fromaddress",fromAddress);
+        param.put("toaddress",toAddress);
         param.put("fromlongitude",LocationUtils.getLocation().longitude);
         param.put("fromlatitude",LocationUtils.getLocation().latitue);
-
         param.put("tolongitude",RouteTask
                 .getInstance(  getActivity().getApplicationContext()).getEndPoint().longitude);
         param.put("tolatitude",RouteTask
                 .getInstance(  getActivity().getApplicationContext()).getEndPoint().latitue);
         param.put("styletype",styletype);
         param.put("datetime",etTime.getText().toString());
-
+        param.put("distance",distance);
         carAPI.getAfterCost(param).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                hideLoading();
                 try{
                     String cost = response.body();
-                    Toast.makeText(getActivity().getApplicationContext(), cost, Toast.LENGTH_SHORT).show();
                     tvGussCost.setText(String.format("%.2f元", Float.valueOf(cost)));
                 }catch (Exception e){
                     LogUtils.e(TAG,e.getMessage());
@@ -237,59 +253,67 @@ public class CustomerBookCarFragment extends Fragment implements  RouteTask.OnRo
             }
         });
     }
-    public void bookCar(){
-        Map<String,Object> param = new HashMap<>();
-        param.put("pk_user", SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_PK_USER,""));
-        param.put("fromaddress",LocationUtils.getLocation().address);
-        param.put("toaddress",RouteTask
-                .getInstance( getActivity().getApplicationContext()).getEndPoint().address);
-        param.put("fromlongitude",LocationUtils.getLocation().longitude);
-        param.put("fromlatitude",LocationUtils.getLocation().latitue);
-
-        param.put("tolongitude",RouteTask
-                .getInstance(  getActivity().getApplicationContext()).getEndPoint().longitude);
-        param.put("tolatitude",RouteTask
-                .getInstance(  getActivity().getApplicationContext()).getEndPoint().latitue);
-        param.put("title","用户123预约您");
-        param.put("content","用户123预约您");
-        param.put("reservatedate","2017-10-22 20:00:00");
-        param.put("ridertel", SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE,""));
-        param.put("carstyletype",styletype);//ordertype 0 顺风车 1 专车 2 专车（预约），3专车（包车）4 专车（接机）5 专车（送机）
-        param.put("ordertype",2);//ordertype 0 顺风车 1 专车 2 专车（预约），3专车（包车）4 专车（接机）5 专车（送机）
-        param.put("status",0);// 0 待付款 1 订单完成 2 订单取消
+    /**
+     * 专车预约下单
+     * @param fromAddress
+     * @param toAddress
+     */
+    public void bookCar(String fromAddress,String toAddress) {
+        showLoading();
+        Map<String, Object> param = new HashMap<>();
+        param.put("pk_user", SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_PK_USER, ""));
+        param.put("fromaddress", fromAddress);
+        param.put("toaddress", toAddress);
+        param.put("fromlongitude", LocationUtils.getLocation().longitude);
+        param.put("fromlatitude", LocationUtils.getLocation().latitue);
+        param.put("tolongitude", RouteTask
+                .getInstance(getActivity().getApplicationContext()).getEndPoint().longitude);
+        param.put("tolatitude", RouteTask
+                .getInstance(getActivity().getApplicationContext()).getEndPoint().latitue);
+        param.put("title", "用户"+SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE, "")+"预约您");
+        param.put("content", "用户"+SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE, "")+"预约您");
+        param.put("reservatedate", "");
+        param.put("ridertel", SPUtils.getParam(getActivity(), SPConstants.KEY_CUSTOMER_MOBILE, ""));
+        param.put("ordertype", 2);//专车-预约
+        param.put("status", 0);// 0 待付款 1 订单完成 2 订单取消
+        param.put("isprivatecar", 0);//专车
+        param.put("carstyletype", styletype);//类型:舒适型
+        Log.v("fromlatitude----------",LocationUtils.getLocation().latitue+"");
+        Log.v("fromlongitude----------",LocationUtils.getLocation().longitude+"");
+        Log.v("tolatitude----------",RouteTask
+                .getInstance(getActivity()).getEndPoint().latitue+"");
+        Log.v("tolongitude----------",RouteTask
+                .getInstance(getActivity()).getEndPoint().longitude+"");
         carAPI.generateOrder(param).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                try{
-                    CallCarResult result = new Gson().fromJson(response.body(),CallCarResult.class);
-
-                    Toast.makeText(getActivity().getApplicationContext(), response.body(), Toast.LENGTH_SHORT).show();
+                hideLoading();
+                Log.v("system---下单信息-->",response.body()+"");
+                try {
+                    CallCarResult result = new Gson().fromJson(response.body(), CallCarResult.class);
                     //下单成功
-                    if("0".equals(result.getCode())){
+                    if ("0".equals(result.getCode())) {
+//                        pk_userOder = result.getPk_userOder();
                         Intent intent = new Intent(getActivity(), CallCarSucessActivity.class);
                         startActivity(intent);
-                    }else {
-                        ToastUtils.shortToast(getActivity(),result.getMsg());
+                        Toast.makeText(getContext(), result.getMsg(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        ToastUtils.shortToast(getActivity(), result.getMsg());
                     }
-                }catch (Exception e){
-                    LogUtils.e(TAG,e.getMessage());
+                } catch (Exception e) {
+
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-
+                Toast.makeText(getActivity(), "叫车失败", Toast.LENGTH_SHORT).show();
+                hideLoading();
             }
         });
     }
-
     @Override
     public void onRouteCalculate(float cost, float distance, int duration) {
-
-        Log.v("system----address---->",RouteTask
-                .getInstance(getActivity().getApplicationContext()).getEndPoint().address);
-
-        Log.v("system---distance---->",distance+"");
         if(clickType == 2){
             etEndAddress.setText(RouteTask
                 .getInstance(getActivity().getApplicationContext()).getEndPoint().address);
@@ -305,27 +329,26 @@ public class CustomerBookCarFragment extends Fragment implements  RouteTask.OnRo
      * 是否需要去刷新估算价格接口
      */
     private void shouldGetCost(){
-        //当出发，和目的地都选择完毕，去估算价格
-        if(!TextUtils.isEmpty(etStartAddress.getText().toString())&&
-                !TextUtils.isEmpty(etEndAddress.getText().toString())){
-            getCost();
-        }
-
-    }
-
-    public void showLoading(){
-        if(null == mLoadDialog){
-            mLoadDialog = new LoadingDialog(getActivity());
-        }
-        mLoadDialog.show();
-    }
-
-    public void hideLoading(){
-        if(null == mLoadDialog){
+        if(EdtUtil.isEdtEmpty(etTime)){
+            Toast.makeText(getActivity(), "请选择时间", Toast.LENGTH_SHORT).show();
             return;
         }
-        mLoadDialog.hide();
+        if(EdtUtil.isEdtEmpty(etStartAddress)){
+            Toast.makeText(getActivity(), "定位失败,请选择开始位置", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(EdtUtil.isEdtEmpty(etEndAddress)){
+            Toast.makeText(getActivity(), "请选择目的地", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        double distance = Distance.getDistance(LocationUtils.getLocation().longitude, LocationUtils.getLocation().latitue, RouteTask
+                .getInstance(  getActivity().getApplicationContext()).getEndPoint().longitude, RouteTask
+                .getInstance(  getActivity().getApplicationContext()).getEndPoint().latitue)/1000;
+        getCost(EdtUtil.getEdtText(etStartAddress),EdtUtil.getEdtText(etEndAddress),distance);
+
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();

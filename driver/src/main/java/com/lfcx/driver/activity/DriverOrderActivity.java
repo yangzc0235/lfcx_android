@@ -1,6 +1,5 @@
 package com.lfcx.driver.activity;
 
-import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -51,6 +50,7 @@ import com.lfcx.driver.net.result.StartTravelEntity;
 import com.lfcx.driver.net.result.UserOrderEntity;
 import com.lfcx.driver.util.Distance;
 import com.lfcx.driver.util.DriverLocationUtils;
+import com.lfcx.driver.util.LocationUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -88,6 +88,8 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
     private String mBasetravelrecord;
     ConfirmBillFragment confirmBillFragment;
     public static IncomeEntity incomeEntity;
+    private long mStartTime;
+    private long mEndTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +110,7 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
         mIvBack = (ImageView) findViewById(R.id.iv_back);
         mTitleBar = (TextView) findViewById(R.id.title_bar);
         mIvBack.setVisibility(View.VISIBLE);
-        mTitleBar.setText("订单详情");
+        mTitleBar.setText("正在接单");
         receiptFragment = new ReceiptFragment();
         Fragment orderTitleFragment = new OrderTitleFragment();
         mOrderPickFragment = new OrderPickFragment();
@@ -127,15 +129,7 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
                 finish();
             }
         });
-        Intent intent = getIntent();
-        Bundle bundleExtra = intent.getBundleExtra(BUNDLE_KEY);
-        if (bundleExtra != null) {
-            String orderInfo = bundleExtra.getString("orderInfo");
-            Gson gson = new Gson();
-            userOrderEntity = gson.fromJson(orderInfo, UserOrderEntity.class);
-            double distance = Distance.getDistance(userOrderEntity.getFromlongitude(), userOrderEntity.getFromlatitude(), userOrderEntity.getTolongitude(), userOrderEntity.getTolatitude());
-            mTts.startSpeaking("实时从" + userOrderEntity.getFromaddress() + "到" + userOrderEntity.getToaddress() + "订单," + "距您" + distance / 1000 + "公里", mTtsListener);
-        }
+
     }
 
     private void initLocation() {
@@ -222,12 +216,16 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
                 requestStartTravel(mBasetravelrecord);
             } else if (event.getMsg().equals("arrive_point")) {
                 Log.v("system------------>", "结束行程");
-                double distance = Distance.getDistance(userOrderEntity.getFromlongitude(), userOrderEntity.getFromlatitude(), userOrderEntity.getTolongitude(), userOrderEntity.getTolatitude());
-                requestFinishTravel(mBasetravelrecord, userOrderEntity.getToaddress(), userOrderEntity.getTolongitude(), userOrderEntity.getTolatitude(), distance / 1000, "50");
+                mEndTime = System.currentTimeMillis();
+                double distance = Distance.getDistance(userOrderEntity.getFromlongitude(), userOrderEntity.getFromlatitude(), LocationUtils.getLocation().getLongitude(), LocationUtils.getLocation().getLatitude());
+                Log.v("system---time--->", (mEndTime - mStartTime) + "");
+                Log.v("system---实际时间--->", String.valueOf((mEndTime - mStartTime) / 60000) + "");
+                Log.v("system--- distance--->", distance / 1000 + "");
+                requestFinishTravel(mBasetravelrecord, userOrderEntity.getToaddress(), userOrderEntity.getTolongitude(), userOrderEntity.getTolatitude(), distance / 1000, (mEndTime - mStartTime) / 60000 + "");
             } else if (event.getMsg().equals("collect_car")) {
                 finish();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(this, "发送消息异常", Toast.LENGTH_SHORT).show();
         }
     }
@@ -253,10 +251,22 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
             incomeEntity = new Gson().fromJson(event.getValue(), IncomeEntity.class);
             transaction.replace(R.id.main_container, orderFinishFragment);
             transaction.commit();
+            //生成交易记录
+            requestRradeRecord(incomeEntity.getPk_userorder(),incomeEntity.getPk_user(),incomeEntity.getIncome(),incomeEntity.getPay(),incomeEntity.getType(),incomeEntity.getTradetype());
+
         } else if (event.getKey().equals("begain_travel")) {
             Log.v("system---------->", "收到乘客已经确认上车");
             if (mOrderPickFragment != null) {
                 mOrderPickFragment.setButtonTextFirst();
+            }
+        }else if (event.getKey().equals("startReceipt")) {
+            Gson gson = new Gson();
+            userOrderEntity = gson.fromJson(event.getValue(), UserOrderEntity.class);
+            double distance = Distance.getDistance(userOrderEntity.getFromlongitude(), userOrderEntity.getFromlatitude(), userOrderEntity.getTolongitude(), userOrderEntity.getTolatitude());
+//            int time= (int) (distance/(60*1000));
+            mTts.startSpeaking("实时从" + userOrderEntity.getFromaddress() + "到" + userOrderEntity.getToaddress() + "订单," + "距您" + distance / 1000+"公里" , mTtsListener);
+            if (receiptFragment!=null) {
+                receiptFragment.setStartReciept();
             }
         }
     }
@@ -281,7 +291,6 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
                 if (null != response && !TextUtils.isEmpty(response.body())) {
                     BaseResultBean res = new Gson().fromJson(response.body(), BaseResultBean.class);
                     if ("0".equals(res.getCode())) {
-                        showToast(res.getMsg());
                         Log.v("system-------->", res.getMsg());
                     } else {
                         showToast(res.getMsg());
@@ -312,9 +321,11 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
         Log.v("system--pk_userorder->", pk_userorder);
         Log.v("system--pk_userdriver->", pk_userdriver);
         Log.v("system--pk_user->", pk_user);
+        showLoading();
         mDriverCarAPI.acceptOrder(param).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                hideLoading();
                 if (null != response && !TextUtils.isEmpty(response.body())) {
                     Log.v("system---接单返回的信息--->", response.body());
                     try {
@@ -322,6 +333,7 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
                         if ("0".equals(res.getCode())) {
                             showToast(res.getMsg());
                             mTitleBar.setText("接乘客");
+                            mTts.startSpeaking(res.getMsg() , mTtsListener);
                             FragmentTransaction transaction = fragmentManager.beginTransaction();
                             if (receiptFragment != null) {
                                 transaction.hide(receiptFragment);
@@ -341,6 +353,7 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 showToast("接单失败！！");
+                hideLoading();
             }
         });
     }
@@ -348,6 +361,7 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
 
     /**
      * 确认用户上车
+     *
      * @param pk_userOder
      * @param pk_userDriver
      * @param pk_user
@@ -367,15 +381,18 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
         param.put("fromlatitude", fromlatitude);
         param.put("aboutdistance", aboutdistance);
         param.put("aboutminutes", aboutminutes);
+        showLoading();
         mDriverCarAPI.confirmCustomer(param).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                hideLoading();
                 if (null != response && !TextUtils.isEmpty(response.body())) {
                     StartTravelEntity res = new Gson().fromJson(response.body(), StartTravelEntity.class);
                     Log.v("system---开始行程返回信息--->", response.body());
                     if ("0".equals(res.getCode())) {
                         mBasetravelrecord = res.getPk_basetravelrecord();
                         showToast(res.getMsg());
+                        mTts.startSpeaking(res.getMsg() , mTtsListener);
                         Log.v("system-------->", "司机确认用户上车,等待用户确认上车,用户确认上车后,司机就能开始行程");
                         //成功之后显示去接乘车的界面
                         mTitleBar.setText("乘客已经上车");
@@ -389,26 +406,32 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 showToast("请求失败！！");
+                hideLoading();
             }
         });
     }
 
     /**
      * 开始行程
+     *
      * @param pk_basetravelrecord
      */
     private void requestStartTravel(String pk_basetravelrecord) {
         Map<String, Object> param = new HashMap<>();
         param.put("pk_basetravelrecord", pk_basetravelrecord);
+        showLoading();
         mDriverCarAPI.startTravel(param).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                hideLoading();
                 if (null != response && !TextUtils.isEmpty(response.body())) {
                     StartTravelEntity res = new Gson().fromJson(response.body(), StartTravelEntity.class);
                     Log.v("system---开始行程返回信息--->", response.body());
                     if ("0".equals(res.getCode())) {
+                        mStartTime = System.currentTimeMillis();
                         mBasetravelrecord = res.getPk_basetravelrecord();
                         showToast(res.getMsg());
+                        mTts.startSpeaking(res.getMsg() , mTtsListener);
                         if (mOrderPickFragment != null) {
                             mOrderPickFragment.setButtonText();
                         }
@@ -425,6 +448,7 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 showToast("请求失败！！");
+                hideLoading();
             }
         });
     }
@@ -454,13 +478,16 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
         Log.v("system----tolongitude->", tolongitude + "");
         Log.v("system----distance->", traveldistance + "");
         Log.v("system----minutes->", travelminutes + "");
+        showLoading();
         mDriverCarAPI.finishTravel(param).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                hideLoading();
                 if (null != response && !TextUtils.isEmpty(response.body())) {
                     BaseResultBean res = new Gson().fromJson(response.body(), BaseResultBean.class);
                     if ("0".equals(res.getCode())) {
                         showToast(res.getMsg());
+                        mTts.startSpeaking(res.getMsg() , mTtsListener);
                         Log.v("system---结束行程后的信息---->", response.body());
                         FragmentTransaction transaction = fragmentManager.beginTransaction();
                         confirmBillFragment = new ConfirmBillFragment();
@@ -477,6 +504,7 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 showToast("结束行程失败");
+                hideLoading();
             }
         });
     }
@@ -501,10 +529,11 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
         param.put("roadbridgefee", roadbridgefee);
         param.put("parkingfee", parkingfee);
         Log.v("system--pk_userorder->", pk_userorder);
-
+        showLoading();
         mDriverCarAPI.updateOrderForFinishTravel(param).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                hideLoading();
                 if (null != response && !TextUtils.isEmpty(response.body())) {
                     Log.v("system---所有费用--->", response.body());
                     try {
@@ -515,7 +544,7 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
                             if (confirmBillFragment != null) {
                                 confirmBillFragment.hide();
                             }
-                            Toast.makeText(DriverOrderActivity.this, "请稍后,用户正在支付", Toast.LENGTH_SHORT).show();
+                            mTts.startSpeaking("请稍后,用户正在支付" , mTtsListener);
                         } else {
                             showToast(res.getMsg());
                         }
@@ -528,10 +557,58 @@ public class DriverOrderActivity extends DriverBaseActivity implements AMap.OnMa
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 showToast("请求失败！！");
+                hideLoading();
             }
         });
     }
 
+    /**
+     * 生成交易记录
+     * @param pk_userorder
+     * @param pk_user
+     * @param income
+     * @param pay
+     * @param type
+     * @param tradetype
+     */
+    private void requestRradeRecord(String pk_userorder, String pk_user, double income, int pay, int type, int tradetype) {
+        Map<String, Object> param = new HashMap<>();
+        param.put("pk_userorder", pk_userorder);
+        param.put("pk_user", pk_user);
+        param.put("income", income);
+        param.put("pay", pay);
+        param.put("type", type);
+        param.put("fromtype", "1");
+        param.put("mobile", SPUtils.getParam(this, SPConstants.DRIVER_MOBILE, ""));
+        param.put("tradetype", tradetype);
+        showLoading();
+        mDriverCarAPI.generateTradeRecord(param).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                hideLoading();
+                if (null != response && !TextUtils.isEmpty(response.body())) {
+                    Log.v("system---所有费用--->", response.body());
+                    try {
+                        BaseResultBean res = new Gson().fromJson(response.body(), BaseResultBean.class);
+                        if ("0".equals(res.getCode())) {
+                            showToast(res.getMsg());
+                            Log.v("system---->", res.getMsg());
+                        } else {
+                            showToast(res.getMsg());
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                showToast("生成交易记录失败！！");
+                hideLoading();
+            }
+        });
+    }
 
     @Override
     public void onRegecodeGet(PositionEntity entity) {

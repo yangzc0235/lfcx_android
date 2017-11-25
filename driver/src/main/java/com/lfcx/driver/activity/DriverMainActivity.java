@@ -15,16 +15,11 @@ import com.lfcx.common.net.APIFactory;
 import com.lfcx.common.utils.SPUtils;
 import com.lfcx.driver.R;
 import com.lfcx.driver.consts.SPConstants;
-import com.lfcx.driver.event.ReceiptEvent;
 import com.lfcx.driver.net.api.DriverCarAPI;
 import com.lfcx.driver.net.result.CountInfoEntity;
 import com.lfcx.driver.service.LocationService;
 import com.lfcx.driver.util.ExampleUtil;
 import com.lfcx.driver.util.UserUtil;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,7 +51,6 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EventBus.getDefault().register(this);
         setContentView(R.layout.d_activity_main);
         mIvBack = (ImageView) findViewById(R.id.iv_back);
         mIvUser = (ImageView) findViewById(R.id.iv_user);
@@ -91,9 +85,7 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
         mBtnStartWork.setText("点击出车");
         mTitleBar.setText("雷风司机");
         mDIvMessage.setVisibility(View.VISIBLE);
-//        JPushInterface.setAlias(getApplicationContext(), 1, (String) SPUtils.getParam(this, SPConstants.DRIVER_MOBILE, ""));
-//        JPushInterface.resumePush(getApplicationContext());
-        setAlias( (String) SPUtils.getParam(this, SPConstants.DRIVER_MOBILE, ""));
+        setAlias((String) SPUtils.getParam(this, SPConstants.DRIVER_MOBILE, ""));
         String appKey = ExampleUtil.getAppKey(getApplicationContext());
         String packageName = getPackageName();
         String deviceId = ExampleUtil.getDeviceId(getApplicationContext());
@@ -105,22 +97,22 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
         Log.v("system---udid--->", udid);
         Log.v("system---rid--->", rid);
         String param = (String) SPUtils.getParam(this, SPConstants.KEY_DRIVER_PK_USER, "");
-        if(param!=null){
+        if (param != null) {
             getCurrentCountInfo(param);
         }
     }
 
     /**
      * 设置别名
+     *
      * @param alias
      */
     private void setAlias(String alias) {
         if (TextUtils.isEmpty(alias)) {
-//            Toast.makeText(this, "别名为空", Toast.LENGTH_SHORT).show();
+            Log.v("system------>", "别名设置失败");
             return;
         }
         if (!ExampleUtil.isValidTagAndAlias(alias)) {
-//            Toast.makeText(this, "别名为空", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -131,7 +123,7 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
     private final TagAliasCallback mAliasCallback = new TagAliasCallback() {
         @Override
         public void gotResult(int code, String alias, Set<String> tags) {
-            String logs ;
+            String logs;
             switch (code) {
                 case 0:
                     logs = "Set tag and alias success";
@@ -165,6 +157,7 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
             }
         }
     };
+
     /**
      * 判断是否首次进入应用
      */
@@ -177,7 +170,6 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -195,40 +187,36 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
         }
     }
 
-    //在ui线程执行
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(ReceiptEvent event) {
-        if (event.getKey().equals("startReceipt") && mBtnStartWork.getText().toString().trim().equals("正在接单中")) {
-            Bundle bundle = new Bundle();
-            bundle.putString("orderInfo", event.getValue());
-            goToActivity(DriverOrderActivity.class, bundle);
-        }
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_start_work:
+
+                //开始接单
                 if (!UserUtil.isLogin(this)) {
                     goToActivity(DriverLoginActivity.class);
                 } else {
-                    if (mBtnStartWork.getText().toString().trim().equals("点击出车")) {
-                        mBtnStartWork.setText("正在接单中");
-                    }
+                    mTts.startSpeaking("您已开始接单,请注意查收订单", mTtsListener);
+                    goToActivity(DriverOrderActivity.class);
                 }
                 break;
 
             case R.id.d_mode_select:
+                //模式选择
                 if (!UserUtil.isLogin(this)) {
                     goToActivity(DriverLoginActivity.class);
 
                 } else {
-                    goToActivity(DriverModeActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("setmode", "setmode");
+                    goToActivity(DriverHeatMapActivity.class, bundle);
+
                 }
 
                 break;
 
             case R.id.d_iv_message:
+                //消息
                 if (!UserUtil.isLogin(this)) {
                     goToActivity(DriverLoginActivity.class);
 
@@ -238,6 +226,7 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
 
                 break;
             case R.id.iv_user:
+                //个人中心
                 if (!UserUtil.isLogin(DriverMainActivity.this)) {
                     goToActivity(DriverLoginActivity.class);
 
@@ -247,12 +236,14 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
                 break;
 
             case R.id.tv_rewards:
+
+                //奖励
                 if (!UserUtil.isLogin(DriverMainActivity.this)) {
                     goToActivity(DriverLoginActivity.class);
 
                 } else {
                     //奖励
-                    goToActivity(DriverGPSNaviActivity.class);
+//                    goToActivity(DriverGPSNaviActivity.class);
                 }
                 break;
 
@@ -270,6 +261,7 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
 
     /**
      * 获取司机接单信息
+     *
      * @param pk_userdriver
      */
     private void getCurrentCountInfo(String pk_userdriver) {
@@ -284,8 +276,8 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
                     try {
                         CountInfoEntity res = new Gson().fromJson(response.body(), CountInfoEntity.class);
                         if ("0".equals(res.getCode())) {
-                            mTvTodayRecepiet.setText(res.getAcceptCount()+"");
-                            mTvTodayIncome.setText(res.getInCome()+"");
+                            mTvTodayRecepiet.setText(res.getAcceptCount() + "");
+                            mTvTodayIncome.setText(res.getInCome() + "");
                         } else {
                             showToast(res.getMsg());
                         }
