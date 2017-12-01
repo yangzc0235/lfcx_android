@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_wait_payment"
+        android:layout_width="match_parent"
+        android:background="@drawable/bt_check_white_corner"
+        android:layout_marginLeft="@dimen/common"
+        android:layout_marginRight="@dimen/common"
+        android:layout_marginTop="@dimen/common"
+        android:layout_height="140dp">
+
+        <LinearLayout
+            android:id="@+id/ll_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_car_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/common_one_five"
+                android:layout_marginLeft="@dimen/common_one_six"
+                android:gravity="left"
+                android:text="顺风车"
+                android:textColor="@color/login_name"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/tv_order_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_one_five"
+                android:layout_marginLeft="@dimen/common_one_six"
+                android:gravity="center"
+                android:text="已完成"
+                android:layout_marginRight="16dp"
+                android:textColor="@color/name_pwd"
+                android:textSize="15sp" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_one"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="@dimen/common"
+            android:text="2017-11-29 10:30"
+            android:drawableLeft="@drawable/icon_time"
+            android:gravity="center"
+            android:textColor="@color/lyt_color"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_from_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_one_six"
+            android:layout_marginTop="@dimen/common"
+            android:gravity="center"
+            android:drawableLeft="@drawable/icon_spoint"
+            android:layout_below="@+id/tv_time"
+            android:text="京城大厦"
+            android:drawablePadding="5dp"
+            android:textColor="@color/lyt_color"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_to_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_one_six"
+            android:layout_marginTop="@dimen/common"
+            android:gravity="center"
+            android:drawableLeft="@drawable/icon_epoint"
+            android:layout_below="@+id/tv_from_address"
+            android:text="北京西站"
+            android:drawablePadding="5dp"
+            android:textColor="@color/lyt_color"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -16,12 +16,18 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lfcx.common.net.APIFactory;
+import com.lfcx.common.utils.SPUtils;
 import com.lfcx.main.R;
+import com.lfcx.main.activity.CustomerBaseActivity;
+import com.lfcx.main.consts.SPConstants;
+import com.lfcx.main.event.EventUtil;
 import com.lfcx.main.net.api.UserAPI;
 import com.lfcx.main.net.result.PayEntity;
 import com.lfcx.main.net.result.PayResultEntity;
 import com.lfcx.main.pay.alipay.Alipay;
 import com.lfcx.main.pay.weixin.WXPay;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,7 +55,7 @@ public class PayDialog extends Dialog implements View.OnClickListener, RadioGrou
     private UserAPI userAPI;
     private boolean mChecked=true;
     private PayEntity mPayEntity;
-
+    private String mWaitpay;
     public PayDialog(Context context) {
         super(context);
         mContext = context;
@@ -65,6 +71,19 @@ public class PayDialog extends Dialog implements View.OnClickListener, RadioGrou
         super(context, theme);
         mContext = context;
         mPayEntity=payEntity;
+    }
+
+    /**
+     * 自定义主题及布局的构造方法
+     *
+     * @param context
+     * @param theme
+     */
+    public PayDialog(CustomerBaseActivity context, int theme, PayEntity payEntity, String type) {
+        super(context, theme);
+        mContext = context;
+        mPayEntity=payEntity;
+        mWaitpay=type;
     }
 
 
@@ -181,8 +200,22 @@ public class PayDialog extends Dialog implements View.OnClickListener, RadioGrou
         new Alipay(mContext, pay_param, new Alipay.AlipayResultCallBack() {
             @Override
             public void onSuccess() {
-                Toast.makeText(mContext, "支付成功", Toast.LENGTH_SHORT).show();
-                dismiss();
+//                Toast.makeText(mContext, "支付成功", Toast.LENGTH_SHORT).show();
+                try {
+                    SPUtils.setParam(mContext, SPConstants.KEY_SUCCESS_CAR, "");
+                    SPUtils.setParam(mContext, SPConstants.KEY_CAR_CODE, "");
+                    SPUtils.setParam(mContext, SPConstants.KEY_CAR_TYPE, "");
+                    SPUtils.setParam(mContext, SPConstants.KEY_DRIVER_NAME, "");
+                    SPUtils.setParam(mContext, SPConstants.KEY_USER_ORDER, "");
+                    SPUtils.setParam(mContext, SPConstants.KEY_DRIVER_MOBILE, "");
+                    Toast.makeText(mContext, "您已经付款成功,感谢您下次乘坐雷风专车", Toast.LENGTH_SHORT).show();
+                    EventBus.getDefault().post(new EventUtil("close_carsuccess"));
+                    dismiss();
+
+                }catch (Exception e){
+
+                }
+
             }
 
             @Override
@@ -231,8 +264,20 @@ public class PayDialog extends Dialog implements View.OnClickListener, RadioGrou
         WXPay.getInstance().doPay(pay_param, new WXPay.WXPayResultCallBack() {
             @Override
             public void onSuccess() {
-                Toast.makeText(mContext, "支付成功", Toast.LENGTH_SHORT).show();
-                dismiss();
+//                Toast.makeText(mContext, "支付成功", Toast.LENGTH_SHORT).show();
+                try {
+                    SPUtils.setParam(mContext, SPConstants.KEY_SUCCESS_CAR, "");
+                    SPUtils.setParam(mContext, SPConstants.KEY_CAR_CODE, "");
+                    SPUtils.setParam(mContext, SPConstants.KEY_CAR_TYPE, "");
+                    SPUtils.setParam(mContext, SPConstants.KEY_DRIVER_NAME, "");
+                    SPUtils.setParam(mContext, SPConstants.KEY_USER_ORDER, "");
+                    SPUtils.setParam(mContext, SPConstants.KEY_DRIVER_MOBILE, "");
+                    Toast.makeText(mContext, "您已经付款成功,感谢您下次乘坐雷风专车", Toast.LENGTH_SHORT).show();
+                    EventBus.getDefault().post(new EventUtil("close_carsuccess"));
+                    dismiss();
+                }catch (Exception e){
+
+                }
             }
 
             @Override

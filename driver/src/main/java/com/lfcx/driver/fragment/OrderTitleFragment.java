@@ -1,6 +1,5 @@
 package com.lfcx.driver.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,8 +10,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lfcx.driver.R;
-import com.lfcx.driver.activity.DriverGPSNaviActivity;
 import com.lfcx.driver.activity.DriverOrderActivity;
+import com.lfcx.driver.event.EventUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  *
@@ -52,8 +53,7 @@ public class OrderTitleFragment extends Fragment {
             mLlStartNavigation.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(getContext(), DriverGPSNaviActivity.class);
-                    startActivity(intent);
+                    EventBus.getDefault().post(new EventUtil("start_gps"));
                 }
             });
         }catch (Exception e){

@@ -19,32 +19,55 @@ public interface CarAPI {
 
     @FormUrlEncoded
     @POST(NetConfig.GENERATE_ORDER)
-    Call<String> generateOrder(@FieldMap Map<String,Object> param);
+    Call<String> generateOrder(@FieldMap Map<String, Object> param);
 
     /**
      * 立即估算价格
+     *
      * @param param
      * @return
      */
     @FormUrlEncoded
     @POST(NetConfig.GUSS_NOW_COST)
-    Call<String> getNowCost(@FieldMap Map<String,Object> param);
+    Call<String> getNowCost(@FieldMap Map<String, Object> param);
 
     /**
-     *   预约估算价格
+     * 预约估算价格
+     *
      * @param param
      * @return
      */
     @FormUrlEncoded
     @POST(NetConfig.GUSS_AFTER_COST)
-    Call<String> getAfterCost(@FieldMap Map<String,Object> param);
+    Call<String> getAfterCost(@FieldMap Map<String, Object> param);
 
     /**
-     *   包车估算价格
+     * 包车估算价格
+     *
      * @param param
      * @return
      */
     @FormUrlEncoded
     @POST(NetConfig.GUSS_PRIVATE_COST)
-    Call<String> getPrivateCost(@FieldMap Map<String,Object> param);
+    Call<String> getPrivateCost(@FieldMap Map<String, Object> param);
+
+    /**
+     * 获取附近车辆信息
+     *
+     * @param param
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(NetConfig.GET_CAR_INFO)
+    Call<String> getCarInfo(@FieldMap Map<String, Object> param);
+
+    /**
+     * 获取订单列表
+     *
+     * @param param
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(NetConfig.GET_ORDER_INFO)
+    Call<String> getOrderInfo(@FieldMap Map<String, Object> param);
 }

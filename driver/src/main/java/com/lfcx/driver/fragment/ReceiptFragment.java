@@ -1,6 +1,8 @@
 package com.lfcx.driver.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lfcx.driver.R;
@@ -31,11 +31,22 @@ public class ReceiptFragment extends Fragment implements View.OnClickListener {
     private TextView mTvGrab;
     LocationTask mLocation;
     private TextView mTvTime;
-    private LinearLayout mLlOrder;
-    private RelativeLayout mLlWait;
-    private TextView mTvCancelOrderFirst;
-
-
+    private int mCount=10;
+    private boolean mIsSkip=true;
+    private Handler mHandler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if(msg.what==1){
+                mCount--;
+                mTvTime.setText(mCount+"s后订单自动取消");
+                mHandler.sendEmptyMessageDelayed(1,1000);
+                if(mCount==0&&mIsSkip){
+                    EventBus.getDefault().post(new EventUtil("collect_car"));
+                }
+            }
+        }
+    };
 
 
 
@@ -49,9 +60,7 @@ public class ReceiptFragment extends Fragment implements View.OnClickListener {
         mEtEndAddress = (EditText) view.findViewById(R.id.et_end_address);
         mTvTime = (TextView) view.findViewById(R.id.tv_time);
         mTvGrab = (TextView) view.findViewById(R.id.tv_grab);
-        mLlOrder = (LinearLayout) view.findViewById(R.id.ll_order);
-        mLlWait = (RelativeLayout) view.findViewById(R.id.ll_wait);
-        mTvCancelOrderFirst = (TextView) view.findViewById(R.id.tv_cancel_order_first);
+
         return view;
     }
 
@@ -59,28 +68,28 @@ public class ReceiptFragment extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         init();
-        mLlOrder.setVisibility(View.GONE);
-        mLlWait.setVisibility(View.VISIBLE);
+
     }
 
     private void init() {
         mTvGrab.setOnClickListener(this);
-        mTvCancelOrderFirst.setOnClickListener(this);
+        setStartReciept();
+        mTvTime.setText(mCount+"s后订单自动取消");
+        mHandler.sendEmptyMessageDelayed(1,1000);
+
+
     }
 
 
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.tv_grab){
+            mIsSkip=false;
             EventBus.getDefault().post(new EventUtil("receipt"));
-        }else if(v.getId()==R.id.tv_cancel_order_first){
-            EventBus.getDefault().post(new EventUtil("collect_car"));
         }
     }
 
     public void setStartReciept(){
-        mLlOrder.setVisibility(View.VISIBLE);
-        mLlWait.setVisibility(View.GONE);
         mEtStartAddress.setText(DriverOrderActivity.userOrderEntity.getFromaddress());
         mEtEndAddress.setText(DriverOrderActivity.userOrderEntity.getToaddress());
     }

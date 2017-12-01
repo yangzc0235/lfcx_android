@@ -10,7 +10,7 @@
         android:id="@+id/ll_bar_activity_customer_person_center"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/blue"
+        android:background="@color/app_main"
         android:orientation="horizontal"
         >
 
@@ -41,6 +41,7 @@
             android:layout_gravity="center_vertical"
             android:textColor="@color/white"
             android:paddingRight="16dp"
+            android:textSize="16sp"
             android:text="设置" />
     </LinearLayout>
     <LinearLayout
@@ -61,7 +62,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="5dp"
-            android:textColor="@color/login_name"
+            android:textColor="@color/lyt_color"
             android:textSize="16sp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
@@ -86,7 +87,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="5dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/wallet"/>
+            android:src="@drawable/icon_wallet"/>
         <TextView
             android:id="@+id/tv_money_activity_customer_person_center"
             android:layout_width="match_parent"
@@ -96,7 +97,8 @@
             android:drawablePadding="10dp"
             android:paddingRight="16dp"
             android:background="@color/white"
-            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textColor="@color/me_back_sort"
             android:layout_height="50dp" />
     </LinearLayout>
     <View
@@ -118,7 +120,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="5dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/trip"/>
+            android:src="@drawable/icon_travel"/>
         <TextView
             android:id="@+id/tv_stroke_activity_customer_person_center"
             android:layout_below="@+id/view_two"
@@ -129,7 +131,8 @@
             android:drawablePadding="10dp"
             android:paddingRight="16dp"
             android:background="@color/white"
-            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textColor="@color/me_back_sort"
             android:layout_height="50dp" />
     </LinearLayout>
     <View
@@ -152,7 +155,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="5dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/recommend"/>
+            android:src="@drawable/icon_gift"/>
         <TextView
             android:id="@+id/tv_recommend_activity_customer_person_center"
             android:layout_below="@+id/view_three"
@@ -163,7 +166,8 @@
             android:drawablePadding="10dp"
             android:paddingRight="16dp"
             android:background="@color/white"
-            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textColor="@color/me_back_sort"
             android:layout_height="50dp" />
     </LinearLayout>
 
@@ -186,7 +190,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="5dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/appeal"/>
+            android:src="@drawable/icon_complain"/>
         <TextView
             android:id="@+id/tv_complaint_activity_customer_person_center"
             android:layout_below="@+id/view_four"
@@ -197,7 +201,8 @@
             android:drawablePadding="10dp"
             android:paddingRight="16dp"
             android:background="@color/white"
-            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textColor="@color/me_back_sort"
             android:layout_height="50dp" />
     </LinearLayout>
     <View

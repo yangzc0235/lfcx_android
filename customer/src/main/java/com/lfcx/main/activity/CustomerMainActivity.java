@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,8 @@ import java.util.Set;
 import cn.jpush.android.api.JPushInterface;
 import cn.jpush.android.api.TagAliasCallback;
 
+import static com.lfcx.common.utils.SPUtils.getParam;
+
 /**
  * author: drawthink
  * date  : 2017/7/28
@@ -45,7 +48,24 @@ public class CustomerMainActivity extends CustomerBaseActivity {
     private TextView mTitleBar;
     private TabLayout mTabLayout;
     private NoScrollViewPager mViewPager;
-
+    private SharingCarFragment mSharingCarFragment;
+    private static final int MSG_SET_ALIAS = 1001;
+    private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(android.os.Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case MSG_SET_ALIAS:
+                    // 调用 JPush 接口来设置别名。
+                    JPushInterface.setAliasAndTags(getApplicationContext(),
+                            (String) msg.obj,
+                            null,
+                            mAliasCallback);
+                    break;
+                default:
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,21 +89,45 @@ public class CustomerMainActivity extends CustomerBaseActivity {
         init();
         fragmentPagerAdapter = new CustomerMainFragmentPagerAdapter(getSupportFragmentManager(), this, fragments);
         mViewPager.setAdapter(fragmentPagerAdapter);
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.v("system---------->","刷新数据");
+                if(mSharingCarFragment!=null){
+                    mSharingCarFragment.refreshStartPos();
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         mTabLayout.setupWithViewPager(mViewPager);
-        String appKey = ExampleUtil.getAppKey(getApplicationContext());
-        String packageName = getPackageName();
-        String deviceId = ExampleUtil.getDeviceId(getApplicationContext());
-        String udid = ExampleUtil.getImei(getApplicationContext(), "");
-        String rid = JPushInterface.getRegistrationID(getApplicationContext());
-        Log.v("system--appKey---->", appKey);
-        Log.v("system---pac--->", packageName);
-        Log.v("system---deviceId--->", deviceId);
-        Log.v("system---udid--->", udid);
-        Log.v("system---rid--->", rid);
-        //JPushInterface.setAlias(getApplicationContext(),Integer.parseInt(rid), (String) SPUtils.getParam(this, SPConstants.KEY_CUSTOMER_MOBILE, ""));
-//        JPushInterface.resumePush(getApplicationContext());
-        setAlias((String) SPUtils.getParam(this, SPConstants.KEY_CUSTOMER_MOBILE, ""));
         checkFirstInApp();
+        checkIsSuccessCar();
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        //checkIsSuccessCar();
+    }
+
+    /**
+     * 是否叫车成功
+     */
+    private void checkIsSuccessCar() {
+        String car= (String) SPUtils.getParam(this,SPConstants.KEY_SUCCESS_CAR,"");
+        if("true".equals(car)){
+            goToActivity(CallCarSucessActivity.class);
+        }
     }
 
 
@@ -121,23 +165,7 @@ public class CustomerMainActivity extends CustomerBaseActivity {
 //            ExampleUtil.showToast(logs, getApplicationContext());
         }
     };
-    private static final int MSG_SET_ALIAS = 1001;
-    private final Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(android.os.Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what) {
-                case MSG_SET_ALIAS:
-                    // 调用 JPush 接口来设置别名。
-                    JPushInterface.setAliasAndTags(getApplicationContext(),
-                            (String) msg.obj,
-                            null,
-                            mAliasCallback);
-                    break;
-                default:
-            }
-        }
-    };
+
 
     /**
      * 判断是否首次进入应用
@@ -145,6 +173,20 @@ public class CustomerMainActivity extends CustomerBaseActivity {
     private void checkFirstInApp() {
         if (!UserUtil.isLogin(this)) {
             goToActivity(CustomerLoginActivity.class);
+        }else {
+            String appKey = ExampleUtil.getAppKey(getApplicationContext());
+            String packageName = getPackageName();
+            String deviceId = ExampleUtil.getDeviceId(getApplicationContext());
+            String udid = ExampleUtil.getImei(getApplicationContext(), "");
+            String rid = JPushInterface.getRegistrationID(getApplicationContext());
+            Log.v("system--appKey---->", appKey);
+            Log.v("system---pac--->", packageName);
+            Log.v("system---deviceId--->", deviceId);
+            Log.v("system---udid--->", udid);
+            Log.v("system---rid--->", rid);
+            //JPushInterface.setAlias(getApplicationContext(),Integer.parseInt(rid), (String) SPUtils.getParam(this, SPConstants.KEY_CUSTOMER_MOBILE, ""));
+//        JPushInterface.resumePush(getApplicationContext());
+            setAlias((String) getParam(this, SPConstants.KEY_CUSTOMER_MOBILE, ""));
         }
     }
 
@@ -155,10 +197,8 @@ public class CustomerMainActivity extends CustomerBaseActivity {
     private void init() {
         Fragment f1 = new CustomerIndexFragment();
         fragments.add(f1);
-//        Fragment f2 = new CharterCarFragment();
-//        fragments.add(f2);
-        Fragment f3 = new SharingCarFragment();
-        fragments.add(f3);
+        mSharingCarFragment = new SharingCarFragment();
+        fragments.add(mSharingCarFragment);
         mIvUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

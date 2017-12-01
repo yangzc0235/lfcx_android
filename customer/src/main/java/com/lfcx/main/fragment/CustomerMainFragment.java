@@ -234,27 +234,6 @@ public class CustomerMainFragment extends Fragment implements AMap.OnCameraChang
             startActivity(allIntent);
         }
 
-//        switch (v.getId()){
-//            case R2.id.location_image:
-//                mLocationTask.startSingleLocate();
-//                break;
-//            case R2.id.btn_now:
-//                Intent callIntent = new Intent(getActivity(),
-//                        CallCarSucessActivity.class);
-//                startActivity(callIntent);
-//                break;
-//            case R2.id.btn_after:
-//                Intent allIntent = new Intent(getActivity(),
-//                        CallCarSucessActivity.class);
-//                startActivity(allIntent);
-//                break;
-//            case R2.id.destination_text:
-//                Intent destinationIntent = new Intent(getActivity(),
-//                        DestinationActivity.class);
-//                startActivity(destinationIntent);
-//                break;
-//        }
-
     }
 
     @Override

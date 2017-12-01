@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@drawable/ic_phone" />
+            android:background="@drawable/icon_username" />
 
         <EditText
             android:id="@+id/et_phone"
@@ -36,6 +36,8 @@
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/iv_user"
             android:background="@null"
+            android:singleLine="true"
+            android:maxLength="11"
             android:inputType="number"
             android:hint="@string/phone_title" />
     </RelativeLayout>
@@ -50,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@drawable/ic_password" />
+            android:background="@drawable/icon_password" />
 
         <EditText
             android:id="@+id/et_pwd"
@@ -58,6 +60,7 @@
             android:layout_height="@dimen/default_title_bar_height"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/iv_pwd"
+            android:singleLine="true"
             android:background="@null"
             android:hint="@string/pwd_title" />
     </RelativeLayout>

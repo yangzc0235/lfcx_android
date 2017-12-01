@@ -62,6 +62,7 @@ public class CustomerUserCenterActivity extends CustomerBaseActivity implements 
             goToActivity(CustomerMeWalletActivity.class);
 
         } else if (i == R.id.tv_stroke_activity_customer_person_center) {
+            goToActivity(CustomTravelActivity.class);
         } else if (i == R.id.tv_recommend_activity_customer_person_center) {
         } else if (i == R.id.tv_complaint_activity_customer_person_center) {
         } else if (i == R.id.title_left_activity_customer_person_center) {

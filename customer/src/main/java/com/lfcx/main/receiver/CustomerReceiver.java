@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.lfcx.main.activity.CallCarSucessActivity;
 import com.lfcx.main.event.ReceiptResultEvent;
 import com.lfcx.main.net.result.ResultCodeEntity;
 import com.lfcx.main.util.Logger;
@@ -70,13 +71,12 @@ public class CustomerReceiver extends BroadcastReceiver {
 
             } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
                 Logger.d(TAG, "[CustomerReceiver] 用户点击打开了通知");
-
                 //打开自定义的Activity
-//				Intent i = new Intent(context, TestActivity.class);
-//				i.putExtras(bundle);
-                //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
-//				context.startActivity(i);
+				Intent i = new Intent(context, CallCarSucessActivity.class);
+				i.putExtras(bundle);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
+				context.startActivity(i);
 
             } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent.getAction())) {
                 Logger.d(TAG, "[CustomerReceiver] 用户收到到RICH PUSH CALLBACK: " + bundle.getString(JPushInterface.EXTRA_EXTRA));

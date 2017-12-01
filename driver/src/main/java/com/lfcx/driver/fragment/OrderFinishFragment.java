@@ -18,6 +18,8 @@ import com.lfcx.driver.event.EventUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
+import static com.lfcx.driver.activity.DriverOrderActivity.userOrderEntity;
+
 /**
  *
  */
@@ -56,10 +58,14 @@ public class OrderFinishFragment extends Fragment implements View.OnClickListene
 
     private void init() {
         mTvFinish.setOnClickListener(this);
-        mTvTime.setText(DriverOrderActivity.userOrderEntity.getReservatedate());
-        mTvCarid.setText(DriverOrderActivity.userOrderEntity.getMobile());
-        mTvStart.setText(DriverOrderActivity.userOrderEntity.getFromaddress());
-        mTvEnd.setText(DriverOrderActivity.userOrderEntity.getToaddress());
+//        String from_address= (String) SPUtils.getParam(getContext(), SPConstants.KEY_FROM_ADDRESS,"");
+//        String to_address= (String) SPUtils.getParam(getContext(),SPConstants.KEY_TO_ADDRESS,"");
+//        String user_mobile= (String) SPUtils.getParam(getContext(),SPConstants.KEY_USET_MOBILE,"");
+//        String date= (String) SPUtils.getParam(getContext(),SPConstants.KEY_DATE,"");
+        mTvTime.setText(userOrderEntity.getReservatedate()+"");
+        mTvCarid.setText(userOrderEntity.getMobile()+"");
+        mTvStart.setText(userOrderEntity.getFromaddress()+"");
+        mTvEnd.setText(userOrderEntity.getToaddress()+"");
         mTvMoney.setText(DriverOrderActivity.incomeEntity.getTotalfee()+"");
 
     }
@@ -69,12 +75,11 @@ public class OrderFinishFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.tv_collect) {
-            EventBus.getDefault().post(new EventUtil("collect_car"));
+            EventBus.getDefault().post(new EventUtil("collect"));
         } else if (i == R.id.tv_finish) {
-            Toast.makeText(getContext(), "完成了", Toast.LENGTH_SHORT).show();
             EventBus.getDefault().post(new EventUtil("collect_car"));
         } else if (i == R.id.tv_carid) {
-           callPhone(DriverOrderActivity.userOrderEntity.getMobile());
+           callPhone(userOrderEntity.getMobile());
         }
 
     }

@@ -57,4 +57,6 @@
     <color name="home_life">#a38868</color>
     <color name="home_travel">#5e8d69</color>
     <color name="login_color">#c8c8c8</color>
+    <color name="fractions_color">#838181</color>
+    <color name="driver_home">#E9C9AF</color>
 </resources>

@@ -22,7 +22,7 @@
             android:id="@+id/iv_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_phone"
+            android:src="@drawable/icon_username"
             android:layout_centerVertical="true" />
         <EditText
             android:id="@+id/et_phone"
@@ -57,7 +57,7 @@
             android:id="@+id/iv_pwd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_password"
+            android:src="@drawable/icon_password"
             android:layout_centerVertical="true"/>
         <EditText
             android:id="@+id/et_pwd"

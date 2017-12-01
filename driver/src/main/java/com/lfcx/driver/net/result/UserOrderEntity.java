@@ -7,20 +7,18 @@ import java.io.Serializable;
  */
 
 public class UserOrderEntity implements Serializable {
-
-
     /**
-     * fromlatitude : 39.947234
-     * reservatedate : 2017-11-20 13:00:00
-     * toaddress : 北京西站(地铁站)
+     * fromlatitude : 39.947784
+     * reservatedate :
+     * toaddress : 北京银行ATM
      * mobile : 15901126195
-     * tolatitude : 39.894763
+     * tolatitude : 39.881763
      * actioncode : 1-400
-     * fromlongitude : 116.453643
-     * pk_user : 752b85a9-6ca0-4467-93e8-5fbf9d1c2f90
+     * fromlongitude : 116.454027
+     * pk_user : 22072dac-6e1b-4112-9578-0dcc75d9b218
      * fromaddress : 京城大厦
-     * tolongitude : 116.321262
-     * pk_userorder : 7cc6524d-0901-4a31-a5be-87fd3aa3ac4f
+     * tolongitude : 116.298112
+     * pk_userorder : af3e2888-d23c-4727-b44f-d1a49f9254c0
      */
 
     private double fromlatitude;
@@ -34,15 +32,6 @@ public class UserOrderEntity implements Serializable {
     private String fromaddress;
     private double tolongitude;
     private String pk_userorder;
-    private String basetravelrecord;
-
-    public String getBasetravelrecord() {
-        return basetravelrecord;
-    }
-
-    public void setBasetravelrecord(String basetravelrecord) {
-        this.basetravelrecord = basetravelrecord;
-    }
 
     public double getFromlatitude() {
         return fromlatitude;
@@ -131,4 +120,7 @@ public class UserOrderEntity implements Serializable {
     public void setPk_userorder(String pk_userorder) {
         this.pk_userorder = pk_userorder;
     }
+
+
+
 }

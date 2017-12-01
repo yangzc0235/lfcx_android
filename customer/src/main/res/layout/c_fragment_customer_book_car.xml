@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                android:background="@drawable/appointment_icon_clock" />
+                android:src="@mipmap/icon_time" />
             <TextView
                 android:id="@+id/tv_time_label"
                 android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                android:background="@drawable/appointment_icon_user" />
+                android:src="@drawable/icon_mobile" />
             <TextView
                 android:id="@+id/tv_user_label"
                 android:layout_width="wrap_content"
@@ -99,7 +99,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/iv_now_address"
                 android:background="@null"
-                android:hint="市民大厅"
+                android:hint="请选择出发地"
                 android:textColorHint="@color/grey"
                 android:textSize="@dimen/small_text_size"
                 android:editable="false"/>

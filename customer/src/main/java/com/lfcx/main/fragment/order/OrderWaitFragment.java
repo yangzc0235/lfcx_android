@@ -9,10 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.lfcx.main.R;
-import com.lfcx.main.activity.CustomerOrderActivity;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  */
@@ -35,26 +31,8 @@ public class OrderWaitFragment extends Fragment {
     }
 
     private void init() {
-        cancelBtn = (TextView)getActivity().findViewById(R.id.cancel_book);
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((CustomerOrderActivity)getActivity()).switchFragment(CustomerOrderActivity.CANCEL);
-            }
-        });
 
-        //模拟司机接单
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ((CustomerOrderActivity)OrderWaitFragment.this.getActivity()).switchFragment(CustomerOrderActivity.PICK);
-                    }
-                });
-            }
-        }, 8000);
+
+
     }
 }

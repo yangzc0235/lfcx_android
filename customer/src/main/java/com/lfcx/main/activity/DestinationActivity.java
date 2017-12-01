@@ -87,10 +87,10 @@ public class DestinationActivity extends CustomerBaseActivity implements View.On
     public void onClick(View v) {
 
         switch(v.getId()){
-            case R2.id.destination_back:
+            case R.id.destination_back:
                 finish();
                 break;
-            case R2.id.destination_search:
+            case R.id.destination_search:
                 if(EdtUtil.isEdtEmpty(mDestinaionText)){
                     Toast.makeText(this, "请输入目的地", Toast.LENGTH_SHORT).show();
                     return;

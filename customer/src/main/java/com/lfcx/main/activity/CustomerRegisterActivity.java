@@ -116,17 +116,52 @@ public class CustomerRegisterActivity extends CustomerBaseActivity {
             finish();
         } else if (i == R.id.btn_getcode) {
             if (btnCode.isEnabled()) {
-                String phone = etPhone.getText().toString().trim();
-                if (TextUtils.isEmpty(phone) && phone.length() < 11) {
+                String moible = etPhone.getText().toString().trim();
+                if (TextUtils.isEmpty(moible) && moible.length() < 11) {
                     showToast("请输入完整的手机号");
                     return;
                 }
-                sendCheckCode(phone);
-                mHandler.sendEmptyMessage(0);
-                btnCode.setEnabled(false);
+                requestCheckRegist(moible);
+
             }
 
         }
+    }
+
+
+    /**
+     * 判断是否注册
+     * @param moible
+     */
+    private void requestCheckRegist(final String moible){
+        showLoading();
+        Map<String,String> param = new HashMap<>();
+        param.put("mobile",moible);
+        userAPI.checkRegist(param).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+               hideLoading();
+                try {
+                    BaseResultBean res = new Gson().fromJson(response.body(), BaseResultBean.class);
+                    if ("0".equals(res.getCode())) {
+                        showToast("此用户已注册");
+                    }else {
+                        showToast(res.getMsg());
+                        sendCheckCode(moible);
+                        mHandler.sendEmptyMessage(0);
+                        btnCode.setEnabled(false);
+                    }
+                } catch (Exception e) {
+                    hideLoading();
+                    LogUtils.e(TAG, e.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                hideLoading();
+            }
+        });
     }
 
     /**
@@ -142,7 +177,7 @@ public class CustomerRegisterActivity extends CustomerBaseActivity {
         userAPI.customerRegist(param).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                //hideLoading();
+                hideLoading();
                 try {
                     BaseResultBean res = new Gson().fromJson(response.body(), BaseResultBean.class);
                     if ("0".equals(res.getCode())) {
@@ -150,10 +185,8 @@ public class CustomerRegisterActivity extends CustomerBaseActivity {
                         goLogin(moible,pwd);
                     }else {
                         showToast(res.getMsg());
-                        hideLoading();
                     }
                 } catch (Exception e) {
-                    hideLoading();
                     LogUtils.e(TAG, e.getMessage());
                 }
             }

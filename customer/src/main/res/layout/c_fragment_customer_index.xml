@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <FrameLayout
+        android:id="@+id/fragment_acontainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/action_bar"
@@ -17,6 +18,7 @@
             android:layout_height="match_parent"></com.amap.api.maps.MapView>
 
         <LinearLayout
+            android:id="@+id/ll_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"

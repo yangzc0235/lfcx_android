@@ -31,6 +31,7 @@ import com.lfcx.main.maphelper.PositionEntity;
 import com.lfcx.main.maphelper.RouteTask;
 import com.lfcx.main.net.api.CarAPI;
 import com.lfcx.main.net.result.CallCarResult;
+import com.lfcx.main.util.Distance;
 import com.lfcx.main.util.EdtUtil;
 import com.lfcx.main.util.LocationUtils;
 import com.lfcx.main.util.TimeSelectUtils;
@@ -125,9 +126,9 @@ public class CharterCarFragment extends BaseFragment implements  RouteTask.OnRou
         timeRange.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                if(checkedId == R2.id.c_range_one){
+                if(checkedId == R.id.c_range_one){
                     combotype = 4;
-                }else if(checkedId == R2.id.c_range_two){
+                }else if(checkedId == R.id.c_range_two){
                     combotype = 8;
                 }
             }
@@ -148,13 +149,13 @@ public class CharterCarFragment extends BaseFragment implements  RouteTask.OnRou
     }
     @OnClick(R2.id.et_end_address)
     public void onClickEndAdress(View v){
-        clickType = 2;
+        clickType = 12;
         Intent destinationIntent = new Intent(getActivity(), DestinationActivity.class);
         startActivity(destinationIntent);
     }
     @OnClick(R2.id.et_start_address)
     public void onClickStartAdress(View v){
-        clickType = 1;
+        clickType = 11;
         Intent destinationIntent = new Intent(getActivity(), DestinationActivity.class);
         startActivity(destinationIntent);
     }
@@ -207,49 +208,61 @@ public class CharterCarFragment extends BaseFragment implements  RouteTask.OnRou
             Toast.makeText(getContext(), "请补全用车信息", Toast.LENGTH_SHORT).show();
         }
     }
-    //**
     /**
      * 是否需要去刷新估算价格接口
      */
-    private void shouldGetCost(){
-        try {
-            getCost();
-        }catch (Exception e){
-            Toast.makeText(getContext(), "请输入用车信息", Toast.LENGTH_SHORT).show();
+    private void shouldGetCost() {
+        if (EdtUtil.isEdtEmpty(etTime)) {
+            Toast.makeText(getContext(), "请选择时间", Toast.LENGTH_SHORT).show();
+            return;
         }
+        if (EdtUtil.isEdtEmpty(etStartAddress)) {
+            Toast.makeText(getContext(), "定位失败,请选择开始位置", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (EdtUtil.isEdtEmpty(etEndAddress)) {
+            Toast.makeText(getContext(), "请选择目的地", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        double distance = Distance.getDistance(LocationUtils.getLocation().longitude, LocationUtils.getLocation().latitue, RouteTask
+                .getInstance(getActivity().getApplicationContext()).getEndPoint().longitude, RouteTask
+                .getInstance(getActivity().getApplicationContext()).getEndPoint().latitue) / 1000;
+        try {
+            getCost(distance);
+        }catch (Exception e){
+            Toast.makeText(getContext(), "输入信息异常,请重新输入", Toast.LENGTH_SHORT).show();
+        }
+
     }
-
-
     /**
-     * 计算价格
+     * 获取预估费用
      */
-    private void getCost(){
+    private void getCost(double distance) {
         showLoading();
-        Map<String,Object> param = new HashMap<>();
-        param.put("fromaddress",LocationUtils.getLocation().address);
-        param.put("toaddress",RouteTask
-                .getInstance( getActivity().getApplicationContext()).getEndPoint().address);
-        param.put("fromlongitude",LocationUtils.getLocation().longitude);
-        param.put("fromlatitude",LocationUtils.getLocation().latitue);
-        param.put("tolongitude",RouteTask
-                .getInstance(  getActivity().getApplicationContext()).getEndPoint().longitude);
-        param.put("tolatitude",RouteTask
-                .getInstance(  getActivity().getApplicationContext()).getEndPoint().latitue);
-        param.put("styletype",styletype);
-        param.put("datetime",etTime.getText().toString());
-        param.put("privatetype",combotype);
-        param.put("distance",4);
-        carAPI.getPrivateCost(param).enqueue(new Callback<String>() {
+        Map<String, Object> param = new HashMap<>();
+        param.put("fromaddress", LocationUtils.getLocation().address);
+        param.put("toaddress", RouteTask
+                .getInstance(getActivity()).getEndPoint().address);
+        param.put("fromlongitude", LocationUtils.getLocation().longitude);
+        param.put("fromlatitude", LocationUtils.getLocation().latitue);
+        param.put("tolongitude", RouteTask
+                .getInstance(getActivity()).getEndPoint().longitude);
+        param.put("tolatitude", RouteTask
+                .getInstance(getActivity()).getEndPoint().latitue);
+        param.put("styletype", styletype);
+        param.put("datetime", etTime.getText().toString());
+        param.put("distance",distance);
+        carAPI.getNowCost(param).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                hideLoading();
-                try{
+                try {
                     String cost = response.body();
-                    tvGussCost.setText(String.format("%.2f元", Float.valueOf(cost)));
-                }catch (Exception e){
-                    LogUtils.e(TAG,e.getMessage());
+                    tvGussCost.setText(String.format("预估费用%.2f元", Float.valueOf(cost)));
+                } catch (Exception e) {
+                    LogUtils.e(TAG, e.getMessage());
                 }
-
+                hideLoading();
 
             }
 
@@ -259,6 +272,49 @@ public class CharterCarFragment extends BaseFragment implements  RouteTask.OnRou
             }
         });
     }
+
+//    /**
+//     * 计算价格
+//     */
+//    private void getCost(){
+//        showLoading();
+//        Map<String,Object> param = new HashMap<>();
+//        param.put("fromaddress",LocationUtils.getLocation().address);
+//        param.put("toaddress",RouteTask
+//                .getInstance( getActivity().getApplicationContext()).getEndPoint().address);
+//        param.put("fromlongitude",LocationUtils.getLocation().longitude);
+//        param.put("fromlatitude",LocationUtils.getLocation().latitue);
+//        param.put("tolongitude",RouteTask
+//                .getInstance(  getActivity().getApplicationContext()).getEndPoint().longitude);
+//        param.put("tolatitude",RouteTask
+//                .getInstance(  getActivity().getApplicationContext()).getEndPoint().latitue);
+//        param.put("styletype",styletype);
+//        param.put("datetime",etTime.getText().toString());
+//        param.put("privatetype",combotype);
+//        double distance = Distance.getDistance(LocationUtils.getLocation().longitude, LocationUtils.getLocation().latitue, RouteTask
+//                .getInstance(getActivity().getApplicationContext()).getEndPoint().longitude, RouteTask
+//                .getInstance(getActivity().getApplicationContext()).getEndPoint().latitue) / 1000;
+//        param.put("distance",distance);
+//        carAPI.getPrivateCost(param).enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//                hideLoading();
+//                try{
+//                    String cost = response.body();
+//                    tvGussCost.setText(String.format("%.2f元", Float.valueOf(cost)));
+//                }catch (Exception e){
+//                    LogUtils.e(TAG,e.getMessage());
+//                }
+//
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable t) {
+//                hideLoading();
+//            }
+//        });
+//    }
 
 
     /**
@@ -322,15 +378,19 @@ public class CharterCarFragment extends BaseFragment implements  RouteTask.OnRou
     }
     @Override
     public void onRouteCalculate(float cost, float distance, int duration) {
-        if(clickType == 2){
-            etEndAddress.setText(RouteTask
-                    .getInstance(getActivity().getApplicationContext()).getEndPoint().address);
-        }else if(clickType == 1){
-            etStartAddress.setText(RouteTask
-                    .getInstance(getActivity().getApplicationContext()).getEndPoint().address);
-            isSelectStartAdress = true;
+        try {
+            if(clickType == 12){
+                etEndAddress.setText(RouteTask
+                        .getInstance(getActivity().getApplicationContext()).getEndPoint().address);
+            }else if(clickType == 11){
+                etStartAddress.setText(RouteTask
+                        .getInstance(getActivity().getApplicationContext()).getEndPoint().address);
+                isSelectStartAdress = true;
+            }
+            shouldGetCost();
+        }catch (Exception e){
+
         }
-        shouldGetCost();
     }
 
     @Override

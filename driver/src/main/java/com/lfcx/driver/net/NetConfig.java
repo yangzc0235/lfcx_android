@@ -30,7 +30,10 @@ public interface NetConfig {
      */
     String ORDER_TYPE_SETTING = "Driver/insertDriverSet";
 
-
+    /**
+     * 判断用户是否注册
+     */
+    String CHECK_REGISTER = "user/checkmobile";
     /**
      * 用户登录
      */

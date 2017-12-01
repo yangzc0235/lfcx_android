@@ -98,9 +98,7 @@ public class DriverRegisterActivity extends DriverBaseActivity implements View.O
                     showToast("请输入完整的手机号");
                     return;
                 }
-                sendCheckCode(phone);
-                mHandler.sendEmptyMessage(0);
-                mBtnGetcode.setEnabled(false);
+                requestCheckRegist(phone);
             }
 
         } else if (i == R.id.btn_register) {
@@ -131,6 +129,40 @@ public class DriverRegisterActivity extends DriverBaseActivity implements View.O
 
             @Override
             public void onFailure(Call<SendMessageResult> call, Throwable t) {
+                hideLoading();
+            }
+        });
+    }
+
+    /**
+     * 判断是否注册
+     * @param moible
+     */
+    private void requestCheckRegist(final String moible){
+        showLoading();
+        Map<String,String> param = new HashMap<>();
+        param.put("mobile",moible);
+        userAPI.checkRegist(param).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                hideLoading();
+                try {
+                    BaseResultBean res = new Gson().fromJson(response.body(), BaseResultBean.class);
+                    if ("0".equals(res.getCode())) {
+                        showToast("此用户已注册");
+                    }else {
+                        showToast(res.getMsg());
+                        sendCheckCode(moible);
+                        mHandler.sendEmptyMessage(0);
+                        mBtnGetcode.setEnabled(false);
+                    }
+                } catch (Exception e) {
+                    hideLoading();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
                 hideLoading();
             }
         });

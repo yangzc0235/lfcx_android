@@ -47,7 +47,7 @@ import retrofit2.Response;
 /**
  * author: drawthink
  * date  : 2017/7/28
- * des   :  顺风车
+ * des   :  顺风车界面开发
  */
 public class SharingCarFragment extends BaseFragment implements CustomerMainActivity.IBackListener, RouteTask.OnRouteCalculateListener {
     private Unbinder unbinder;
@@ -157,7 +157,7 @@ public class SharingCarFragment extends BaseFragment implements CustomerMainActi
         etStartAdressMy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickType = 1;
+                clickType = 5;
                 Intent destinationIntent = new Intent(getActivity(), DestinationActivity.class);
                 startActivity(destinationIntent);
             }
@@ -165,7 +165,7 @@ public class SharingCarFragment extends BaseFragment implements CustomerMainActi
         etEndAdressMy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickType = 2;
+                clickType = 6;
                 Intent destinationIntent = new Intent(getActivity(), DestinationActivity.class);
                 startActivity(destinationIntent);
             }
@@ -230,7 +230,7 @@ public class SharingCarFragment extends BaseFragment implements CustomerMainActi
         etStartAdressOther.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickType = 1;
+                clickType = 5;
                 Intent destinationIntent = new Intent(getActivity(), DestinationActivity.class);
                 startActivity(destinationIntent);
             }
@@ -239,7 +239,7 @@ public class SharingCarFragment extends BaseFragment implements CustomerMainActi
         etEndAdressOther.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickType = 2;
+                clickType = 6;
                 Intent destinationIntent = new Intent(getActivity(), DestinationActivity.class);
                 startActivity(destinationIntent);
             }
@@ -279,7 +279,7 @@ public class SharingCarFragment extends BaseFragment implements CustomerMainActi
         etStartAdressGoods.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickType = 1;
+                clickType = 5;
                 Intent destinationIntent = new Intent(getActivity(), DestinationActivity.class);
                 startActivity(destinationIntent);
             }
@@ -288,7 +288,7 @@ public class SharingCarFragment extends BaseFragment implements CustomerMainActi
         etEndAdressGoods.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickType = 2;
+                clickType = 6;
                 Intent destinationIntent = new Intent(getActivity(), DestinationActivity.class);
                 startActivity(destinationIntent);
             }
@@ -316,6 +316,10 @@ public class SharingCarFragment extends BaseFragment implements CustomerMainActi
         }
         if (EdtUtil.isEdtEmpty(etPeopleCountMy)) {
             Toast.makeText(getContext().getApplicationContext(), "请输入乘车人数", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(Integer.parseInt(EdtUtil.getEdtText(etPeopleCountMy))>6||Integer.parseInt(EdtUtil.getEdtText(etPeopleCountMy))==0){
+            Toast.makeText(getContext().getApplicationContext(), "乘客人数不能超过6位", Toast.LENGTH_SHORT).show();
             return;
         }
         String personCount = EdtUtil.getEdtText(etPeopleCountMy);
@@ -347,7 +351,10 @@ public class SharingCarFragment extends BaseFragment implements CustomerMainActi
             Toast.makeText(getContext().getApplicationContext(), "请输入乘车人数", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        if(Integer.parseInt(EdtUtil.getEdtText(etPeopleCountMy))>6||Integer.parseInt(EdtUtil.getEdtText(etPeopleCountMy))==0){
+            Toast.makeText(getContext().getApplicationContext(), "乘客人数不能超过6位", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (EdtUtil.isEdtEmpty(etPhoneOther)) {
             Toast.makeText(getContext().getApplicationContext(), "请输入乘车人电话", Toast.LENGTH_SHORT).show();
             return;
@@ -490,9 +497,31 @@ public class SharingCarFragment extends BaseFragment implements CustomerMainActi
     @Override
     public void onResume() {
         super.onResume();
+        Log.v("system--------->","预约界面展示,正在设置数据");
+        Log.v("system--------->",mSftype+"");
         PositionEntity location = LocationUtils.getLocation();
         if (null != location && !isSelectStartAdress) {
             if (mSftype == 1) {
+                Log.v("system--------->",location.getAddress()+"");
+                etStartAdressMy.setText(location.getAddress());
+            } else if (mSftype == 2) {
+                etStartAdressOther.setText(location.getAddress());
+            } else if (mSftype == 3) {
+                etStartAdressGoods.setText(location.getAddress());
+            }
+
+        }
+
+    }
+
+
+    public void refreshStartPos(){
+        Log.v("system--------->","预约界面展示,正在设置数据");
+        Log.v("system--------->",mSftype+"");
+        PositionEntity location = LocationUtils.getLocation();
+        if (null != location && !isSelectStartAdress) {
+            if (mSftype == 1) {
+                Log.v("system--------->",location.getAddress()+"");
                 etStartAdressMy.setText(location.getAddress());
             } else if (mSftype == 2) {
                 etStartAdressOther.setText(location.getAddress());
@@ -502,6 +531,7 @@ public class SharingCarFragment extends BaseFragment implements CustomerMainActi
 
         }
     }
+
 
     @Override
     public void onRouteCalculate(float cost, float distance, int duration) {
@@ -513,28 +543,28 @@ public class SharingCarFragment extends BaseFragment implements CustomerMainActi
 
 
         if(mSftype == 1){
-            if (clickType == 2) {
+            if (clickType == 6) {
                 etEndAdressMy.setText(RouteTask
                         .getInstance(getActivity().getApplicationContext()).getEndPoint().address);
-            } else if (clickType == 1) {
+            } else if (clickType == 5) {
                 etStartAdressMy.setText(RouteTask
                         .getInstance(getActivity().getApplicationContext()).getEndPoint().address);
                 isSelectStartAdress = true;
             }
         }else if(mSftype==2){
-            if (clickType == 2) {
+            if (clickType ==6) {
                 etEndAdressOther.setText(RouteTask
                         .getInstance(getActivity().getApplicationContext()).getEndPoint().address);
-            } else if (clickType == 1) {
+            } else if (clickType ==5) {
                 etStartAdressOther.setText(RouteTask
                         .getInstance(getActivity().getApplicationContext()).getEndPoint().address);
                 isSelectStartAdress = true;
             }
         }else if(mSftype==3){
-            if (clickType == 2) {
+            if (clickType == 6) {
                 etEndAdressGoods.setText(RouteTask
                         .getInstance(getActivity().getApplicationContext()).getEndPoint().address);
-            } else if (clickType == 1) {
+            } else if (clickType == 5) {
                 etStartAdressGoods.setText(RouteTask
                         .getInstance(getActivity().getApplicationContext()).getEndPoint().address);
                 isSelectStartAdress = true;

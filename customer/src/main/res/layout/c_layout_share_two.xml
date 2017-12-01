@@ -39,7 +39,7 @@
                 android:layout_marginRight="5dp"
                 android:drawablePadding="5dp"
                 android:textColor="@color/lyt_color"
-                android:drawableLeft="@drawable/icon_spoint"
+                android:drawableLeft="@drawable/start_point"
                 android:text="出发地址:"
                 />
 
@@ -71,7 +71,7 @@
                 android:layout_marginRight="5dp"
                 android:drawablePadding="5dp"
                 android:textColor="@color/lyt_color"
-                android:drawableLeft="@drawable/icon_epoint"
+                android:drawableLeft="@drawable/end_point"
                 android:text="带货到哪去:"
                  />
 
@@ -103,7 +103,7 @@
                 android:drawablePadding="5dp"
                 android:textColor="@color/lyt_color"
                 android:text="重量(kg):"
-                android:drawableLeft="@drawable/time_fill"/>
+                android:drawableLeft="@drawable/icon_weight"/>
 
             <EditText
                 android:id="@+id/et_goods_weight"
@@ -134,7 +134,7 @@
                 android:drawablePadding="5dp"
                 android:text="出发时间:"
                 android:textColor="@color/lyt_color"
-                android:drawableLeft="@drawable/time_fill" />
+                android:drawableLeft="@drawable/icon_time" />
 
             <EditText
                 android:id="@+id/et_start_time"
@@ -164,7 +164,7 @@
                 android:drawablePadding="5dp"
                 android:text="收货人姓名:"
                 android:textColor="@color/lyt_color"
-                android:drawableLeft="@drawable/group_fill"
+                android:drawableLeft="@mipmap/icon_user"
                  />
 
             <EditText
@@ -193,7 +193,7 @@
                 android:layout_marginRight="5dp"
                 android:drawablePadding="5dp"
                 android:textColor="@color/lyt_color"
-                android:drawableLeft="@drawable/group_fill"
+                android:drawableLeft="@drawable/icon_mobile"
                 android:text="收货人电话:"/>
 
             <EditText
@@ -219,8 +219,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/white"
+            android:layout_height="60dp"
+            android:background="@drawable/border_money"
             android:gravity="center"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
@@ -247,7 +247,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@id/tv_gologin"
             android:layout_marginBottom="15dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:textSize="@dimen/title_size"
             android:textColor="@color/white"
             android:background="@drawable/btn_small_blue_bg"

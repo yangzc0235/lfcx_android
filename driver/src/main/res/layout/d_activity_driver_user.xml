@@ -26,6 +26,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/rl_wallet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -36,7 +37,7 @@
                 android:id="@+id/d_iv_wallet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/wallet" />
+                android:src="@drawable/icon_wallet" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -60,6 +61,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/rl_trip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -69,7 +71,7 @@
                 android:id="@+id/d_iv_trip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/trip" />
+                android:src="@drawable/icon_travel" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -92,6 +94,7 @@
             android:background="@color/d_divider_color"></View>
 
         <RelativeLayout
+            android:id="@+id/rl_car"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -104,7 +107,7 @@
                 android:id="@+id/d_iv_car"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/user_car" />
+                android:src="@drawable/icon_travel" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -128,6 +131,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/rl_gift"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -137,7 +141,7 @@
                 android:id="@+id/d_iv_tuijian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/recommend" />
+                android:src="@drawable/icon_gift" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -161,6 +165,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/rl_complain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -170,7 +175,7 @@
                 android:id="@+id/d_iv_shensu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/appeal" />
+                android:src="@drawable/icon_complain" />
 
             <TextView
                 android:layout_width="wrap_content"

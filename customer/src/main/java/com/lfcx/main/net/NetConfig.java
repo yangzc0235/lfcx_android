@@ -25,6 +25,10 @@ public interface NetConfig {
     String CUSTOMER_GET_DRIVER_INFO = "user/getdriverinfo";
 
     /**
+     * 判断用户是否注册
+     */
+    String CHECK_REGISTER = "user/checkmobile";
+    /**
      * 用户注册
      */
     String CUSTOMER_REGISTER = "user/registUser";
@@ -90,4 +94,14 @@ public interface NetConfig {
      * 生成交易记录
      */
     String TRADE_RECORD = "basetraderecord/generatetraderecord";
+    /**
+     * 获取附近车辆信息
+     */
+    String GET_CAR_INFO = "dvlct/querynearby";
+    /**
+     * 获取附近车辆信息
+     */
+    String GET_ORDER_INFO = "userOrder/getperorderlist";
+
+
 }

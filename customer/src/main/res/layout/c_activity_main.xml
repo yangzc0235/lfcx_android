@@ -14,9 +14,9 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        app:tabIndicatorColor="@color/app_main"
-        app:tabSelectedTextColor="@color/app_main"
-        app:tabTextColor="@color/black"
+        app:tabIndicatorColor="@color/yellow"
+        app:tabSelectedTextColor="@color/yellow"
+        app:tabTextColor="@color/check_color"
         />
     <com.lfcx.main.widget.view.NoScrollViewPager
         android:id="@+id/viewPager"

@@ -172,9 +172,9 @@
             android:layout_centerHorizontal="true"
             android:textSize="22sp"
             android:text="请稍后,用户正在支付"/>
-        <com.lfcx.common.widget.ProgressView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+        <com.lfcx.common.widget.WaitingBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"/>
         <TextView
             android:id="@+id/tv_cancel_order_first"

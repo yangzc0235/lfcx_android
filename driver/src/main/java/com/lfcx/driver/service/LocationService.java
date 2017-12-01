@@ -34,7 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * 用于定位及每3分钟上传车辆位置
+ * 用于定位及每1分钟上传车辆位置
  */
 
 public class LocationService extends IntentService {
@@ -96,7 +96,7 @@ public class LocationService extends IntentService {
         while (!isCancel){
             try{
                 requestUploadPosition();
-                SystemClock.sleep(1000*60);//每3分钟上传一次位置
+                SystemClock.sleep(1000*10);//每10s上传一次位置
             //上传车辆位置信息
             }catch (Exception e){
                 LogUtils.e(TAG,e.getMessage());

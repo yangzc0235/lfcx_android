@@ -15,20 +15,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amap.api.maps.AMap;
-import com.amap.api.maps.CameraUpdate;
-import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
+import com.amap.api.navi.AMapNaviView;
+import com.amap.api.navi.AMapNaviViewOptions;
+import com.amap.api.navi.enums.NaviType;
 import com.google.gson.Gson;
 import com.lfcx.common.net.APIFactory;
 import com.lfcx.common.net.result.BaseResultBean;
 import com.lfcx.common.utils.SPUtils;
 import com.lfcx.main.R;
 import com.lfcx.main.consts.SPConstants;
+import com.lfcx.main.event.EventUtil;
 import com.lfcx.main.event.ReceiptResultEvent;
 import com.lfcx.main.fragment.SharingCarFragment;
 import com.lfcx.main.maphelper.LocationTask;
@@ -42,6 +44,7 @@ import com.lfcx.main.net.result.DriverOrderEntity;
 import com.lfcx.main.net.result.IncomeEntity;
 import com.lfcx.main.net.result.PayEntity;
 import com.lfcx.main.net.result.StartTravelEntity;
+import com.lfcx.main.util.LocationUtils;
 import com.lfcx.main.widget.dialog.PayDialog;
 
 import org.greenrobot.eventbus.EventBus;
@@ -55,13 +58,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.OnCameraChangeListener,
+import static com.lfcx.common.utils.SPUtils.getParam;
+
+public class CallCarSucessActivity extends BaseActivity implements AMap.OnCameraChangeListener,
         AMap.OnMapLoadedListener, OnLocationGetListener, View.OnClickListener,
-        RouteTask.OnRouteCalculateListener,SharingCarFragment.CallBackValue {
+        RouteTask.OnRouteCalculateListener, SharingCarFragment.CallBackValue {
 
     public static final String TAG = CallCarSucessActivity.class.getSimpleName();
-    private MapView mMapView;
-    private AMap mAmap;
     private Marker mPositionMark;
     private LatLng mStartPosition;
     private RegeocodeTask mRegeocodeTask;
@@ -86,22 +89,24 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
     private FrameLayout mFlDriverInfo;
     private TextView mTvConfirm;
     private TextView mTvCancelOrderFirst;
+    private ImageView mImgvDriverMobile;
+    private DriverOrderEntity driverOrderEntity;
+    private PayDialog payDialog;
+    private int strategy=0;
 
     @Override
     public void SendMessageValue(String strValue) {
-        mPk_userOder=strValue;
+        mPk_userOder = strValue;
     }
 
-    public interface OnGetLocationListener {
-        public void getLocation(String locationAddress);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
         setContentView(R.layout.activity_call_car_sucess);
-        init(savedInstanceState);
+        initMap(savedInstanceState);
+        userAPI = APIFactory.create(UserAPI.class);
         mTvConfirm = (TextView) findViewById(R.id.tv_confirm);
         mLlWait = (RelativeLayout) findViewById(R.id.ll_wait);
         mFlDriverInfo = (FrameLayout) findViewById(R.id.fl_driver_info);
@@ -109,7 +114,6 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
         mIvBack = (ImageView) findViewById(R.id.iv_back);
         mIvUser = (ImageView) findViewById(R.id.iv_user);
         mTitleBar = (TextView) findViewById(R.id.title_bar);
-        mMap = (MapView) findViewById(R.id.map);
         mLlOne = (LinearLayout) findViewById(R.id.ll_one);
         mTvName = (TextView) findViewById(R.id.tv_name);
         mCardId = (TextView) findViewById(R.id.card_id);
@@ -118,25 +122,73 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
         mTvCallPhone = (TextView) findViewById(R.id.tv_call_phone);
         mTvComplain = (TextView) findViewById(R.id.tv_complain);
         mTvCancelOrderFirst = (TextView) findViewById(R.id.tv_cancel_order_first);
+        mImgvDriverMobile = (ImageView) findViewById(R.id.imgv_driver_mobile);
         mLocationTask = LocationTask.getInstance(getApplicationContext());
         mLocationTask.setOnLocationGetListener(this);
         mFlDriverInfo.setVisibility(View.GONE);
         mLlWait.setVisibility(View.VISIBLE);
         mIvBack.setVisibility(View.GONE);
+        mIvUser.setVisibility(View.VISIBLE);
         mTvCancelOrderFirst.setOnClickListener(this);
+        mTvCancelOrder.setOnClickListener(this);
+        mTvCallPhone.setOnClickListener(this);
+        mTvComplain.setOnClickListener(this);
+        mImgvDriverMobile.setOnClickListener(this);
+        mIvUser.setOnClickListener(this);
         mRegeocodeTask = new RegeocodeTask(getApplicationContext());
         RouteTask.getInstance(getApplicationContext())
                 .addRouteCalculateListener(this);
+        SPUtils.setParam(this, SPConstants.KEY_SUCCESS_CAR, "true");
+        String carCode = (String) SPUtils.getParam(this, SPConstants.KEY_CAR_CODE, "");
+        String carType = (String) SPUtils.getParam(this, SPConstants.KEY_CAR_TYPE, "");
+        String carDriverName = (String) SPUtils.getParam(this, SPConstants.KEY_DRIVER_NAME, "");
+        if (null != carCode && !"".equals(carCode)) {
+            mFlDriverInfo.setVisibility(View.VISIBLE);
+            mTvCancelOrder.setVisibility(View.GONE);
+            mLlWait.setVisibility(View.GONE);
+            mCardId.setText("车牌号:  " + carCode);
+            mCardName.setText("车型:  " + carType);
+            mTvName.setText("司机:  " + carDriverName);
+
+        }
     }
 
-    private void init(Bundle savedInstanceState) {
-        mMapView = (MapView) findViewById(R.id.map);
-        mMapView.onCreate(savedInstanceState);
-        mAmap = mMapView.getMap();
-        mAmap.getUiSettings().setZoomControlsEnabled(false);
-        mAmap.setOnMapLoadedListener(this);
-        mAmap.setOnCameraChangeListener(this);
-        userAPI = APIFactory.create(UserAPI.class);
+    /**
+     * 初始化导航
+     *
+     * @param savedInstanceState
+     */
+    private void initMap(Bundle savedInstanceState) {
+        mAMapNaviView = (AMapNaviView) findViewById(R.id.navi_view);
+        mAMapNaviView.onCreate(savedInstanceState);
+        mAMapNaviView.setAMapNaviViewListener(this);
+        AMapNaviViewOptions options = mAMapNaviView.getViewOptions();
+        options.setCarBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.move_car2));
+//        options.setFourCornersBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.lane00));
+//        options.setStartPointBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.navi_start));
+//        options.setWayPointBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.navi_way));
+//        options.setEndPointBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.navi_end));
+        mAMapNaviView.setViewOptions(options);
+
+    }
+
+    @Override
+    public void onInitNaviSuccess() {
+        super.onInitNaviSuccess();
+
+
+    }
+
+    @Override
+    public void onCalculateRouteSuccess(int[] ids) {
+        super.onCalculateRouteSuccess(ids);
+        mAMapNavi.startNavi(NaviType.GPS);
+
+    }
+
+    @Override
+    public void onNaviViewLoaded() {
+        super.onNaviViewLoaded();
     }
 
 
@@ -150,27 +202,18 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
         mRegeocodeTask.setOnLocationGetListener(this);
         mRegeocodeTask
                 .search(mStartPosition.latitude, mStartPosition.longitude);
-        if (mIsFirst) {
-            Utils.addEmulateData(mAmap, mStartPosition);
-            if (mPositionMark != null) {
-                mPositionMark.setToTop();
-            }
-            mIsFirst = false;
-        }
+
     }
 
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-//            case R2.id.destination_button:
-//                Intent intent = new Intent(this, DestinationActivity.class);
-//                startActivity(intent);
-//                break;
             case R.id.location_image:
                 mLocationTask.startSingleLocate();
                 break;
             case R.id.destination_text:
+                //
                 Intent destinationIntent = new Intent(this,
                         DestinationActivity.class);
                 startActivity(destinationIntent);
@@ -178,7 +221,7 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
 
             case R.id.tv_cancel_order_first:
                 //取消订单
-                SharingCarFragment sharingCarFragment=new SharingCarFragment();
+                SharingCarFragment sharingCarFragment = new SharingCarFragment();
                 sharingCarFragment.setCallBackValue(new SharingCarFragment.CallBackValue() {
                     @Override
                     public void SendMessageValue(String strValue) {
@@ -187,74 +230,154 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
                 });
 
                 break;
+            case R.id.imgv_driver_mobile:
+                //给司机打电话
+                String diverMobile = (String) SPUtils.getParam(CallCarSucessActivity.this, SPConstants.KEY_DRIVER_MOBILE, "");
+                try {
+                    if (diverMobile == null || "".equals(diverMobile)) {
+                        callPhone(driverOrderEntity.getMobile());
+                    } else {
+                        callPhone(diverMobile);
+                    }
+                } catch (Exception e) {
+
+                }
+                break;
+            case R.id.tv_call_phone:
+                //给客服打电话
+                callPhone("10086");
+                break;
+            case R.id.tv_complain:
+                //投诉
+                callPhone("10086");
+                break;
+            case R.id.tv_cancel_order:
+                //司机接单取消订单
+                String carUserOrder = (String) SPUtils.getParam(CallCarSucessActivity.this, SPConstants.KEY_USER_ORDER, "");
+                try {
+                    if (carUserOrder == null || "".equals(carUserOrder)) {
+                        cancelOrderInfo(driverOrderEntity.getPk_userorder());
+                    } else {
+                        cancelOrderInfo(carUserOrder);
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(CallCarSucessActivity.this, "订单取消异常", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case R.id.iv_user:
+                //个人中心
+                goToActivity(CustomerUserCenterActivity.class);
+                break;
         }
     }
 
 
-    //wait_receipt
     //在ui线程执行
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(ReceiptResultEvent event) {
-        final DriverOrderEntity driverOrderEntity;
-        if (event.getKey().equals("receiveDriverInfo")) {
-            mFlDriverInfo.setVisibility(View.VISIBLE);
-            mLlWait.setVisibility(View.GONE);
-            String value = event.getValue();
-            Log.v("system---value--->", value);
-            Gson gson = new Gson();
-            driverOrderEntity = gson.fromJson(value, DriverOrderEntity.class);
-            mCardId.setText("车牌号:" + driverOrderEntity.getCarCode());
-            mCardName.setText("车型:" + driverOrderEntity.getType());
-            mTvName.setText("司机:" + driverOrderEntity.getDrivername());
-            mTvCancelOrder.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //取消订单
-                    cancelOrderInfo(driverOrderEntity.getPk_userorder());
-                }
-            });
 
-            mTvCallPhone.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //联系客服
-                    callPhone(driverOrderEntity.getMobile());
+        switch (event.getKey()) {
+            case "receiveDriverInfo": {
+                //接收到司机信息
+                mFlDriverInfo.setVisibility(View.VISIBLE);
+                mLlWait.setVisibility(View.GONE);
+                String value = event.getValue();
+                Log.v("system---value--->", value);
+                Gson gson = new Gson();
+                driverOrderEntity = gson.fromJson(value, DriverOrderEntity.class);
+                mStartLatlng.setLongitude(driverOrderEntity.getLongitude());
+                mStartLatlng.setLatitude(driverOrderEntity.getLatitude());
+                mEndLatlng.setLongitude(LocationUtils.getLocation().getLongitude());
+                mEndLatlng.setLatitude(LocationUtils.getLocation().getLatitue());
+                sList.add(mStartLatlng);
+                eList.add(mEndLatlng);
+                try {
+                    //再次强调，最后一个参数为true时代表多路径，否则代表单路径
+                    strategy = mAMapNavi.strategyConvert(true, false, false, false, false);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            });
+                mAMapNavi.setCarNumber("宁", driverOrderEntity.getCarCode());
+                mAMapNavi.calculateDriveRoute(sList, eList, mWayPointList, strategy);
 
-            mTvComplain.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //投诉电话
-                    callPhone(driverOrderEntity.getMobile());
-                }
-            });
 
-            //getDriverInfo(driverOrderEntity.getPk_user(),String.valueOf(driverOrderEntity.getIstruename()));
-        } else if (event.getKey().equals("startConfirm")) {
-            mTvConfirm.setVisibility(View.VISIBLE);
-            mTvCancelOrder.setVisibility(View.GONE);
-            String message = event.getValue();
-            final StartTravelEntity startTravelEntity = new Gson().fromJson(message, StartTravelEntity.class);
-            mTvConfirm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    confirmStartTravel(startTravelEntity.getPk_basetravelrecord());
-                }
-            });
-        } else if (event.getKey().equals("receiveFinshOrder")) {
-            String message = event.getValue();
-            Log.v("system---value-->", message);
-            Gson gson = new Gson();
-            PayEntity payEntity = gson.fromJson(message, PayEntity.class);
-            PayDialog payDialog = new PayDialog(this, R.style.customDialog, payEntity);
-            payDialog.show();
-        } else if (event.getKey().equals("receivePayFinish")) {
-            Toast.makeText(this, "您已经付款成功,感谢您下次乘坐雷风专车", Toast.LENGTH_SHORT).show();
-            IncomeEntity incomeEntity=new Gson().fromJson(event.getValue(),IncomeEntity.class);
-            requestRradeRecord(incomeEntity.getPk_userorder(),incomeEntity.getPk_user(),incomeEntity.getIncome(),incomeEntity.getPay(),incomeEntity.getType(),incomeEntity.getTradetype());
+
+                SPUtils.setParam(this, SPConstants.KEY_CAR_CODE, driverOrderEntity.getCarCode());
+                SPUtils.setParam(this, SPConstants.KEY_CAR_TYPE, driverOrderEntity.getType());
+                SPUtils.setParam(this, SPConstants.KEY_DRIVER_NAME, driverOrderEntity.getDrivername());
+                SPUtils.setParam(this, SPConstants.KEY_USER_ORDER, driverOrderEntity.getPk_userorder());
+                SPUtils.setParam(this, SPConstants.KEY_DRIVER_MOBILE, driverOrderEntity.getMobile());
+                mCardId.setText("车牌号:  " + driverOrderEntity.getCarCode());
+                mCardName.setText("车型:  " + driverOrderEntity.getType());
+                mTvName.setText("司机:  " + driverOrderEntity.getDrivername());
+                break;
+            }
+            case "startConfirm": {
+                //确认上车
+                mTvConfirm.setVisibility(View.VISIBLE);
+                mTvCancelOrder.setVisibility(View.GONE);
+                String message = event.getValue();
+                final StartTravelEntity startTravelEntity = new Gson().fromJson(message, StartTravelEntity.class);
+                mTvConfirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            mStartLatlng.setLongitude(LocationUtils.getLocation().getLongitude());
+                            mStartLatlng.setLatitude(LocationUtils.getLocation().getLatitue());
+                            mEndLatlng.setLongitude(RouteTask
+                                    .getInstance(getApplicationContext()).getEndPoint().longitude);
+                            mEndLatlng.setLatitude(RouteTask
+                                    .getInstance(getApplicationContext()).getEndPoint().latitue);
+                            sList.add(mStartLatlng);
+                            eList.add(mEndLatlng);
+                            //再次强调，最后一个参数为true时代表多路径，否则代表单路径
+                            strategy = mAMapNavi.strategyConvert(true, false, false, false, false);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        mAMapNavi.setCarNumber("宁", driverOrderEntity.getCarCode());
+                        mAMapNavi.calculateDriveRoute(sList, eList, mWayPointList, strategy);
+                        confirmStartTravel(startTravelEntity.getPk_basetravelrecord());
+                    }
+                });
+
+                break;
+            }
+            case "receiveFinshOrder": {
+                //开始支付
+                String message = event.getValue();
+                Log.v("system---value-->", message);
+                Gson gson = new Gson();
+                PayEntity payEntity = gson.fromJson(message, PayEntity.class);
+                payDialog = new PayDialog(this, R.style.customDialog, payEntity);
+                payDialog.show();
+                break;
+            }
+            case "receivePayFinish":
+                //支付完成
+                // payDialog.dismiss();
+
+                IncomeEntity incomeEntity = new Gson().fromJson(event.getValue(), IncomeEntity.class);
+                //requestRradeRecord(incomeEntity.getPk_userorder(), incomeEntity.getPk_user(), incomeEntity.getIncome(), incomeEntity.getPay(), incomeEntity.getType(), incomeEntity.getTradetype());
+                break;
         }
 
+    }
+
+    //在ui线程执行
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(EventUtil event) {
+        try {
+            switch (event.getMsg()) {
+                case "close_carsuccess":
+                    //goToActivity(CustomerMainActivity.class);
+                    finish();
+                    break;
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "发送消息异常", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
@@ -306,22 +429,27 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
         Map<String, String> param = new HashMap<>();
         param.put("isdriver", "0");
         param.put("pk_userorder", pk_userorder);
-        Log.v("system---order----->", pk_userorder+"");
+        Log.v("system---order----->", pk_userorder + "");
         userAPI.cancelOrderInfo(param).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                Log.v("system-----取消订单信息--->", response.body() + "");
                 hideLoading();
                 try {
                     Gson gson = new Gson();
                     BaseResultBean resultBean = gson.fromJson(response.body(), BaseResultBean.class);
                     if (resultBean.getCode().equals("0")) {
+                        SPUtils.setParam(CallCarSucessActivity.this, SPConstants.KEY_SUCCESS_CAR, "");
+                        SPUtils.setParam(CallCarSucessActivity.this, SPConstants.KEY_CAR_CODE, "");
+                        SPUtils.setParam(CallCarSucessActivity.this, SPConstants.KEY_CAR_TYPE, "");
+                        SPUtils.setParam(CallCarSucessActivity.this, SPConstants.KEY_DRIVER_NAME, "");
+                        SPUtils.setParam(CallCarSucessActivity.this, SPConstants.KEY_USER_ORDER, "");
+                        SPUtils.setParam(CallCarSucessActivity.this, SPConstants.KEY_DRIVER_MOBILE, "");
                         Toast.makeText(CallCarSucessActivity.this, resultBean.getMsg(), Toast.LENGTH_SHORT).show();
                         finish();
                     } else {
                         Toast.makeText(CallCarSucessActivity.this, resultBean.getMsg(), Toast.LENGTH_SHORT).show();
                     }
-                    Log.v("system----取消订单信息--->", response.body());
-
                 } catch (Exception e) {
                     Toast.makeText(CallCarSucessActivity.this, "订单取消异常", Toast.LENGTH_SHORT).show();
                 }
@@ -331,6 +459,7 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
             public void onFailure(Call<String> call, Throwable t) {
                 hideLoading();
                 showToast("订单取消失败!");
+                SPUtils.setParam(CallCarSucessActivity.this, SPConstants.KEY_SUCCESS_CAR, "");
             }
         });
 
@@ -338,6 +467,7 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
 
     /**
      * 生成交易记录
+     *
      * @param pk_userorder
      * @param pk_user
      * @param income
@@ -353,7 +483,7 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
         param.put("pay", pay);
         param.put("type", type);
         param.put("fromtype", "0");
-        param.put("mobile", SPUtils.getParam(this, SPConstants.KEY_CUSTOMER_MOBILE, ""));
+        param.put("mobile", getParam(this, SPConstants.KEY_CUSTOMER_MOBILE, ""));
         param.put("tradetype", tradetype);
         userAPI.generateTradeRecord(param).enqueue(new Callback<String>() {
             @Override
@@ -363,11 +493,14 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
                     try {
                         BaseResultBean res = new Gson().fromJson(response.body(), BaseResultBean.class);
                         if ("0".equals(res.getCode())) {
-                            Toast.makeText(CallCarSucessActivity.this, res.getMsg(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(CallCarSucessActivity.this, res.getMsg(), Toast.LENGTH_SHORT).show();
+                            Log.v("system---交易记录------>", res.getMsg());
+
                         } else {
                             Toast.makeText(CallCarSucessActivity.this, res.getMsg(), Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
+                        Toast.makeText(CallCarSucessActivity.this, "服务器异常,请稍后重试", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -384,38 +517,10 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
      * 方法必须重写
      */
     @Override
-    public void onResume() {
-        super.onResume();
-        mMapView.onResume();
-    }
-
-    /**
-     * 方法必须重写
-     */
-    @Override
-    public void onPause() {
-        super.onPause();
-        mMapView.onPause();
-    }
-
-    /**
-     * 方法必须重写
-     */
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mMapView.onSaveInstanceState(outState);
-    }
-
-    /**
-     * 方法必须重写
-     */
-    @Override
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
         Utils.removeMarkers();
-        mMapView.onDestroy();
         mLocationTask.onDestroy();
         RouteTask.getInstance(getApplicationContext()).removeRouteCalculateListener(this);
 
@@ -432,10 +537,6 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
                 .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory
                         .decodeResource(getResources(),
                                 R.drawable.c_map_location)));
-        mPositionMark = mAmap.addMarker(markerOptions);
-
-        mPositionMark.setPositionByPixels(mMapView.getWidth() / 2,
-                mMapView.getHeight() / 2);
         mLocationTask.startSingleLocate();
     }
 
@@ -446,9 +547,7 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
         RouteTask.getInstance(getApplicationContext()).setStartPoint(entity);
 
         mStartPosition = new LatLng(entity.latitue, entity.longitude);
-        CameraUpdate cameraUpate = CameraUpdateFactory.newLatLngZoom(
-                mStartPosition, mAmap.getCameraPosition().zoom);
-        mAmap.animateCamera(cameraUpate);
+
 
     }
 
@@ -462,16 +561,7 @@ public class CallCarSucessActivity extends CustomerBaseActivity implements AMap.
 
     @Override
     public void onRouteCalculate(float cost, float distance, int duration) {
-        mIsRouteSuccess = true;
-//        mRouteCostText.setVisibility(View.VISIBLE);
-//        llCarContainer.setVisibility(View.VISIBLE);
-//        mDesitinationText.setText(RouteTask
-//                .getInstance( getApplicationContext()).getEndPoint().address);
-//        mRouteCostText.setText(String.format("预估费用%.2f元，距离%.1fkm", cost,
-//                distance));
-////        mDestinationButton.setText("我要用车");
-////        mCancelButton.setVisibility(View.VISIBLE);
-//        llCarContainer.setOnClickListener(null);
+
     }
 
 

@@ -89,7 +89,7 @@ public class OrderBuildFragment extends BaseFragment implements View.OnClickList
         mLocationImage.setOnClickListener(this);
         carAPI = APIFactory.create(CarAPI.class);
         if (getActivity().getIntent() != null) {
-            getActivity().getIntent().getIntExtra("styletype", 0);
+           styletype= getActivity().getIntent().getIntExtra("styletype", 0);
         }
     }
 
@@ -112,7 +112,6 @@ public class OrderBuildFragment extends BaseFragment implements View.OnClickList
         } else if (v.getId() == R.id.c_btn_confirm) {
             //发送订单
             try {
-
                 if (EdtUtil.isEdtEmpty(mAddressTextView)) {
                     Toast.makeText(getActivity(), "获取您的位置失败,请输入", Toast.LENGTH_SHORT).show();
                     return;

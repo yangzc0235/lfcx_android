@@ -48,7 +48,8 @@ public class DriverModeActivity extends DriverBaseActivity implements RouteTask.
     private DriverCarAPI mDriverCarAPI;
     private String toAddress, startTime, endTime;
     protected Handler mainHandler;
-
+    private TextView mTvSaveActivityDriverMode;
+    private int mClickType=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +83,7 @@ public class DriverModeActivity extends DriverBaseActivity implements RouteTask.
         mEdtStartActivityDriverMode = (TextView) findViewById(R.id.edt_start_activity_driver_mode);
         mEdtEndActivityDriverMode = (TextView) findViewById(R.id.edt_end_activity_driver_mode);
         mTvToaddressActivityDriverMode = (TextView) findViewById(R.id.tv_toaddress_activity_driver_mode);
+        mTvSaveActivityDriverMode = (TextView) findViewById(R.id.tv_save_activity_driver_mode);
         btn_current.setOnClickListener(this);
         btn_book = (Button) findViewById(R.id.btn_book);
         btn_book.setOnClickListener(this);
@@ -91,6 +93,7 @@ public class DriverModeActivity extends DriverBaseActivity implements RouteTask.
         mRlToaddressActivityDriverMode.setOnClickListener(this);
         mEdtStartActivityDriverMode.setOnClickListener(this);
         mEdtEndActivityDriverMode.setOnClickListener(this);
+        mTvSaveActivityDriverMode.setOnClickListener(this);
 
     }
 
@@ -103,28 +106,16 @@ public class DriverModeActivity extends DriverBaseActivity implements RouteTask.
             btn_current.setBackgroundResource(R.drawable.btn_yellow_shape_bg);
             btn_book.setBackgroundResource(android.R.color.transparent);
             btn_all.setBackgroundResource(android.R.color.transparent);
-            String toAddress = mTvToaddressActivityDriverMode.getText().toString().trim();
-            if (StringEmptyUtil.isEmpty(toAddress)) {
-                Toast.makeText(this, "请选择目的地", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            requestSetOrderType("0", "0", toAddress, 1);
+            mClickType=1;
         } else if (view.getId() == R.id.btn_book) {
             mTts.startSpeaking("只听预约订单", mTtsListener);
-            real_container.setVisibility(View.GONE);
+            real_container.setVisibility(View.VISIBLE);
             book_container.setVisibility(View.VISIBLE);
             btn_book.setBackgroundResource(R.drawable.btn_yellow_shape_bg);
             btn_current.setBackgroundResource(android.R.color.transparent);
             btn_all.setBackgroundResource(android.R.color.transparent);
-            if (StringEmptyUtil.isEmpty(startTime)) {
-                Toast.makeText(this, "请选择开始时间", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (StringEmptyUtil.isEmpty(endTime)) {
-                Toast.makeText(this, "请选择结束时间", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            requestSetOrderType(startTime, endTime, "0", 0);
+            mClickType=2;
+
         } else if (view.getId() == R.id.btn_all) {
             mTts.startSpeaking("听全部订单", mTtsListener);
             real_container.setVisibility(View.VISIBLE);
@@ -132,22 +123,7 @@ public class DriverModeActivity extends DriverBaseActivity implements RouteTask.
             btn_all.setBackgroundResource(R.drawable.btn_yellow_shape_bg);
             btn_book.setBackgroundResource(android.R.color.transparent);
             btn_current.setBackgroundResource(android.R.color.transparent);
-            toAddress = mTvToaddressActivityDriverMode.getText().toString().trim();
-            startTime = mEdtStartActivityDriverMode.getText().toString().trim();
-            endTime = mEdtEndActivityDriverMode.getText().toString().trim();
-            if (StringEmptyUtil.isEmpty(toAddress)) {
-                Toast.makeText(this, "请选择目的地", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (StringEmptyUtil.isEmpty(startTime)) {
-                Toast.makeText(this, "请选择开始时间", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (StringEmptyUtil.isEmpty(endTime)) {
-                Toast.makeText(this, "请选择结束时间", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            requestSetOrderType(startTime, endTime, toAddress, 0);
+            mClickType=3;
         } else if (view.getId() == R.id.tv_confirm) {
             goToActivity(DriverMainActivity.class);
             finish();
@@ -177,7 +153,53 @@ public class DriverModeActivity extends DriverBaseActivity implements RouteTask.
             //显示我们的时间选择器
             timeSelectUtils.dateTimePicKDialog();
 
+        }else if(view.getId()==R.id.tv_save_activity_driver_mode){
+            //保存
+            savaDatas();
         }
+
+    }
+
+    /**
+     * 保存数据
+     */
+    private void savaDatas() {
+        toAddress = mTvToaddressActivityDriverMode.getText().toString().trim();
+        startTime = mEdtStartActivityDriverMode.getText().toString().trim();
+        endTime = mEdtEndActivityDriverMode.getText().toString().trim();
+        if(mClickType==1){
+            if (StringEmptyUtil.isEmpty(toAddress)) {
+                Toast.makeText(this, "请选择目的地", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            requestSetOrderType("", "", toAddress, 1);
+        }else if(mClickType==2){
+            if (StringEmptyUtil.isEmpty(startTime)) {
+                Toast.makeText(this, "请选择开始时间", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (StringEmptyUtil.isEmpty(endTime)) {
+                Toast.makeText(this, "请选择结束时间", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            requestSetOrderType(startTime, endTime, "", 2);
+        }else if(mClickType==3){
+            if (StringEmptyUtil.isEmpty(startTime)) {
+                Toast.makeText(this, "请选择开始时间", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (StringEmptyUtil.isEmpty(endTime)) {
+                Toast.makeText(this, "请选择结束时间", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (StringEmptyUtil.isEmpty(toAddress)) {
+                Toast.makeText(this, "请选择目的地", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            requestSetOrderType(startTime, endTime, toAddress, 0);
+        }
+
+
 
     }
 
@@ -197,6 +219,7 @@ public class DriverModeActivity extends DriverBaseActivity implements RouteTask.
         param.put("endtime", endtime);
         param.put("toaddress", toaddress);
         param.put("type", type);
+        param.put("isdriver", 1);
         param.put("pk_user", SPUtils.getParam(this, SPConstants.KEY_DRIVER_PK_USER, ""));
         mDriverCarAPI.setOrderType(param).enqueue(new Callback<String>() {
             @Override
@@ -217,7 +240,7 @@ public class DriverModeActivity extends DriverBaseActivity implements RouteTask.
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                showToast("设置失败！！");
+                showToast("设置异常！！");
                 hideLoading();
             }
         });

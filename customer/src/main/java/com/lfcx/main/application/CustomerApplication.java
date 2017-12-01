@@ -15,10 +15,11 @@ import cn.jpush.android.api.JPushInterface;
 
 public class CustomerApplication extends Application {
 
-
+    private static CustomerApplication instance;
     @Override
     public void onCreate() {
         super.onCreate();
+        instance=this;
         CrashHandler.getInstance().init(this);
         JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
 
@@ -31,6 +32,9 @@ public class CustomerApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+    }
+    public static CustomerApplication getInstance() {
+        return instance;
     }
 
 }

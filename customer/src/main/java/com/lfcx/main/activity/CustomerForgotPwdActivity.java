@@ -130,12 +130,45 @@ public class CustomerForgotPwdActivity extends CustomerBaseActivity {
                     showToast("请输入完整的手机号");
                     return;
                 }
-                sendCheckCode(phone);
-                mHandler.sendEmptyMessage(0);
-                btnCode.setEnabled(false);
+                requestCheckRegist(phone);
             }
 
         }
+    }
+
+    /**
+     * 判断是否注册
+     * @param moible
+     */
+    private void requestCheckRegist(final String moible){
+        showLoading();
+        Map<String,String> param = new HashMap<>();
+        param.put("mobile",moible);
+        userAPI.checkRegist(param).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                hideLoading();
+                try {
+                    BaseResultBean res = new Gson().fromJson(response.body(), BaseResultBean.class);
+                    if ("0".equals(res.getCode())) {
+                        sendCheckCode(moible);
+                        mHandler.sendEmptyMessage(0);
+                        btnCode.setEnabled(false);
+                    }else {
+                        showToast("此用户未注册");
+
+                    }
+                } catch (Exception e) {
+                    hideLoading();
+                    LogUtils.e(TAG, e.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                hideLoading();
+            }
+        });
     }
 
     /**

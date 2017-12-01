@@ -204,9 +204,12 @@
         <activity android:name=".activity.CarTypeSelectActivity" />
         <activity android:name=".activity.DestinationActivity" />
         <activity android:name=".activity.DriverHeatMapActivity" />
-        <activity android:name=".activity.DriverGPSNaviActivity" />
+        <activity android:name=".activity.DriverGPSNaviActivity"  android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity android:name=".activity.OverviewModeActivity"  android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity android:name=".activity.ComponentActivity"  android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity android:name=".activity.CarNameSelectActivity"></activity>
         <activity android:name=".activity.DriverForgotPwdActivity"></activity>
+        <activity android:name=".activity.DriverTravelActivity"></activity>
     </application>
 
 </manifest>

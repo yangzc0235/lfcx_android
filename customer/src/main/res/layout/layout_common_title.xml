@@ -7,17 +7,17 @@
 
     <ImageView
         android:id="@+id/iv_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_nav_back"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:visibility="gone"
         android:layout_centerVertical="true"
-        android:padding="10dp"
-        />
+        android:src="@mipmap/ic_nav_back"
+         />
     <ImageView
         android:id="@+id/iv_user"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_user"
         android:visibility="gone"
         android:layout_centerVertical="true"
         android:padding="10dp"

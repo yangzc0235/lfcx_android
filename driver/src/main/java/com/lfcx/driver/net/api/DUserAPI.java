@@ -41,6 +41,9 @@ public interface DUserAPI {
     @POST(NetConfig.DRIVER_REGISTER)
     Call<String> driverRegist(@FieldMap Map<String, Object> param);
 
+    @FormUrlEncoded
+    @POST(NetConfig.CHECK_REGISTER)
+    Call<String> checkRegist(@FieldMap Map<String, String> param);
 
     /**
      * 调用聚合接口发送短信

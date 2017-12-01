@@ -47,12 +47,12 @@ public class DriverReceiver extends BroadcastReceiver {
                 ResultCodeEntity resultCodeEntity = gson.fromJson(message, ResultCodeEntity.class);
                 if (resultCodeEntity.getActioncode().equals("1-400")) {
                     Log.v("system--用户信息-->", message);
-                    EventBus.getDefault().post(new ReceiptEvent("startReceipt", message));
+                    EventBus.getDefault().post(new ReceiptEvent("start", message));
                 } else if (resultCodeEntity.getActioncode().equals("1-401")) {
                     Log.v("system--支付完成-->", message);
                     EventBus.getDefault().post(new ReceiptEvent("pay_finish", message));
                 }else if (resultCodeEntity.getActioncode().equals("1-402")) {
-                    Log.v("system--开始行程-->", message);
+                    Log.v("system--确认行程-->", message);
                     EventBus.getDefault().post(new ReceiptEvent("begain_travel", message));
                 }
 

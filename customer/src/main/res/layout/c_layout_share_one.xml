@@ -35,7 +35,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
-                android:drawableLeft="@drawable/icon_spoint"
+                android:drawableLeft="@drawable/start_point"
                 android:text="出发地址:"
                 android:textColor="@color/lyt_color"
                 android:drawablePadding="5dp"
@@ -67,7 +67,7 @@
                 android:layout_marginRight="5dp"
                 android:drawablePadding="5dp"
                 android:textColor="@color/lyt_color"
-                android:drawableLeft="@drawable/icon_epoint"
+                android:drawableLeft="@drawable/end_point"
                 android:text="目的地:"/>
 
             <EditText
@@ -94,7 +94,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:textColor="@color/lyt_color"
-                android:drawableLeft="@drawable/group_fill"
+                android:drawableLeft="@mipmap/icon_user"
                 android:drawablePadding="5dp"
                 android:text="几人乘车:"
                  />
@@ -127,7 +127,7 @@
                 android:drawablePadding="5dp"
                 android:text="出发时间:"
                 android:textColor="@color/lyt_color"
-                android:drawableLeft="@drawable/time_fill"
+                android:drawableLeft="@drawable/icon_time"
                  />
 
             <EditText
@@ -158,7 +158,7 @@
                 android:drawablePadding="5dp"
                 android:text="乘车人电话:"
                 android:textColor="@color/lyt_color"
-                android:drawableLeft="@drawable/group_fill" />
+                android:drawableLeft="@drawable/icon_mobile" />
 
             <EditText
                 android:id="@+id/et_contact_user"
@@ -182,8 +182,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/white"
+            android:layout_height="60dp"
+            android:background="@drawable/border_money"
             android:gravity="center"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
@@ -210,7 +210,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@id/tv_gologin"
             android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:textSize="@dimen/title_size"
             android:textColor="@color/white"
             android:background="@drawable/btn_small_blue_bg"

@@ -26,6 +26,10 @@ public interface UserAPI {
     Call<String> customerRegist(@FieldMap Map<String, String> param);
 
     @FormUrlEncoded
+    @POST(NetConfig.CHECK_REGISTER)
+    Call<String> checkRegist(@FieldMap Map<String, String> param);
+
+    @FormUrlEncoded
     @POST(NetConfig.FORGET_PWD)
     Call<String> forgetPwd(@FieldMap Map<String, String> param);
 

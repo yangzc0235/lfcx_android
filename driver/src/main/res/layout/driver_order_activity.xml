@@ -14,10 +14,10 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <com.amap.api.maps.MapView
-            android:id="@+id/mapview"
+        <com.amap.api.navi.AMapNaviView
+            android:id="@+id/navi_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></com.amap.api.maps.MapView>
+            android:layout_height="match_parent" />
 
         <LinearLayout
             android:id="@+id/order_title"

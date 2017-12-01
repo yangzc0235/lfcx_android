@@ -172,10 +172,10 @@
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/d_tv_car_id"
                     android:textColor="@color/blue"
-                    android:paddingLeft="2dp"
+                    android:paddingLeft="4dp"
                     android:background="@drawable/car_type_border"
                     android:paddingRight="2dp"
-                    android:drawableRight="@drawable/right_arrow"
+                    android:drawableRight="@drawable/arrow_bottom"
                     android:textSize="12sp"
                     android:text="宁"/>
 

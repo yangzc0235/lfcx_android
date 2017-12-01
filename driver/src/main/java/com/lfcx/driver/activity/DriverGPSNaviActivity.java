@@ -9,13 +9,12 @@ import com.lfcx.driver.R;
 
 import static com.lfcx.driver.activity.DriverOrderActivity.userOrderEntity;
 
-public class DriverGPSNaviActivity extends DriverBaseActivity {
+public class DriverGPSNaviActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_gpsnavi);
-        showLoading();
         mAMapNaviView = (AMapNaviView) findViewById(R.id.navi_view);
         mAMapNaviView.onCreate(savedInstanceState);
         mAMapNaviView.setAMapNaviViewListener(this);
@@ -69,6 +68,5 @@ public class DriverGPSNaviActivity extends DriverBaseActivity {
     @Override
     public void onNaviViewLoaded() {
         super.onNaviViewLoaded();
-        hideLoading();
     }
 }

@@ -213,6 +213,7 @@
         <activity android:name="com.lfcx.main.activity.CustomerMeWalletActivity"></activity>
         <activity android:name="com.lfcx.main.activity.CustomerUserCenterActivity"></activity>
         <activity android:name="com.lfcx.main.activity.CustomerForgotPwdActivity"></activity>
+        <activity android:name="com.lfcx.main.activity.CustomTravelActivity"></activity>
 
 
         <!-- 微信支付 -->

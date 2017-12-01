@@ -15,11 +15,16 @@ import com.lfcx.common.net.APIFactory;
 import com.lfcx.common.utils.SPUtils;
 import com.lfcx.driver.R;
 import com.lfcx.driver.consts.SPConstants;
+import com.lfcx.driver.event.ReceiptEvent;
 import com.lfcx.driver.net.api.DriverCarAPI;
 import com.lfcx.driver.net.result.CountInfoEntity;
 import com.lfcx.driver.service.LocationService;
 import com.lfcx.driver.util.ExampleUtil;
 import com.lfcx.driver.util.UserUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +35,8 @@ import cn.jpush.android.api.TagAliasCallback;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.lfcx.common.utils.SPUtils.getParam;
 
 public class DriverMainActivity extends DriverBaseActivity implements View.OnClickListener {
 
@@ -43,6 +50,7 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
     private Button mTvRewards;
     private Button mTvRlt;
     private TextView mTvNews;
+    private TextView mTvClose;
     private LinearLayout mDModeSelect;
     private Button mBtnStartWork;
     private long exitTime = 0;
@@ -51,6 +59,7 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
         setContentView(R.layout.d_activity_main);
         mIvBack = (ImageView) findViewById(R.id.iv_back);
         mIvUser = (ImageView) findViewById(R.id.iv_user);
@@ -65,7 +74,8 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
         mTvNews = (TextView) findViewById(R.id.tv_news);
         mDModeSelect = (LinearLayout) findViewById(R.id.d_mode_select);
         mBtnStartWork = (Button) findViewById(R.id.btn_start_work);
-        //每三分钟上传一次司机的位置
+        mTvClose = (TextView) findViewById(R.id.tv_close);
+        //每1分钟上传一次司机的位置
         LocationService.startService(this);
         init();
     }
@@ -76,30 +86,16 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
         mIvUser.setVisibility(View.VISIBLE);
         mIvUser.setOnClickListener(this);
         mTvNews.setOnClickListener(this);
-        mBtnStartWork.setOnClickListener(this);
+        //mBtnStartWork.setOnClickListener(this);
         mDModeSelect.setOnClickListener(this);
         mIvBack.setOnClickListener(this);
         mDIvMessage.setOnClickListener(this);
         mTvRewards.setOnClickListener(this);
         mTvRlt.setOnClickListener(this);
-        mBtnStartWork.setText("点击出车");
+        mTvClose.setOnClickListener(this);
         mTitleBar.setText("雷风司机");
         mDIvMessage.setVisibility(View.VISIBLE);
-        setAlias((String) SPUtils.getParam(this, SPConstants.DRIVER_MOBILE, ""));
-        String appKey = ExampleUtil.getAppKey(getApplicationContext());
-        String packageName = getPackageName();
-        String deviceId = ExampleUtil.getDeviceId(getApplicationContext());
-        String udid = ExampleUtil.getImei(getApplicationContext(), "");
-        String rid = JPushInterface.getRegistrationID(getApplicationContext());
-        Log.v("system--appKey---->", appKey);
-        Log.v("system---pac--->", packageName);
-        Log.v("system---deviceId--->", deviceId);
-        Log.v("system---udid--->", udid);
-        Log.v("system---rid--->", rid);
-        String param = (String) SPUtils.getParam(this, SPConstants.KEY_DRIVER_PK_USER, "");
-        if (param != null) {
-            getCurrentCountInfo(param);
-        }
+
     }
 
     /**
@@ -164,12 +160,45 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
     private void checkFirstInApp() {
         if (!UserUtil.isLogin(this)) {
             goToActivity(DriverLoginActivity.class);
+        } else {
+            setAlias((String) getParam(this, SPConstants.DRIVER_MOBILE, ""));
+            String appKey = ExampleUtil.getAppKey(getApplicationContext());
+            String packageName = getPackageName();
+            String deviceId = ExampleUtil.getDeviceId(getApplicationContext());
+            String udid = ExampleUtil.getImei(getApplicationContext(), "");
+            String rid = JPushInterface.getRegistrationID(getApplicationContext());
+            Log.v("system--appKey---->", appKey);
+            Log.v("system---pac--->", packageName);
+            Log.v("system---deviceId--->", deviceId);
+            Log.v("system---udid--->", udid);
+            Log.v("system---rid--->", rid);
+            String param = (String) getParam(this, SPConstants.KEY_DRIVER_PK_USER, "");
+            if (param != null) {
+                getCurrentCountInfo(param);
+            }
+        }
+//        checkReceiptSuccess();
+    }
+
+    //是否接单成功
+    private void checkReceiptSuccess() {
+        String receipt = (String) SPUtils.getParam(this, SPConstants.KEY_RECEIPT_SUCCESS, "");
+        if ("true".equals(receipt)) {
+            goToActivity(DriverOrderActivity.class);
         }
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        //checkFirstInApp();
+    }
+
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -244,6 +273,8 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
                 } else {
                     //奖励
 //                    goToActivity(DriverGPSNaviActivity.class);
+                    goToActivity(OverviewModeActivity.class);
+
                 }
                 break;
 
@@ -255,6 +286,25 @@ public class DriverMainActivity extends DriverBaseActivity implements View.OnCli
                     //热力图
                     goToActivity(DriverHeatMapActivity.class);
                 }
+                break;
+            case R.id.tv_close:
+                finish();
+                System.exit(0);
+                break;
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(ReceiptEvent event) {
+        switch (event.getKey()) {
+            case "start":
+                Bundle bundle = new Bundle();
+                bundle.putString("startReceipt", event.getValue());
+                goToActivity(DriverOrderActivity.class, bundle);
+                break;
+            case "finsish_car":
+                finish();
+                System.exit(0);
                 break;
         }
     }
